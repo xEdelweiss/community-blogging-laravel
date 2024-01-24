@@ -9,21 +9,34 @@ export default {
         "./resources/views/**/*.blade.php",
     ],
 
-    spacing: {
-        22: "5.5rem",
-        32: "8rem",
-        70: "17.5rem",
-        175: "43.75rem",
-    },
-
-    maxWidth: {
-        main: "68.5rem",
-    },
-
     theme: {
         extend: {
+            colors: {
+                primary: "#0081c6",
+            },
+
+            spacing: {
+                22: "5.5rem",
+                32: "8rem",
+                70: "17.5rem",
+                175: "43.75rem",
+            },
+
+            maxWidth: {
+                main: "68.5rem",
+            },
+
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            },
+
+            fontSize: {
+                xxs: ["0.625rem", { lineHeight: "1rem" }],
+            },
+
+            boxShadow: {
+                post: "4px 4px 15px 0 rgba(36, 37, 38, 0.08)",
+                dialog: "3px 4px 15px 0 rgba(36, 37, 38, 0.08)",
             },
         },
     },

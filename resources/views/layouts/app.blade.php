@@ -19,9 +19,9 @@
             <livewire:layout.navigation />
 
             <!-- Page Content -->
-            <main>
+            <div class="px-8 pt-4">
                 {{ $slot }}
-            </main>
+            </div>
         </div>
     </body>
 </html>

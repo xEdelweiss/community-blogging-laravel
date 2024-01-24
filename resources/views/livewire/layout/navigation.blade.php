@@ -15,10 +15,10 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow">
+<nav x-data="{ open: false }" class="w-full px-8 bg-gray-100 dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
+    <div class="mx-auto" style="max-width: 1400px;">
+        <div class="flex justify-between h-20 items-center">
             <!-- Logo -->
             <a href="{{ route('posts') }}" wire:navigate>
                 <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />

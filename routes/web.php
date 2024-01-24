@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'posts')->name('posts');
+Route::view('/post', 'post')->name('post');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
