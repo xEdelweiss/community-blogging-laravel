@@ -31,12 +31,12 @@ new class extends Component
                     </svg>
                     <span class="sr-only">{{ __('Search icon') }}</span>
                 </div>
-                <input wire:model="search" type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('Search...') }}">
+                <input wire:model="search" type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary transition ease-in-out duration-150" placeholder="{{ __('Search...') }}">
             </div>
 
-            @auth
-                <!-- Settings Dropdown -->
-                <div class="shrink-0 hidden sm:flex sm:items-center sm:ms-6">
+            <div class="shrink-0 hidden sm:flex sm:items-center sm:ms-6">
+                @auth
+                    <!-- Settings Dropdown -->
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -63,20 +63,18 @@ new class extends Component
                             </button>
                         </x-slot>
                     </x-dropdown>
-                </div>
-            @else
+                @else
                 {{-- <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <a href="#">
                         <img src="https://www.gravatar.com/avatar/?d=mp" alt="avatar" class="w-10 h-10 rounded-full" />
                     </a>
                 </div> --}}
 
-                <div class="shrink-0 hidden sm:flex sm:items-center sm:ms-6">
                     <x-nav-link :href="route('login')" :active="request()->routeIs('login')" wire:navigate>
                         {{ __('Login') }}
                     </x-nav-link>
-                </div>
-            @endauth
+                @endauth
+            </div>
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -100,7 +98,7 @@ new class extends Component
               <span class="sr-only">{{ __('Search icon') }}</span>
             </div>
 
-            <input wire:model="search" type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="{{ __('Search...') }}">
+            <input wire:model="search" type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary transition ease-in-out duration-150" placeholder="{{ __('Search...') }}">
         </div>
 
         @auth

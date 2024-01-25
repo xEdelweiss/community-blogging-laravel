@@ -8,9 +8,21 @@
     <div class="flex flex-col gap-6">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 gap-3 flex flex-col hover:shadow-post transition duration-150 ease-in cursor-pointer">
             <div class="flex flex-col gap-1 pe-1">
-                <div class="flex justify-between flex-nowrap">
-                    <div class="text-xl font-semibold">
-                        Lorem ipsum dolor sit amet.
+                <div class="flex justify-between items-start flex-nowrap">
+                    <div class="flex flex-col">
+                        {{-- <div class="text-xl font-semibold">
+                            Lorem ipsum dolor sit amet.
+                        </div> --}}
+    
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
+                                <div class="font-bold text-gray-900 hover:text-primary">
+                                    <a href="#">John Doe</a>
+                                </div>
+                                <div>&bull;</div>
+                                <div>10 hours ago</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="text-sm flex items-center gap-3">
@@ -19,23 +31,18 @@
                         </a>
                     </div>
                 </div>
+            </div>
 
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400">
-                        <div class="font-bold text-gray-900 hover:text-primary">
-                            <a href="#">John Doe</a>
-                        </div>
-                        <div>&bull;</div>
-                        <div>10 hours ago</div>
-                    </div>
+            <div class="mx-auto relative">
+                <div class="absolute top-0 bottom-0 left-0 right-0">
+                    {{-- screen to prevent click on embed --}}
                 </div>
+                <blockquote class="twitter-tweet"><p lang="uk" dir="ltr">російські окупанти заслуговують тільки на смерть. <br><br>Цю смерть їм доставляють ваші дрони під керуванням воїнів підрозділу Крила до пекла 103 ОБрТРО. <a href="https://t.co/XQMdHwIWE7">pic.twitter.com/XQMdHwIWE7</a></p>&mdash; Serhii Sternenko ✙ (@sternenko) <a href="https://twitter.com/sternenko/status/1749846832002257273?ref_src=twsrc%5Etfw">January 23, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-
-            <img class="rounded-xl" src="https://source.unsplash.com/700x400?war&crop&v=1" />
             
-            <div class="text-gray-900 dark:text-gray-100 line-clamp-3">
+            {{-- <div class="text-gray-900 dark:text-gray-100 line-clamp-3">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos tenetur assumenda possimus veniam tempora eveniet natus sint, similique ut. Eos, nulla! Aut, veritatis rerum? Autem non dolorem dolore laborum vero molestiae quia ab quam consequatur porro illum vitae, quos dolorum perspiciatis sequi repellat reiciendis blanditiis praesentium nisi, illo corrupti asperiores sint ut. Officia nobis blanditiis deleniti earum voluptates voluptas incidunt voluptate harum dolorum impedit? Velit, nesciunt minima. Est, suscipit omnis? Recusandae culpa maxime reprehenderit, deleniti minima harum, perferendis alias excepturi non ducimus omnis perspiciatis ea at sunt ratione tempore repellendus cupiditate fugit dicta officia, quaerat aspernatur dolore eum atque. Aperiam.
-            </div>
+            </div> --}}
 
             <div class="flex items-center justify-between pe-1 mt-1">
                 <div class="flex items-center text-xs font-semibold space-x-2 text-gray-400 gap-4">
