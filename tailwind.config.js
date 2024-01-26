@@ -14,6 +14,7 @@ export default {
             colors: {
                 primary: "#0081c6",
                 "primary-dark": "#005989",
+                backdrop: "rgba(0, 0, 0, 0.3)",
             },
 
             spacing: {

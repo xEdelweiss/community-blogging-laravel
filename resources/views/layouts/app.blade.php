@@ -21,7 +21,7 @@
         <livewire:layout.navigation />
 
         <!-- Page Content -->
-        <div class="sm:px-8 sm:pt-4">
+        <div class="sm:px-8 sm:pt-4" {{ $attributes }}>
             {{ $slot }}
         </div>
     </div>
