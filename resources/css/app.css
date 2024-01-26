@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.application-logo .application-logo-blob {
+    fill: theme('colors.primary');
+    transition: fill 0.15s ease-in;
+}
+
+.application-logo:hover .application-logo-blob {
+    fill: theme('colors.primary-dark');
+}
+
+.application-logo .application-logo-text {
+    fill: #333333;
+    transition: fill 0.15s ease-in;
+}
+
+.application-logo:hover .application-logo-text {
+    fill: #000000;
+}

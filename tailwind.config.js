@@ -13,6 +13,7 @@ export default {
         extend: {
             colors: {
                 primary: "#0081c6",
+                "primary-dark": "#005989",
             },
 
             spacing: {
