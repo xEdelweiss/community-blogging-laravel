@@ -2,7 +2,7 @@
     <div class="mx-auto flex justify-between pb-22 md:flex-row lg:gap-x-10" style="max-width: 1400px;">
 
         <div :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }" @click="sidebarOpen = false"
-            class="sm:inset-none bg-backdrop fixed inset-0 z-10 hidden sm:relative sm:block sm:bg-transparent">
+            class="sm:inset-none bg-backdrop fixed inset-0 z-10 hidden sm:relative sm:sticky sm:top-[40px] sm:block sm:self-start sm:bg-transparent">
             <div @click.stop=""
                 class="h-screen w-2/3 bg-white shadow-dialog sm:h-auto sm:w-full sm:bg-transparent sm:shadow-none">
 
@@ -21,8 +21,7 @@
                     </a>
                 </div>
 
-                <aside class="w-full flex-none px-2 sm:w-[210px] sm:p-0 lg:sticky lg:block lg:self-start"
-                    style="top: 40px;">
+                <aside class="w-full flex-none px-2 sm:w-[210px] sm:p-0">
                     <x-topics-sidebar />
                 </aside>
             </div>
@@ -32,7 +31,7 @@
             {{ $slot }}
         </main>
 
-        <div class="sticky hidden w-[266px] self-start 2xl:block" style="top: 40px; width: 266px">
+        <div class="sticky top-[40px] hidden w-[266px] w-[266px] self-start 2xl:block">
             <div class="pb-15 max-h-screen space-y-4 overflow-auto">
                 <a class="inherits-color block flex-1" href="/series/css-flexbox-simplified">
                     <div class="panel light relative flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-8 py-4 text-center text-black transition-colors duration-300"
