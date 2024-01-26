@@ -39,9 +39,7 @@
                     @endif
                 </div>
 
-                <div class="flex items-center gap-3 text-sm">
-                    <x-topic-icon :topic="$post->topic" />
-                </div>
+                <x-topic-icon :topic="$post->topic" />
             </div>
         </div>
 
