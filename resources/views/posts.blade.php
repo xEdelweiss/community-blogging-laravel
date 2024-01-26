@@ -1,5 +1,5 @@
 <x-main-layout>
-    <header class="mb-4 flex flex-wrap justify-start gap-x-4">
+    <header class="mb-4 flex flex-wrap justify-start gap-x-4 px-3 sm:px-0">
         <a href="#" class="px-3 py-1 hover:text-primary">{{ __('Relevant') }}</a>
         <a href="#"
             class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary">{{ __('Latest') }}</a>

@@ -1,7 +1,7 @@
 <div onclick="window.location='{{ $link }}';"
     class="dark:bg-gray-800 flex cursor-pointer flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm transition duration-150 ease-in hover:shadow-post sm:rounded-lg">
     <div class="flex flex-col gap-1 pe-1">
-        <div class="flex flex-nowrap items-start justify-between">
+        <div class="flex flex-nowrap items-start justify-between gap-4">
             <div class="flex flex-col">
                 @if ($post->title)
                     <div class="text-xl font-semibold">

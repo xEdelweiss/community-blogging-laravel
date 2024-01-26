@@ -1,4 +1,4 @@
-<nav class="dark:bg-gray-900 dark:border-gray-700 w-full border-b border-gray-100 bg-gray-100 sm:px-8">
+<nav class="dark:bg-gray-900 dark:border-gray-700 w-full border-b border-gray-100 bg-gray-100 px-2 pe-4 sm:px-8">
 
     <div class="mx-auto" style="max-width: 1400px;">
         <div class="flex h-20 items-center justify-between">
