@@ -28,6 +28,10 @@ Route::get('/post/{post}-{slug}', static function (\App\Models\Post $post) {
     ]);
 })->name('post');
 
+Route::get('/post', static function () {
+    return view('posts.create');
+})->name('post.create');
+
 Route::get('topic/{topic}', static function (\App\Models\Topic $topic) {
     dd($topic->toArray());
 })->name('topic');
