@@ -24,14 +24,14 @@
 
   & > ul,
   & > ol {
-    @apply my-8 first:mt-0 last:mb-0;
+    @apply my-3 first:mt-0 last:mb-0;
   }
 
   ul[data-type='taskList'] {
-    @apply list-none p-0;
+    @apply list-none p-0 pl-4;
 
     p {
-      @apply m-0;
+      @apply mt-1;
     }
 
     li {

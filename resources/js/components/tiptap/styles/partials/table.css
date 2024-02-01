@@ -1,6 +1,6 @@
 .ProseMirror {
   .tableWrapper {
-    @apply my-12;
+    @apply mt-5 mb-3;
   }
 
   table {

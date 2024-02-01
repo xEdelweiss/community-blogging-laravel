@@ -2,19 +2,17 @@
 
 // import { HocuspocusProvider } from '@hocuspocus/provider'
 
-import { API } from "../lib/api";
-
 import {
-    AiWriter,
     AiImage,
+    AiWriter,
     BlockquoteFigure,
     CharacterCount,
     Color,
+    Column,
+    Columns,
     Document,
     Dropcursor,
-    // Emoji,
     Figcaption,
-    // FileHandler,
     Focus,
     FontFamily,
     FontSize,
@@ -30,20 +28,16 @@ import {
     Subscript,
     Superscript,
     Table,
-    // TableOfContents,
     TableCell,
     TableHeader,
     TableRow,
+    TaskItem,
+    TaskList,
     TextAlign,
     TextStyle,
     TrailingNode,
     Typography,
     Underline,
-    // emojiSuggestion,
-    Columns,
-    Column,
-    TaskItem,
-    TaskList,
 } from ".";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { ImageUpload } from "./ImageUpload";
@@ -86,7 +80,9 @@ export const ExtensionKit = ({
     StarterKit.configure({
         document: false,
         dropcursor: false,
-        heading: false,
+        heading: {
+            levels: [2, 3],
+        },
         horizontalRule: false,
         blockquote: false,
         history: {

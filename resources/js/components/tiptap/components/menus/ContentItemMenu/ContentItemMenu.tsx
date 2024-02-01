@@ -14,9 +14,13 @@ import { useEffect, useState } from "react";
 
 export type ContentItemMenuProps = {
     editor: Editor;
+    onToggleDebug: () => void;
 };
 
-export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
+export const ContentItemMenu = ({
+    editor,
+    onToggleDebug,
+}: ContentItemMenuProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const data = useData();
     const actions = useContentItemActions(
@@ -44,9 +48,6 @@ export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
             }}
         >
             <div className="flex items-center gap-0.5">
-                <Toolbar.Button onClick={actions.handleAdd}>
-                    <Icon name="Plus" />
-                </Toolbar.Button>
                 <Popover.Root open={menuOpen} onOpenChange={setMenuOpen}>
                     <Popover.Trigger asChild>
                         <Toolbar.Button>
@@ -55,6 +56,12 @@ export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
                     </Popover.Trigger>
                     <Popover.Content side="bottom" align="start" sideOffset={8}>
                         <Surface className="p-2 flex flex-col min-w-[16rem]">
+                            <Popover.Close>
+                                <DropdownButton onClick={onToggleDebug}>
+                                    <Icon name="Eye" />
+                                    Toggle debug
+                                </DropdownButton>
+                            </Popover.Close>
                             <Popover.Close>
                                 <DropdownButton
                                     onClick={actions.resetTextFormatting}
