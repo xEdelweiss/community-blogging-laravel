@@ -28,6 +28,10 @@ Route::get('/post/{post}-{slug}', static function (\App\Models\Post $post) {
     ]);
 })->name('post');
 
+Route::get('/post', static function () {
+    return view('posts.create');
+})->name('post.create');
+
 Route::get('topic/{topic}', static function (\App\Models\Topic $topic) {
     dd($topic->toArray());
 })->name('topic');
@@ -44,4 +48,20 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+Route::post('api/upload-image', static function (Illuminate\Http\Request $request) {
+    if ($request->hasFile('image')) {
+        $uploadedFile = $request->file('image');
+        $path = $uploadedFile
+            ->storePublicly('images', 'public');
+
+        return response()->json([
+            'url' => asset('storage/' . $path),
+        ]);
+    }
+
+    return response()->json([
+        'error' => 'No image uploaded',
+    ], 400);
+})->name('image.upload');
+
+require __DIR__ . '/auth.php';

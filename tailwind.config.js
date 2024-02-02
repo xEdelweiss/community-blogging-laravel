@@ -1,5 +1,7 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
+import animate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,6 +9,7 @@ export default {
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
         "./resources/views/**/*.blade.php",
+        "./resources/js/**/*.{jsx,tsx}",
     ],
 
     theme: {
@@ -43,6 +46,7 @@ export default {
         },
     },
 
-    plugins: [forms],
-    darkMode: "false",
+    safelist: ["ProseMirror"],
+    plugins: [animate, typography, forms],
+    darkMode: "class",
 };
