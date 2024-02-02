@@ -45,11 +45,11 @@ export const useBlockEditor = ({
         {
             autofocus: true,
             onCreate: ({ editor }) => {
-                provider?.on("synced", () => {
-                    if (editor.isEmpty) {
-                        editor.commands.setContent(initialContent);
-                    }
-                });
+                // provider?.on("synced", () => {
+                if (editor.isEmpty) {
+                    editor.commands.setContent(initialContent);
+                }
+                // });
             },
             extensions: [
                 ...ExtensionKit({
