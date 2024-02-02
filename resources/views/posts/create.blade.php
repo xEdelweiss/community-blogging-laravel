@@ -21,9 +21,8 @@
             </div>
         </template>
 
-        <div class="dark:text-gray-100 grid grid-cols-2 text-gray-900">
+        <div class="dark:text-gray-100 text-gray-900">
             <div x-post-editor="postContent"></div>
-            <pre x-text="JSON.stringify(postContent, null, 2)"></pre>
         </div>
     </div>
 
