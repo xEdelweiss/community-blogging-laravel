@@ -1,17 +1,20 @@
 import { Alpine } from "../../vendor/livewire/livewire/dist/livewire.esm";
-import React from "react";
-import { createRoot } from "react-dom/client";
 import { Content, Editor } from "@tiptap/react";
-import { BlockEditor } from "./components/tiptap/components/BlockEditor";
 
 export default function usePostEditor() {
-    Alpine.directive("post-editor", (element: HTMLElement, { expression }, { evaluate, cleanup, Alpine: { watch } }) => {
+    Alpine.directive("post-editor", async (element: HTMLElement, { expression }, { evaluate, cleanup, Alpine: { watch } }) => {
+        const { BlockEditor } = await import("./components/tiptap/components/BlockEditor/BlockEditor");
+        const React = await import("react");
+        const { createRoot } = await import("react-dom/client");
+
         const editorRef = React.createRef<Editor>();
 
         watch(
             () => evaluate(expression),
             (newValue: Content) => {
-                editorRef.current.commands.setContent(newValue);
+                if (editorRef.current) {
+                    editorRef.current.commands.setContent(newValue);
+                }
             },
         );
 
