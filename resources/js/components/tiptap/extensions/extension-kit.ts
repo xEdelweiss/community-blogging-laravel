@@ -16,7 +16,6 @@ import {
     Focus,
     FontFamily,
     FontSize,
-    Heading,
     Highlight,
     HorizontalRule,
     ImageBlock,
@@ -73,9 +72,6 @@ export const ExtensionKit = ({
     }),
     Column,
     Selection,
-    Heading.configure({
-        levels: [1, 2, 3, 4, 5, 6],
-    }),
     HorizontalRule,
     StarterKit.configure({
         document: false,

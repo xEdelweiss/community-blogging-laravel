@@ -13,7 +13,6 @@ import { userColors, userNames } from "../lib/constants";
 import { randomElement } from "../lib/utils";
 import { EditorUser } from "../components/BlockEditor/types";
 import { useSidebar } from "./useSidebar";
-import { initialContent } from "../lib/data/initialContent";
 import { TiptapCollabProvider, WebSocketStatus } from "../extensions/fake-pro";
 
 // const TIPTAP_AI_APP_ID = process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID
@@ -26,13 +25,17 @@ declare global {
 }
 
 export const useBlockEditor = ({
+    value,
     aiToken,
     ydoc,
     provider,
+    onChange,
 }: {
+    value: object;
     aiToken: string;
     ydoc: Y.Doc;
     provider?: TiptapCollabProvider | null | undefined;
+    onChange: (value: object) => void;
 }) => {
     const leftSidebar = useSidebar();
     const [collabState, setCollabState] = useState<WebSocketStatus>(
@@ -47,9 +50,12 @@ export const useBlockEditor = ({
             onCreate: ({ editor }) => {
                 // provider?.on("synced", () => {
                 if (editor.isEmpty) {
-                    editor.commands.setContent(initialContent);
+                    editor.commands.setContent(value);
                 }
                 // });
+            },
+            onUpdate: ({ editor }) => {
+                onChange(editor.getJSON());
             },
             extensions: [
                 ...ExtensionKit({

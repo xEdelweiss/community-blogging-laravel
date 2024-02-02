@@ -2,8 +2,11 @@
 // import { Language } from '@tiptap-pro/extension-ai'
 import { Language, TiptapCollabProvider } from "../../extensions/fake-pro";
 import * as Y from "yjs";
+import { Content } from "@tiptap/react";
 
 export interface TiptapProps {
+    value: Content;
+    onChange: (value: Content) => void;
     aiToken: string;
     hasCollab: boolean;
     ydoc: Y.Doc;
