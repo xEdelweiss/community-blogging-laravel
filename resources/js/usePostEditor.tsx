@@ -9,14 +9,15 @@ export default function usePostEditor() {
 
         const editorRef = React.createRef<Editor>();
 
-        watch(
-            () => evaluate(expression),
-            (newValue: Content) => {
-                if (editorRef.current) {
-                    editorRef.current.commands.setContent(newValue);
-                }
-            },
-        );
+        // @fixme this moves cursor to the end of the document
+        // watch(
+        //     () => evaluate(expression),
+        //     (newValue: Content) => {
+        //         if (editorRef.current) {
+        //             editorRef.current.commands.setContent(newValue);
+        //         }
+        //     },
+        // );
 
         const root = createRoot(element);
         root.render(
