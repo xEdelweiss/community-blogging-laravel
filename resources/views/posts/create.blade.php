@@ -1,14 +1,86 @@
-<x-main-layout>
-    <div x-data="{ addUrlOpen: false }"
-        class="dark:bg-gray-800 flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm sm:rounded-lg">
+<x-main-layout x-data="{ addUrlOpen: false }">
+    {{-- content --}}
+    <div class="dark:bg-gray-800 flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm sm:rounded-lg">
 
         <div class="flex items-center justify-between gap-4">
             <div class="flex flex-1 items-center space-x-2 font-semibold text-gray-400">
-                <x-text-input class="w-full" placeholder="Title" />
+                <x-minimal-input class="w-full text-2xl" placeholder="Your catchy title.." />
+            </div>
+        </div>
+
+        <template x-if="addUrlOpen">
+            <div class="mb-4 flex items-center gap-3">
+                <x-text-input class="w-full" placeholder="Your URL goes here.." />
+
+                <x-minimal-button x-on:click.prevent="addUrlOpen = false">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </x-minimal-button>
+            </div>
+        </template>
+
+        <div class="dark:text-gray-100 text-gray-900">
+            <x-post-editor />
+        </div>
+    </div>
+
+    {{-- sidebar --}}
+    <x-slot name="rightSidebar">
+        <div x-data
+            class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
+
+            <div class="w-full text-left">
+                <p class="mb-2 text-left font-semibold">
+                    Tips for a good post:
+                </p>
+                <ul class="ms-2 list-inside list-disc">
+                    <li>Clear and concise</li>
+                    <li>Well formatted</li>
+                    <li>Contains code snippets</li>
+                    <li>Contains images</li>
+                    <li>Contains links</li>
+                </ul>
             </div>
 
-            <div class="flex items-center gap-3">
-                <x-primary-button>
+            <div class="flex w-full flex-col gap-y-2">
+                <img src="https://placehold.it/600x300" alt="placeholder" class="w-full cursor-pointer rounded" />
+
+                <x-secondary-button class="flex w-full justify-center">
+                    <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+
+                    <span>Add cover</span>
+                </x-secondary-button>
+
+                <template x-if="addUrlOpen">
+                    <x-secondary-button class="flex w-full justify-center" @click.prevent="addUrlOpen = false">
+                        <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+
+                        <span>Remove URL</span>
+                    </x-secondary-button>
+                </template>
+
+                <template x-if="! addUrlOpen">
+                    <x-secondary-button class="flex w-full justify-center" @click.prevent="addUrlOpen = true">
+                        <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                        </svg>
+
+                        <span>Add URL</span>
+                    </x-secondary-button>
+                </template>
+
+                <x-primary-button class="flex w-full justify-center">
                     <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -19,38 +91,6 @@
                 </x-primary-button>
             </div>
         </div>
-
-        <template x-if="addUrlOpen">
-            <div class="flex items-center gap-3">
-                <x-text-input class="w-full" placeholder="Your URL goes here.." />
-
-                <x-secondary-button x-on:click.prevent="addUrlOpen = false">
-                    <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-
-                    <span>Del&nbsp;URL</span>
-                </x-secondary-button>
-            </div>
-        </template>
-        <template x-if="!addUrlOpen">
-            <div class="flex flex-row-reverse">
-                <x-secondary-button x-on:click.prevent="addUrlOpen = true">
-                    <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                    </svg>
-
-                    <span>Add URL</span>
-                </x-secondary-button>
-            </div>
-        </template>
-
-        <div class="dark:text-gray-100 text-gray-900">
-            <x-post-editor />
-        </div>
-    </div>
+    </x-slot>
 
 </x-main-layout>

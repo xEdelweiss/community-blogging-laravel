@@ -1,5 +1,7 @@
 <div class="sticky top-[40px] hidden w-[266px] self-start 2xl:block">
     <div class="pb-15 max-h-screen space-y-4 overflow-auto">
+        {{ $slot }}
+
         {{-- dummy block --}}
         <a class="inherits-color block flex-1" href="/series/css-flexbox-simplified">
             <div
@@ -25,7 +27,5 @@
                     Laracasts Recommends This Series </div>
             </div>
         </a>
-
-        {{ $slot }}
     </div>
 </div>
