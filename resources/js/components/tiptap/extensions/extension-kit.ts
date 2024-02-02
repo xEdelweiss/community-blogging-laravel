@@ -1,10 +1,4 @@
-"use client";
-
-// import { HocuspocusProvider } from '@hocuspocus/provider'
-
 import {
-    AiImage,
-    AiWriter,
     BlockquoteFigure,
     CharacterCount,
     Color,
@@ -42,33 +36,15 @@ import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { ImageUpload } from "./ImageUpload";
 import { TableOfContentsNode } from "./TableOfContentsNode";
 import { lowlight } from "lowlight";
-import { HocuspocusProvider } from "./fake-pro";
 
-interface ExtensionKitProps {
-    provider?: HocuspocusProvider | null;
-    userId?: string;
-    userName?: string;
-    userColor?: string;
-}
+interface ExtensionKitProps {}
 
-export const ExtensionKit = ({
-    provider,
-    userId,
-    userName = "Maxi",
-}: ExtensionKitProps) => [
+export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     Document,
     Columns,
     TaskList,
     TaskItem.configure({
         nested: true,
-    }),
-    AiWriter.configure({
-        authorId: userId,
-        authorName: userName,
-    }),
-    AiImage.configure({
-        authorId: userId,
-        authorName: userName,
     }),
     Column,
     Selection,
@@ -104,9 +80,7 @@ export const ExtensionKit = ({
     CharacterCount.configure({ limit: 50000 }),
     // TableOfContents,
     TableOfContentsNode,
-    ImageUpload.configure({
-        clientId: provider?.document?.clientID,
-    }),
+    ImageUpload.configure(),
     ImageBlock,
     // FileHandler.configure({
     //   allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],

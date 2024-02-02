@@ -1,15 +1,5 @@
-import { createContext } from 'react'
+import { createContext } from "react";
 
-interface IEditorContext {
-  isAiLoading: boolean
-  aiError?: string | null
-  setIsAiLoading: Function
-  setAiError: Function
-}
+interface IEditorContext {}
 
-export const EditorContext = createContext<IEditorContext>({
-  isAiLoading: false,
-  aiError: null,
-  setIsAiLoading: () => {},
-  setAiError: () => {},
-})
+export const EditorContext = createContext<IEditorContext>({});

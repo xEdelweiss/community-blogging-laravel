@@ -1,64 +1,38 @@
 // import { WebSocketStatus } from '@hocuspocus/provider'
 import { Editor, EditorContent, PureEditorContent } from "@tiptap/react";
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react";
-
+import { createPortal } from "react-dom";
 import { LinkMenu } from "../menus/LinkMenu/LinkMenu";
-
 import { useBlockEditor } from "../../hooks/useBlockEditor";
-
 import "../../styles/index.css";
-
-import { Sidebar } from "../Sidebar";
 import { Loader } from "../ui/Loader/Loader";
 import { EditorContext } from "../../context/EditorContext";
 import ImageBlockMenu from "../../extensions/ImageBlock/components/ImageBlockMenu";
 import { ColumnsMenu } from "../../extensions/MultiColumn/menus/ColumnsMenu";
 import { TableColumnMenu, TableRowMenu } from "../../extensions/Table/menus";
-import { useAIState } from "../../hooks/useAIState";
-import { createPortal } from "react-dom";
 import { TiptapProps } from "./types";
-import { EditorHeader } from "./components/EditorHeader";
-import { TextMenu } from "../menus/TextMenu";
-import { ContentItemMenu } from "../menus/ContentItemMenu";
+import { TextMenu } from "../menus";
+import { ContentItemMenu } from "../menus";
 import { EditorFooter } from "./components/EditorFooter";
 
-export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, aiToken, ydoc, provider, onChange }, ref) => {
-    const aiState = useAIState();
+export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange }, ref) => {
     const menuContainerRef = useRef(null);
     const editorRef = useRef<PureEditorContent | null>(null);
     const [isDebugVisible, setIsDebugVisible] = useState<boolean>(false);
 
-    const { editor, users, characterCount, collabState, leftSidebar } = useBlockEditor({
-        aiToken,
-        ydoc,
-        provider,
+    const { editor, characterCount } = useBlockEditor({
         value,
         onChange,
     });
 
-    useEffect(() => {
-        ref.current = editor;
-    }, [editor]);
-
-    const displayedUsers = users.slice(0, 3);
-
-    const providerValue = useMemo(() => {
-        return {
-            isAiLoading: aiState.isAiLoading,
-            aiError: aiState.aiError,
-            setIsAiLoading: aiState.setIsAiLoading,
-            setAiError: aiState.setAiError,
-        };
-    }, [aiState]);
+    ref.current = editor;
 
     if (!editor) {
         return null;
     }
 
-    const aiLoaderPortal = createPortal(<Loader label="AI is now doing its job." />, document.body);
-
     return (
-        <EditorContext.Provider value={providerValue}>
+        <>
             <div className="flex h-full" ref={menuContainerRef}>
                 <div className="relative flex flex-col flex-1 h-full overflow-hidden">
                     <EditorContent editor={editor} ref={editorRef} className="flex-1 overflow-y-auto" />
@@ -73,14 +47,13 @@ export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, aiToken, yd
                     <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
                 </div>
             </div>
-            {aiState.isAiLoading && aiLoaderPortal}
 
             {isDebugVisible && (
                 <div>
                     <pre className={"text-xs"}>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
                 </div>
             )}
-        </EditorContext.Provider>
+        </>
     );
 });
 
