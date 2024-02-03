@@ -1,6 +1,8 @@
-<x-app-layout>
-    <div {{ $attributes->merge(['class' => 'mx-auto flex justify-between pb-22 md:flex-row lg:gap-x-10']) }}
-        style="max-width: 1400px;">
+@props([
+    'title' => null,
+])
+<x-app-layout :title="$title">
+    <div {{ $attributes->merge(['class' => 'mx-auto flex justify-between pb-22 md:flex-row lg:gap-x-10']) }} style="max-width: 1400px;">
 
         <x-left-sidebar>
             <x-topics-sidebar />
