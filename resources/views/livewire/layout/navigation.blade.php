@@ -5,6 +5,16 @@ use Livewire\Volt\Component;
 
 new class extends Component {
     public string $search = '';
+
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Logout $logout): void
+    {
+        $logout();
+
+        $this->redirect('/', navigate: true);
+    }
 }; ?>
 <nav class="dark:bg-gray-900 dark:border-gray-700 w-full border-b border-gray-100 bg-gray-100 px-2 pe-4 sm:px-8">
 
