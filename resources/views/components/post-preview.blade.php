@@ -1,3 +1,5 @@
+@props(['post', 'noAuthor' => false])
+
 <div onclick="window.location='{{ $link }}';"
     class="dark:bg-gray-800 flex cursor-pointer flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm transition duration-150 ease-in hover:shadow-post sm:rounded-lg">
     <div class="flex flex-col gap-1 pe-1">
@@ -11,10 +13,13 @@
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-2 text-xs font-semibold text-gray-400">
-                        <div class="font-bold text-gray-900 hover:text-primary">
-                            <a href="{{ route('user', [$post->author]) }}">{{ $post->author->name }}</a>
-                        </div>
-                        <div>&bull;</div>
+                        @if (!$noAuthor)
+                            <div class="font-bold text-gray-900 hover:text-primary">
+                                <a href="{{ route('user.show', [$post->author]) }}">{{ $post->author->name }}</a>
+                            </div>
+                            <div>&bull;</div>
+                        @endif
+
                         <div>{{ $post->published_at->diffForHumans() }}</div>
                     </div>
                 </div>
@@ -26,7 +31,7 @@
 
     @if ($post->illustration)
         <div class="flex justify-center">
-            <img class="max-h-[400px] rounded-xl object-cover" src="{{ $post->illustration }}" />
+            <img loading="lazy" class="max-h-[400px] rounded-xl object-cover" src="{{ $post->illustration }}" />
         </div>
     @endif
 

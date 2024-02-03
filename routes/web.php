@@ -22,11 +22,9 @@ Route::get('/', static function () {
     ]);
 })->name('posts');
 
-Route::get('/post/{post}-{slug}', static function (\App\Models\Post $post) {
-    return view('post', [
-        'post' => $post,
-    ]);
-})->name('post');
+Route::controller(\App\Http\Controllers\UserController::class)->group(static function () {
+    Route::get('user/{user}', 'show')->name('user.show');
+});
 
 Route::get('/post', static function () {
     return view('posts.create');
@@ -35,10 +33,6 @@ Route::get('/post', static function () {
 Route::get('topic/{topic}', static function (\App\Models\Topic $topic) {
     dd($topic->toArray());
 })->name('topic');
-
-Route::get('user/{user}', static function (\App\Models\User $user) {
-    dd($user->toArray());
-})->name('user');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
