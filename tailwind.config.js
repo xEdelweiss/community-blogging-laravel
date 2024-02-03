@@ -32,7 +32,7 @@ export default {
             },
 
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Fixel", ...defaultTheme.fontFamily.sans],
             },
 
             fontSize: {
