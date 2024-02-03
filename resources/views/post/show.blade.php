@@ -1,4 +1,4 @@
-<x-main-layout>
+<x-main-layout :title="$post->title">
 
     <div class="dark:bg-gray-800 flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm sm:rounded-lg">
         <div class="mb-2 flex items-center justify-between">
@@ -10,30 +10,29 @@
                         <a href="#">{{ $post->author->name }}</a>
                     </div>
 
-                    <div class="text-xs">{{ __('Posted on') }} <time
-                            datetime="{{ $post->published_at->toDateTimeString() }}" class="date-no-year"
+                    <div class="text-xs">{{ __('Posted on') }} <time datetime="{{ $post->published_at->toDateTimeString() }}"
+                            class="date-no-year"
                             title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
                     </div>
                 </div>
             </div>
 
             <div class="flex items-center gap-3">
-                <x-subscribe-button :post="$post" />
+                <x-subscribe-button :user="$post->author" />
             </div>
         </div>
 
         <div>
             <div class="@if ($post->title) items-start @else items-start @endif flex justify-between">
                 <div>
-                    <div
-                        class="flex gap-2 text-sm leading-none opacity-75 transition duration-150 ease-in hover:opacity-100">
+                    <div class="flex gap-2 text-sm opacity-50 transition duration-150 ease-in hover:opacity-100">
                         <a href="#" class="hover:text-primary">#lorem</a>
                         <a href="#" class="hover:text-primary">#ipsum</a>
                         <a href="#" class="hover:text-primary">#dolor</a>
                     </div>
 
                     @if ($post->title)
-                        <h1 class="text-3xl font-semibold leading-snug">
+                        <h1 class="text-3xl font-semibold">
                             {{ $post->title }}
                         </h1>
                     @endif
@@ -51,21 +50,24 @@
 
         @if ($post->illustration)
             <div class="flex justify-center">
-                <img class="max-h-[400px] rounded-xl object-cover" src="{{ $post->illustration }}" />
+                <img loading="lazy" class="max-h-[400px] rounded-xl object-cover" src="{{ $post->illustration }}" />
             </div>
         @endif
 
-        <div class="dark:text-gray-100 text-gray-900">
-            <p class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. At ab voluptas enim aperiam vitae
-                sed recusandae quod? Enim deserunt quas, beatae, amet aliquam perspiciatis modi sapiente asperiores
+        <div class="dark:text-gray-100 prose max-w-none text-gray-900">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At ab voluptas enim aperiam vitae
+                sed recusandae quod? <strong>Enim deserunt quas</strong>, beatae, amet aliquam perspiciatis modi sapiente asperiores
                 eveniet corrupti tenetur consequuntur nobis repellendus accusantium laboriosam repudiandae quod rerum ut
                 debitis reiciendis reprehenderit odio at. Magni quisquam quae ab modi voluptatem.</p>
 
-            <p class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo numquam tempora modi
-                assumenda sapiente reiciendis harum quidem nesciunt odio, atque natus autem impedit debitis magnam
-                itaque. Sunt laudantium vitae quisquam.</p>
+            <p>В однобітовому монохроматичному дисплеї розміром 32 на 48 використовуються бактерії, наповнені флуоресцентним
+                білком. <strong>При цьому кожна з них діє як окремий піксель.</strong> Саме завдяки цьому дисплею з дуже низькою роздільною
+                здатністю ви
+                можете відтворити ігровий процес Doom за допомогою клітин.</p>
 
-            <p class="mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur explicabo nemo non
+            <p><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. <strong>Omnis, voluptatum.</strong></em></p>
+
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur explicabo nemo non
                 quos possimus asperiores, nesciunt iste voluptatibus! Assumenda eius ullam commodi, nisi magnam odit
                 ipsam, recusandae officiis corporis quos, adipisci accusamus exercitationem est cupiditate nulla placeat
                 inventore error dolor ipsum quis deleniti corrupti sint?</p>

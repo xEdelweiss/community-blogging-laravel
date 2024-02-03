@@ -32,7 +32,7 @@ new class extends Component {
                     </button>
                 </div>
 
-                <a href="{{ route('posts') }}" wire:navigate>
+                <a href="{{ route('home') }}" wire:navigate>
                     <x-application-logo class="dark:text-gray-200 block h-9 w-auto fill-current text-gray-800" />
                 </a>
             </div>
@@ -51,6 +51,7 @@ new class extends Component {
                         {{ __('Write post') }}
                     </x-secondary-button>
                 </a>
+
                 <x-user-avatar-menu />
             </div>
         </div>

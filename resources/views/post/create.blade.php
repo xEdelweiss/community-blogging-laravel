@@ -1,6 +1,6 @@
-<x-main-layout x-data="{ addUrlOpen: false, postContent: { type: 'doc', content: [] } }">
+<x-main-layout x-data="{ addUrlOpen: false, postContent: { type: 'doc', content: [] } }" title="✏️ {{ __('New post') }}">
     {{-- content --}}
-    <div class="dark:bg-gray-800 flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm sm:rounded-lg">
+    <div class="dark:bg-gray-800 flex flex-col gap-3 bg-white p-6 shadow-sm sm:rounded-lg">
 
         <div class="flex items-center justify-between gap-4">
             <div class="flex flex-1 items-center space-x-2 font-semibold text-gray-400">
