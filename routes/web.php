@@ -34,7 +34,7 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(static fun
 });
 
 Route::controller(\App\Http\Controllers\TopicController::class)->group(static function () {
-    Route::get('topic/{topic}', 'show')->name('topic.show');
+    Route::get('topic/{topic:slug}', 'show')->name('topic.show');
 
     Route::group(['middleware' => 'auth'], static function () {
         Route::get('topic', 'create')->name('topic.create');

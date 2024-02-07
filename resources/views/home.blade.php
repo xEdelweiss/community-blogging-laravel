@@ -6,7 +6,7 @@
         @endauth
 
         <a href="#"
-            class="dark:bg-gray-800 overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary">{{ __('Latest') }}</a>
+            class="overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary dark:bg-gray-800">{{ __('Latest') }}</a>
         <a href="#" class="px-3 py-1 hover:text-primary">{{ __('Top') }}</a>
     </header>
 

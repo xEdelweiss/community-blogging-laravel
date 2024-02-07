@@ -11,6 +11,13 @@ php artisan serve
 php artisan storage:link
 ```
 
+# FAQ
+
+#### Blade component constructor receives empty entity
+```shell
+php artisan optimize:clear
+```
+
 # Known issues
 
 - "Component already initialized":

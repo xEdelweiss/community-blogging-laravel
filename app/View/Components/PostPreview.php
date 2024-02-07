@@ -27,7 +27,7 @@ class PostPreview extends Component
     public function link(): string
     {
         return route('post.show', [
-            'post' => $this->post->id,
+            'post' => $this->post,
             'slug' => $this->post->slug ?? 'none',
         ]);
     }
