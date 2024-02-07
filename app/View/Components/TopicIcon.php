@@ -26,7 +26,7 @@ class TopicIcon extends Component
 
     public function link(): string
     {
-        return route('topic', [
+        return route('topic.show', [
             'topic' => $this->topic->id,
         ]);
     }

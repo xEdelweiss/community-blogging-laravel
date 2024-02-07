@@ -33,9 +33,13 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(static fun
     Route::get('user/{user}', 'show')->name('user.show');
 });
 
-Route::get('topic/{topic}', static function (\App\Models\Topic $topic) {
-    dd($topic->toArray());
-})->name('topic');
+Route::controller(\App\Http\Controllers\TopicController::class)->group(static function () {
+    Route::get('topic/{topic}', 'show')->name('topic.show');
+
+    Route::group(['middleware' => 'auth'], static function () {
+        Route::get('topic', 'create')->name('topic.create');
+    });
+});
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
