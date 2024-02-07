@@ -1,7 +1,7 @@
 import React from "react";
 import * as Popover from "@radix-ui/react-popover";
 import { cn } from "../../lib/utils";
-import { icons } from "../../lib/icons";
+import * as icons from "../../lib/icons";
 import { forwardRef } from "react";
 import { Surface } from "./Surface";
 import { Toolbar } from "./Toolbar";

@@ -1,5 +1,5 @@
 import { Editor } from "@tiptap/core";
-import { icons } from "../../lib/icons";
+import * as icons from "../../lib/icons";
 
 export interface Group {
     name: string;

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { cn } from "../../lib/utils";
-import { icons } from "../../lib/icons";
+import * as icons from "../../lib/icons";
 
 export type IconProps = {
     name: keyof typeof icons;

@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { cn } from "../../lib/utils";
-import { icons } from "../../lib/icons";
+import * as icons from "../../lib/icons";
 import { Icon } from "../../components/ui/Icon";
 
 export type CommandButtonProps = {

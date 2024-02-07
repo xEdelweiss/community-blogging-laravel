@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "../../../ui/Icon";
-import { icons } from "../../../../lib/icons";
+import * as icons from "../../../../lib/icons";
 import { useMemo } from "react";
 import * as Dropdown from "@radix-ui/react-dropdown-menu";
 import { Toolbar } from "../../../ui/Toolbar";
