@@ -66,11 +66,11 @@ export const TableOfContents = memo(({ editor, onItemClick }: TableOfContentsPro
                             key={item.id}
                             href={`#${item.id}`}
                             style={{
-                                marginLeft: `${+item.level - 1}rem`,
+                                paddingLeft: `${+item.level - 1}rem`,
                             }}
                             onClick={onItemClick ?? ((e) => scrollSmoothly(e, item.id))}
                             className={cn(
-                                "block font-medium text-neutral-500 dark:text-neutral-300 p-1 rounded bg-opacity-10 text-sm hover:text-neutral-800 transition-all hover:bg-black hover:bg-opacity-5 truncate w-full",
+                                "block no-underline font-medium text-neutral-500 dark:text-neutral-300 p-1 rounded bg-opacity-10 text-sm hover:text-neutral-800 transition-all hover:bg-black hover:bg-opacity-5 truncate w-full",
                                 item.isActive && "text-neutral-800 bg-neutral-100 dark:text-neutral-100 dark:bg-neutral-900",
                             )}
                         >
