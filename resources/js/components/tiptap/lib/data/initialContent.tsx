@@ -88,6 +88,83 @@ export const initialContent = {
             ],
         },
         {
+            type: "youtube",
+            attrs: {
+                src: "https://www.youtube.com/watch?v=MASAqbRMnaM",
+                start: 0,
+                width: 640,
+                height: 480,
+            },
+        },
+        {
+            type: "paragraph",
+            attrs: {
+                class: null,
+                textAlign: "left",
+            },
+            content: [
+                {
+                    type: "text",
+                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                },
+                {
+                    type: "text",
+                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                },
+                {
+                    type: "text",
+                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                },
+            ],
+        },
+        {
+            type: "paragraph",
+            attrs: {
+                class: null,
+                textAlign: "left",
+            },
+            content: [],
+        },
+        {
+            type: "paragraph",
+            attrs: {
+                class: null,
+                textAlign: "left",
+            },
+            content: [
+                {
+                    type: "text",
+                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                },
+            ],
+        },
+        {
+            type: "paragraph",
+            attrs: {
+                class: null,
+                textAlign: "left",
+            },
+            content: [
+                {
+                    type: "text",
+                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                },
+            ],
+        },
+        {
+            type: "paragraph",
+            attrs: {
+                class: null,
+                textAlign: "left",
+            },
+            content: [
+                {
+                    type: "text",
+                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                },
+            ],
+        },
+        {
             type: "codeBlock",
             attrs: {
                 language: null,

@@ -10,6 +10,7 @@ import {
     Focus,
     FontFamily,
     FontSize,
+    FullWidthYoutube,
     Highlight,
     HorizontalRule,
     ImageBlock,
@@ -26,6 +27,7 @@ import {
     TableRow,
     TaskItem,
     TaskList,
+    Telegram,
     TextAlign,
     TextStyle,
     TrailingNode,
@@ -82,6 +84,8 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     TableOfContentsNode,
     ImageUpload.configure(),
     ImageBlock,
+    FullWidthYoutube,
+    Telegram,
     // FileHandler.configure({
     //   allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
     //   onDrop: (currentEditor, files, pos) => {

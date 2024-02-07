@@ -15,10 +15,27 @@ import { TextMenu } from "../menus";
 import { ContentItemMenu } from "../menus";
 import { EditorFooter } from "./components/EditorFooter";
 
+const Debug = ({ editor, type }: { editor: Editor; type: null | "html" | "json" }) => (
+    <>
+        {type === "json" && (
+            <div>
+                <pre className={"text-xs whitespace-pre-wrap"}>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
+            </div>
+        )}
+
+        {type === "html" && (
+            <div
+                className={"dark:text-gray-100 prose max-w-none text-gray-900 ProseMirror"}
+                dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+            />
+        )}
+    </>
+);
+
 export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange }, ref) => {
     const menuContainerRef = useRef(null);
-    const editorRef = useRef<PureEditorContent | null>(null);
-    const [isDebugVisible, setIsDebugVisible] = useState<boolean>(false);
+    const editorRef = useRef<HTMLDivElement | null>(null);
+    const [debugType, setDebugType] = useState<null | "html" | "json">(null);
 
     const { editor, characterCount } = useBlockEditor({
         value,
@@ -37,7 +54,10 @@ export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange },
                 <div className="relative flex flex-col flex-1 h-full">
                     <EditorContent editor={editor} ref={editorRef} className="flex-1 overflow-y-auto whitespace-pre-wrap break-words" />
                     <EditorFooter characters={characterCount.characters()} words={characterCount.words()}>
-                        <ContentItemMenu editor={editor} onToggleDebug={() => setIsDebugVisible((cur) => !cur)} />
+                        <ContentItemMenu
+                            editor={editor}
+                            onToggleDebug={(newValue) => setDebugType((cur) => (cur === newValue ? null : newValue))}
+                        />
                     </EditorFooter>
                     <LinkMenu editor={editor} appendTo={menuContainerRef} />
                     <TextMenu editor={editor} />
@@ -48,11 +68,7 @@ export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange },
                 </div>
             </div>
 
-            {isDebugVisible && (
-                <div>
-                    <pre className={"text-xs"}>{JSON.stringify(editor.getJSON(), null, 2)}</pre>
-                </div>
-            )}
+            <Debug editor={editor} type={debugType} />
         </>
     );
 });
