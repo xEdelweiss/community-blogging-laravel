@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { ContentPickerOptions } from "../components/ContentTypePicker";
 
 export const useTextmenuContentTypes = (editor: Editor) => {
-    const options = useMemo<ContentPickerOptions>(() => {
+    return useMemo<ContentPickerOptions>(() => {
         return [
             {
                 type: "category",
@@ -12,14 +12,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
             },
             {
                 icon: "Pilcrow",
-                onClick: () =>
-                    editor
-                        .chain()
-                        .focus()
-                        .lift("taskItem")
-                        .liftListItem("listItem")
-                        .setParagraph()
-                        .run(),
+                onClick: () => editor.chain().focus().lift("taskItem").liftListItem("listItem").setParagraph().run(),
                 id: "paragraph",
                 disabled: () => !editor.can().setParagraph(),
                 isActive: () =>
@@ -32,14 +25,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
             },
             {
                 icon: "Heading2",
-                onClick: () =>
-                    editor
-                        .chain()
-                        .focus()
-                        .lift("taskItem")
-                        .liftListItem("listItem")
-                        .setHeading({ level: 2 })
-                        .run(),
+                onClick: () => editor.chain().focus().lift("taskItem").liftListItem("listItem").setHeading({ level: 2 }).run(),
                 id: "heading2",
                 disabled: () => !editor.can().setHeading({ level: 2 }),
                 isActive: () => editor.isActive("heading", { level: 2 }),
@@ -48,14 +34,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
             },
             {
                 icon: "Heading3",
-                onClick: () =>
-                    editor
-                        .chain()
-                        .focus()
-                        .lift("taskItem")
-                        .liftListItem("listItem")
-                        .setHeading({ level: 3 })
-                        .run(),
+                onClick: () => editor.chain().focus().lift("taskItem").liftListItem("listItem").setHeading({ level: 3 }).run(),
                 id: "heading3",
                 disabled: () => !editor.can().setHeading({ level: 3 }),
                 isActive: () => editor.isActive("heading", { level: 3 }),
@@ -85,18 +64,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 label: "Numbered list",
                 type: "option",
             },
-            {
-                icon: "ListTodo",
-                onClick: () => editor.chain().focus().toggleTaskList().run(),
-                id: "todoList",
-                disabled: () => !editor.can().toggleTaskList(),
-                isActive: () => editor.isActive("taskList"),
-                label: "Todo list",
-                type: "option",
-            },
         ];
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editor, editor.state]);
-
-    return options;
 };

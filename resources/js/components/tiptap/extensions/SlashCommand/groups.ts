@@ -46,16 +46,6 @@ export const GROUPS: Group[] = [
                 },
             },
             {
-                name: "taskList",
-                label: "Task List",
-                iconName: "ListTodo",
-                description: "Task list with todo items",
-                aliases: ["todo"],
-                action: (editor) => {
-                    editor.chain().focus().toggleTaskList().run();
-                },
-            },
-            {
                 name: "blockquote",
                 label: "Blockquote",
                 iconName: "Quote",
@@ -81,20 +71,6 @@ export const GROUPS: Group[] = [
         title: "Insert",
         commands: [
             {
-                name: "table",
-                label: "Table",
-                iconName: "Table",
-                description: "Insert a table",
-                shouldBeHidden: (editor) => editor.isActive("columns"),
-                action: (editor) => {
-                    editor
-                        .chain()
-                        .focus()
-                        .insertTable({ rows: 3, cols: 3, withHeaderRow: false })
-                        .run();
-                },
-            },
-            {
                 name: "image",
                 label: "Image",
                 iconName: "Image",
@@ -102,32 +78,6 @@ export const GROUPS: Group[] = [
                 aliases: ["img"],
                 action: (editor) => {
                     editor.chain().focus().setImageUpload().run();
-                },
-            },
-            {
-                name: "columns",
-                label: "Columns",
-                iconName: "Columns",
-                description: "Add two column content",
-                aliases: ["cols"],
-                shouldBeHidden: (editor) => editor.isActive("columns"),
-                action: (editor) => {
-                    editor
-                        .chain()
-                        .focus()
-                        .setColumns()
-                        .focus(editor.state.selection.head - 1)
-                        .run();
-                },
-            },
-            {
-                name: "horizontalRule",
-                label: "Horizontal Rule",
-                iconName: "Minus",
-                description: "Insert a horizontal divider",
-                aliases: ["hr"],
-                action: (editor) => {
-                    editor.chain().focus().setHorizontalRule().run();
                 },
             },
             {

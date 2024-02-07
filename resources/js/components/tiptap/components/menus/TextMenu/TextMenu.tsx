@@ -41,97 +41,27 @@ export const TextMenu = ({ editor }: TextMenuProps) => {
         >
             <Toolbar.Wrapper>
                 <MemoContentTypePicker options={blockOptions} />
-                <MemoFontFamilyPicker
-                    onChange={commands.onSetFont}
-                    value={states.currentFont || ""}
-                />
-                <MemoFontSizePicker
-                    onChange={commands.onSetFontSize}
-                    value={states.currentSize || ""}
-                />
-                <Toolbar.Divider />
-                <MemoButton
-                    tooltip="Bold"
-                    tooltipShortcut={["Mod", "B"]}
-                    onClick={commands.onBold}
-                    active={states.isBold}
-                >
+                <MemoButton tooltip="Bold" tooltipShortcut={["Mod", "B"]} onClick={commands.onBold} active={states.isBold}>
                     <Icon name="Bold" />
                 </MemoButton>
-                <MemoButton
-                    tooltip="Italic"
-                    tooltipShortcut={["Mod", "I"]}
-                    onClick={commands.onItalic}
-                    active={states.isItalic}
-                >
+                <MemoButton tooltip="Italic" tooltipShortcut={["Mod", "I"]} onClick={commands.onItalic} active={states.isItalic}>
                     <Icon name="Italic" />
                 </MemoButton>
-                <MemoButton
-                    tooltip="Underline"
-                    tooltipShortcut={["Mod", "U"]}
-                    onClick={commands.onUnderline}
-                    active={states.isUnderline}
-                >
+                <MemoButton tooltip="Underline" tooltipShortcut={["Mod", "U"]} onClick={commands.onUnderline} active={states.isUnderline}>
                     <Icon name="Underline" />
                 </MemoButton>
-                <MemoButton
-                    tooltip="Strikehrough"
-                    tooltipShortcut={["Mod", "X"]}
-                    onClick={commands.onStrike}
-                    active={states.isStrike}
-                >
+                <Toolbar.Divider />
+                <MemoButton tooltip="Strikehrough" tooltipShortcut={["Mod", "X"]} onClick={commands.onStrike} active={states.isStrike}>
                     <Icon name="Strikethrough" />
                 </MemoButton>
-                <MemoButton
-                    tooltip="Code"
-                    tooltipShortcut={["Mod", "E"]}
-                    onClick={commands.onCode}
-                    active={states.isCode}
-                >
+                <MemoButton tooltip="Code" tooltipShortcut={["Mod", "E"]} onClick={commands.onCode} active={states.isCode}>
                     <Icon name="Code" />
                 </MemoButton>
+                <Toolbar.Divider />
                 <MemoButton tooltip="Code block" onClick={commands.onCodeBlock}>
                     <Icon name="Code2" />
                 </MemoButton>
                 <EditLinkPopover onSetLink={commands.onLink} />
-                <Popover.Root>
-                    <Popover.Trigger asChild>
-                        <MemoButton
-                            active={!!states.currentHighlight}
-                            tooltip="Highlight text"
-                        >
-                            <Icon name="Highlighter" />
-                        </MemoButton>
-                    </Popover.Trigger>
-                    <Popover.Content side="top" sideOffset={8} asChild>
-                        <Surface className="p-1">
-                            <MemoColorPicker
-                                color={states.currentHighlight}
-                                onChange={commands.onChangeHighlight}
-                                onClear={commands.onClearHighlight}
-                            />
-                        </Surface>
-                    </Popover.Content>
-                </Popover.Root>
-                <Popover.Root>
-                    <Popover.Trigger asChild>
-                        <MemoButton
-                            active={!!states.currentColor}
-                            tooltip="Text color"
-                        >
-                            <Icon name="Palette" />
-                        </MemoButton>
-                    </Popover.Trigger>
-                    <Popover.Content side="top" sideOffset={8} asChild>
-                        <Surface className="p-1">
-                            <MemoColorPicker
-                                color={states.currentColor}
-                                onChange={commands.onChangeColor}
-                                onClear={commands.onClearColor}
-                            />
-                        </Surface>
-                    </Popover.Content>
-                </Popover.Root>
                 <Popover.Root>
                     <Popover.Trigger asChild>
                         <MemoButton tooltip="More options">

@@ -3,14 +3,11 @@ import React, { useCallback } from "react";
 
 import { TippyProps, TooltipProps } from "./types";
 
-const isMac =
-    typeof window !== "undefined"
-        ? navigator.platform.toUpperCase().indexOf("MAC") >= 0
-        : false;
+const isMac = typeof window !== "undefined" ? navigator.platform.toUpperCase().indexOf("MAC") >= 0 : false;
 
 const ShortcutKey = ({ children }: { children: string }): JSX.Element => {
     const className =
-        "inline-flex items-center justify-center w-5 h-5 p-1 text-[0.625rem] rounded font-semibold leading-none border border-neutral-200 text-neutral-500 border-b-2";
+        "inline-flex items-center justify-center  p-1 text-[0.625rem] rounded font-semibold leading-none border border-neutral-200 text-neutral-500 border-b-2";
 
     if (children === "Mod") {
         return <kbd className={className}>{isMac ? "⌘" : "Ctrl"}</kbd>; // ⌃
@@ -27,13 +24,7 @@ const ShortcutKey = ({ children }: { children: string }): JSX.Element => {
     return <kbd className={className}>{children}</kbd>;
 };
 
-export const Tooltip = ({
-    children,
-    enabled = true,
-    title,
-    shortcut,
-    tippyOptions = {},
-}: TooltipProps): JSX.Element => {
+export const Tooltip = ({ children, enabled = true, title, shortcut, tippyOptions = {} }: TooltipProps): JSX.Element => {
     const renderTooltip = useCallback(
         (attrs: TippyProps) => (
             <span
@@ -43,17 +34,11 @@ export const Tooltip = ({
                 data-reference-hidden={attrs["data-reference-hidden"]}
                 data-escaped={attrs["data-escaped"]}
             >
-                {title && (
-                    <span className="text-xs font-medium text-neutral-500">
-                        {title}
-                    </span>
-                )}
+                {title && <span className="text-xs font-medium text-neutral-500">{title}</span>}
                 {shortcut && (
                     <span className="flex items-center gap-0.5">
                         {shortcut.map((shortcutKey) => (
-                            <ShortcutKey key={shortcutKey}>
-                                {shortcutKey}
-                            </ShortcutKey>
+                            <ShortcutKey key={shortcutKey}>{shortcutKey}</ShortcutKey>
                         ))}
                     </span>
                 )}
