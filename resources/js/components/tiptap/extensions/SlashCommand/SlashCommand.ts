@@ -1,10 +1,6 @@
-import React from "react";
 import { Editor, Extension } from "@tiptap/core";
 import { ReactRenderer } from "@tiptap/react";
-import Suggestion, {
-    SuggestionProps,
-    SuggestionKeyDownProps,
-} from "@tiptap/suggestion";
+import Suggestion, { SuggestionKeyDownProps, SuggestionProps } from "@tiptap/suggestion";
 import { PluginKey } from "@tiptap/pm/state";
 import tippy from "tippy.js";
 
@@ -12,6 +8,8 @@ import { GROUPS } from "./groups";
 import { MenuList } from "./MenuList";
 
 const extensionName = "slashCommand";
+
+const TRIGGER = "\\";
 
 let popup: any;
 
@@ -44,7 +42,7 @@ export const SlashCommand = Extension.create({
         return [
             Suggestion({
                 editor: this.editor,
-                char: "/",
+                char: TRIGGER,
                 allowSpaces: true,
                 startOfLine: true,
                 pluginKey: new PluginKey(extensionName),
@@ -52,38 +50,25 @@ export const SlashCommand = Extension.create({
                     const $from = state.doc.resolve(range.from);
                     const isRootDepth = $from.depth === 1;
                     const isParagraph = $from.parent.type.name === "paragraph";
-                    const isStartOfNode =
-                        $from.parent.textContent?.charAt(0) === "/";
+                    const isStartOfNode = $from.parent.textContent?.charAt(0) === TRIGGER;
                     // TODO
                     const isInColumn = this.editor.isActive("column");
 
-                    const afterContent = $from.parent.textContent?.substring(
-                        $from.parent.textContent?.indexOf("/"),
-                    );
+                    const afterContent = $from.parent.textContent?.substring($from.parent.textContent?.indexOf(TRIGGER));
                     const isValidAfterContent = !afterContent?.endsWith("  ");
 
                     return (
-                        ((isRootDepth && isParagraph && isStartOfNode) ||
-                            (isInColumn && isParagraph && isStartOfNode)) &&
+                        ((isRootDepth && isParagraph && isStartOfNode) || (isInColumn && isParagraph && isStartOfNode)) &&
                         isValidAfterContent
                     );
                 },
-                command: ({
-                    editor,
-                    props,
-                }: {
-                    editor: Editor;
-                    props: any;
-                }) => {
+                command: ({ editor, props }: { editor: Editor; props: any }) => {
                     const { view, state } = editor;
                     const { $head, $from } = view.state.selection;
 
                     const end = $from.pos;
                     const from = $head?.nodeBefore
-                        ? end -
-                          ($head.nodeBefore.text?.substring(
-                              $head.nodeBefore.text?.indexOf("/"),
-                          ).length ?? 0)
+                        ? end - ($head.nodeBefore.text?.substring($head.nodeBefore.text?.indexOf(TRIGGER)).length ?? 0)
                         : $from.start();
 
                     const tr = state.tr.deleteRange(from, end);
@@ -97,55 +82,35 @@ export const SlashCommand = Extension.create({
                         ...group,
                         commands: group.commands
                             .filter((item) => {
-                                const labelNormalized = item.label
-                                    .toLowerCase()
-                                    .trim();
-                                const queryNormalized = query
-                                    .toLowerCase()
-                                    .trim();
+                                const labelNormalized = item.label.toLowerCase().trim();
+                                const queryNormalized = query.toLowerCase().trim();
 
                                 if (item.aliases) {
-                                    const aliases = item.aliases.map((alias) =>
-                                        alias.toLowerCase().trim(),
-                                    );
+                                    const aliases = item.aliases.map((alias) => alias.toLowerCase().trim());
 
-                                    return (
-                                        labelNormalized.includes(
-                                            queryNormalized,
-                                        ) || aliases.includes(queryNormalized)
-                                    );
+                                    return labelNormalized.includes(queryNormalized) || aliases.includes(queryNormalized);
                                 }
 
-                                return labelNormalized.includes(
-                                    queryNormalized,
-                                );
+                                return labelNormalized.includes(queryNormalized);
                             })
-                            .filter((command) =>
-                                command.shouldBeHidden
-                                    ? !command.shouldBeHidden(this.editor)
-                                    : true,
-                            ),
+                            .filter((command) => (command.shouldBeHidden ? !command.shouldBeHidden(this.editor) : true)),
                     }));
 
-                    const withoutEmptyGroups = withFilteredCommands.filter(
-                        (group) => {
-                            if (group.commands.length > 0) {
-                                return true;
-                            }
+                    const withoutEmptyGroups = withFilteredCommands.filter((group) => {
+                        if (group.commands.length > 0) {
+                            return true;
+                        }
 
-                            return false;
-                        },
-                    );
+                        return false;
+                    });
 
-                    const withEnabledSettings = withoutEmptyGroups.map(
-                        (group) => ({
-                            ...group,
-                            commands: group.commands.map((command) => ({
-                                ...command,
-                                isEnabled: true,
-                            })),
-                        }),
-                    );
+                    const withEnabledSettings = withoutEmptyGroups.map((group) => ({
+                        ...group,
+                        commands: group.commands.map((command) => ({
+                            ...command,
+                            isEnabled: true,
+                        })),
+                    }));
 
                     return withEnabledSettings;
                 },
@@ -167,42 +132,25 @@ export const SlashCommand = Extension.create({
 
                             const getReferenceClientRect = () => {
                                 if (!props.clientRect) {
-                                    return props.editor.storage[extensionName]
-                                        .rect;
+                                    return props.editor.storage[extensionName].rect;
                                 }
 
                                 const rect = props.clientRect();
 
                                 if (!rect) {
-                                    return props.editor.storage[extensionName]
-                                        .rect;
+                                    return props.editor.storage[extensionName].rect;
                                 }
 
                                 let yPos = rect.y;
 
-                                if (
-                                    rect.top +
-                                        component.element.offsetHeight +
-                                        40 >
-                                    window.innerHeight
-                                ) {
-                                    const diff =
-                                        rect.top +
-                                        component.element.offsetHeight -
-                                        window.innerHeight +
-                                        40;
+                                if (rect.top + component.element.offsetHeight + 40 > window.innerHeight) {
+                                    const diff = rect.top + component.element.offsetHeight - window.innerHeight + 40;
                                     yPos = rect.y - diff;
                                 }
 
                                 // Account for when the editor is bound inside a container that doesn't go all the way to the edge of the screen
-                                const editorXOffset =
-                                    editorNode.getBoundingClientRect().x;
-                                return new DOMRect(
-                                    rect.x,
-                                    yPos,
-                                    rect.width,
-                                    rect.height,
-                                );
+                                const editorXOffset = editorNode.getBoundingClientRect().x;
+                                return new DOMRect(rect.x, yPos, rect.width, rect.height);
                             };
 
                             scrollHandler = () => {
@@ -211,10 +159,7 @@ export const SlashCommand = Extension.create({
                                 });
                             };
 
-                            view.dom.parentElement?.addEventListener(
-                                "scroll",
-                                scrollHandler,
-                            );
+                            view.dom.parentElement?.addEventListener("scroll", scrollHandler);
 
                             popup?.[0].setProps({
                                 getReferenceClientRect,
@@ -234,24 +179,17 @@ export const SlashCommand = Extension.create({
 
                             const getReferenceClientRect = () => {
                                 if (!props.clientRect) {
-                                    return props.editor.storage[extensionName]
-                                        .rect;
+                                    return props.editor.storage[extensionName].rect;
                                 }
 
                                 const rect = props.clientRect();
 
                                 if (!rect) {
-                                    return props.editor.storage[extensionName]
-                                        .rect;
+                                    return props.editor.storage[extensionName].rect;
                                 }
 
                                 // Account for when the editor is bound inside a container that doesn't go all the way to the edge of the screen
-                                return new DOMRect(
-                                    rect.x,
-                                    rect.y,
-                                    rect.width,
-                                    rect.height,
-                                );
+                                return new DOMRect(rect.x, rect.y, rect.width, rect.height);
                             };
 
                             let scrollHandler = () => {
@@ -260,23 +198,19 @@ export const SlashCommand = Extension.create({
                                 });
                             };
 
-                            view.dom.parentElement?.addEventListener(
-                                "scroll",
-                                scrollHandler,
-                            );
+                            view.dom.parentElement?.addEventListener("scroll", scrollHandler);
 
                             // eslint-disable-next-line no-param-reassign
-                            props.editor.storage[extensionName].rect =
-                                props.clientRect
-                                    ? getReferenceClientRect()
-                                    : {
-                                          width: 0,
-                                          height: 0,
-                                          left: 0,
-                                          top: 0,
-                                          right: 0,
-                                          bottom: 0,
-                                      };
+                            props.editor.storage[extensionName].rect = props.clientRect
+                                ? getReferenceClientRect()
+                                : {
+                                      width: 0,
+                                      height: 0,
+                                      left: 0,
+                                      top: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                  };
                             popup?.[0].setProps({
                                 getReferenceClientRect,
                             });
@@ -300,10 +234,7 @@ export const SlashCommand = Extension.create({
                             popup?.[0].hide();
                             if (scrollHandler) {
                                 const { view } = props.editor;
-                                view.dom.parentElement?.removeEventListener(
-                                    "scroll",
-                                    scrollHandler,
-                                );
+                                view.dom.parentElement?.removeEventListener("scroll", scrollHandler);
                             }
                             component.destroy();
                         },
@@ -312,6 +243,20 @@ export const SlashCommand = Extension.create({
             }),
         ];
     },
+
+    // addKeyboardShortcuts() {
+    //     // show menu on Tab key
+    //     return {
+    //         Tab: () => {
+    //             if (popup?.[0].state.isShown) {
+    //                 return false;
+    //             }
+    //
+    //             popup?.[0].show();
+    //             // return this.editor.commands.slashCommand();
+    //         },
+    //     };
+    // },
 
     addStorage() {
         return {
