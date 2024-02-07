@@ -1,6 +1,6 @@
 <x-main-layout :title="$post->title">
 
-    <div class="dark:bg-gray-800 flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm sm:rounded-lg">
+    <div class="flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
         <div class="mb-2 flex items-center justify-between">
             <div class="flex items-center space-x-2 font-semibold text-gray-400">
                 <x-avatar :user="$post->author" />
@@ -43,7 +43,7 @@
         </div>
 
         @if ($post->intro)
-            <div class="dark:text-gray-100 text-gray-900">
+            <div class="text-gray-900 dark:text-gray-100">
                 {{ $post->intro }}
             </div>
         @endif
@@ -54,7 +54,7 @@
             </div>
         @endif
 
-        <div class="dark:text-gray-100 prose max-w-none text-gray-900">
+        <div class="ProseMirror prose max-w-none text-gray-900 dark:text-gray-100">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At ab voluptas enim aperiam vitae
                 sed recusandae quod? <strong>Enim deserunt quas</strong>, beatae, amet aliquam perspiciatis modi sapiente asperiores
                 eveniet corrupti tenetur consequuntur nobis repellendus accusantium laboriosam repudiandae quod rerum ut

@@ -1,12 +1,7 @@
 <x-main-layout x-data="{ addUrlOpen: false, postContent: { type: 'doc', content: [] } }" title="✏️ {{ __('New post') }}">
     {{-- content --}}
-    <div class="dark:bg-gray-800 flex flex-col gap-3 bg-white p-6 shadow-sm sm:rounded-lg">
-
-        <div class="flex items-center justify-between gap-4">
-            <div class="flex flex-1 items-center space-x-2 font-semibold text-gray-400">
-                <x-minimal-input class="w-full text-3xl" placeholder="{{ __('Your catchy title..') }}" />
-            </div>
-        </div>
+    <div class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
+        <x-minimal-input class="w-full text-4xl" placeholder="{{ __('Your catchy title..') }}" />
 
         <template x-if="addUrlOpen">
             <div class="mb-4 flex items-center gap-3">
@@ -21,7 +16,7 @@
             </div>
         </template>
 
-        <div class="dark:text-gray-100 text-gray-900">
+        <div class="text-gray-900 dark:text-gray-100">
             <div x-post-editor="postContent"></div>
         </div>
     </div>

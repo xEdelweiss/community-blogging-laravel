@@ -23,7 +23,7 @@ export const useBlockEditor = ({ value, onChange }: { value: object; onChange: (
                     autocomplete: "off",
                     autocorrect: "off",
                     autocapitalize: "off",
-                    class: "min-h-full",
+                    class: "min-h-full prose max-w-none",
                 },
             },
         },

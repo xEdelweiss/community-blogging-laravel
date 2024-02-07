@@ -33,9 +33,9 @@ export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange },
 
     return (
         <>
-            <div className="flex h-full" ref={menuContainerRef}>
+            <div className="h-full" ref={menuContainerRef}>
                 <div className="relative flex flex-col flex-1 h-full">
-                    <EditorContent editor={editor} ref={editorRef} className="flex-1 overflow-y-auto" />
+                    <EditorContent editor={editor} ref={editorRef} className="flex-1 overflow-y-auto whitespace-pre-wrap break-words" />
                     <EditorFooter characters={characterCount.characters()} words={characterCount.words()}>
                         <ContentItemMenu editor={editor} onToggleDebug={() => setIsDebugVisible((cur) => !cur)} />
                     </EditorFooter>
