@@ -1,5 +1,6 @@
-import { Editor, useEditor } from "@tiptap/react";
+import { Content, Editor, useEditor } from "@tiptap/react";
 import { ExtensionKit } from "../extensions/extension-kit";
+import { initialContent } from "../lib/data/initialContent";
 
 declare global {
     interface Window {
@@ -7,7 +8,7 @@ declare global {
     }
 }
 
-export const useBlockEditor = ({ value, onChange }: { value: object; onChange: (value: object) => void }) => {
+export const useBlockEditor = ({ value, onChange }: { value: Content; onChange: (value: object) => void }) => {
     const editor = useEditor(
         {
             autofocus: true,
