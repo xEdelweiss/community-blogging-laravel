@@ -18,16 +18,6 @@ export enum WebSocketStatus {
 export type HocuspocusProvider = null;
 export type TiptapCollabProvider = null;
 
-export type TableOfContentsStorage = {
-    content: {
-        id: string;
-        level: number;
-        title: string;
-        isActive: boolean;
-        itemIndex: number;
-        textContent: string;
-    }[];
-};
 export const DragHandle = forwardRef<
     HTMLDivElement,
     {

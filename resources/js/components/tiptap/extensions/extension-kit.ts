@@ -11,6 +11,7 @@ import {
     FontFamily,
     FontSize,
     FullWidthYoutube,
+    Heading,
     Highlight,
     HorizontalRule,
     ImageBlock,
@@ -50,13 +51,14 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     }),
     Column,
     Selection,
+    Heading.configure({
+        levels: [2, 3],
+    }),
     HorizontalRule,
     StarterKit.configure({
         document: false,
         dropcursor: false,
-        heading: {
-            levels: [2, 3],
-        },
+        heading: false,
         horizontalRule: false,
         blockquote: false,
         history: {

@@ -2,10 +2,13 @@ export const initialContent = {
     type: "doc",
     content: [
         {
+            type: "tableOfContentsNode",
+        },
+        {
             type: "heading",
             attrs: {
                 textAlign: "left",
-                level: 1,
+                level: 2,
             },
             content: [
                 // {
