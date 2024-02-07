@@ -85,17 +85,6 @@
                     <span>{{ __('Publish') }}</span>
                 </x-primary-button>
 
-                <x-primary-button class="flex w-full justify-center"
-                    @click="postContent = { type: 'doc', content: [{ type: 'heading', attrs: { textAlign: 'left', level: 1, }, content: [{ type: 'text', text: 'Next.js + Tiptap Block Editor Template 12', }, ], }, ] }">
-                    <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
-                    </svg>
-
-                    <span>{{ __('CLEAR') }}</span>
-                </x-primary-button>
-
                 <template x-if="postContent.content.length < 2">
                     <div class="w-full text-center text-sm text-gray-500">
                         <p>
