@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { NodeViewWrapper } from "@tiptap/react";
-import { jsonp } from "../../lib/jsonp";
+import { jsonp } from "../../../lib/jsonp";
 
 export interface TwitterEmbedProps {
     node: Node & {

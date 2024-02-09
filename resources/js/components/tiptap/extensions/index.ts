@@ -44,8 +44,10 @@ export { ImageUpload } from "./ImageUpload";
 export { ImageBlock } from "./ImageBlock";
 export { Columns, Column } from "./MultiColumn";
 export { emojiSuggestion } from "./EmojiSuggestion";
-export { FullWidthYoutube } from "./FullWidthYoutube";
-export { Telegram } from "./Telegram";
-export { Twitter } from "./Twitter";
-export { Instagram } from "./Instagram";
-export { Reddit } from "./Reddit";
+
+// Embeds
+export { FullWidthYoutube } from "./embeds/FullWidthYoutube";
+export { Telegram } from "./embeds/Telegram";
+export { Twitter } from "./embeds/Twitter";
+export { Instagram } from "./embeds/Instagram";
+export { Reddit } from "./embeds/Reddit";
