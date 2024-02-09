@@ -15,8 +15,10 @@ import {
     Highlight,
     HorizontalRule,
     ImageBlock,
+    Instagram,
     Link,
     Placeholder,
+    Reddit,
     Selection,
     SlashCommand,
     StarterKit,
@@ -32,6 +34,7 @@ import {
     TextAlign,
     TextStyle,
     TrailingNode,
+    Twitter,
     Typography,
     Underline,
 } from ".";
@@ -88,6 +91,9 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     ImageBlock,
     FullWidthYoutube,
     Telegram,
+    Twitter,
+    Instagram,
+    Reddit,
     // FileHandler.configure({
     //   allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
     //   onDrop: (currentEditor, files, pos) => {

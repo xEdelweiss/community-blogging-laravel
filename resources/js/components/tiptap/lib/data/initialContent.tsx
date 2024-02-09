@@ -100,6 +100,30 @@ export const initialContent = {
             },
         },
         {
+            type: "telegram",
+            attrs: {
+                src: "ssternenko/25149",
+            },
+        },
+        {
+            type: "twitter",
+            attrs: {
+                src: "https://twitter.com/MykhailoRohoza/status/1755010559584469221",
+            },
+        },
+        {
+            type: "instagram",
+            attrs: {
+                src: "https://www.instagram.com/p/C269qZcN2r4/",
+            },
+        },
+        {
+            type: "reddit",
+            attrs: {
+                src: "https://www.reddit.com/r/laravel/comments/1akxkha/what_do_you_actually_do_with_laravel/",
+            },
+        },
+        {
             type: "paragraph",
             attrs: {
                 class: null,

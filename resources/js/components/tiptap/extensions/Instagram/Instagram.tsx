@@ -1,10 +1,19 @@
 import { Node, nodePasteRule } from "@tiptap/core";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import { ImageUpload as ImageUploadComponent } from "../ImageUpload/view";
+import InstagramEmbed from "./InstagramEmbed";
 
 type SetTelegramOptions = { src: string };
-export const Telegram = Node.create<{
+export const Instagram = Node.create<{
     inline: boolean;
 }>({
-    name: "telegram",
+    name: "instagram",
+    isolating: true,
+    defining: true,
+    group: "block",
+    draggable: true,
+    selectable: true,
+    inline: false,
 
     addOptions() {
         return {
@@ -13,26 +22,12 @@ export const Telegram = Node.create<{
         };
     },
 
-    inline() {
-        return this.options.inline;
-    },
-
-    group() {
-        return this.options.inline ? "inline" : "block";
-    },
-
-    draggable: true,
-
     addAttributes() {
         return {
             src: {
                 default: null,
             },
         };
-    },
-
-    parseHTML() {
-        return [];
     },
 
     addCommands() {
@@ -44,7 +39,7 @@ export const Telegram = Node.create<{
                     //     return false;
                     // }
 
-                    if (!options.src.includes("://t.me/")) {
+                    if (!options.src.includes("://www.instagram.com/")) {
                         return false;
                     }
 
@@ -55,47 +50,37 @@ export const Telegram = Node.create<{
                 },
         };
     },
-    /*
-    width: 536px;
-    margin: 0 auto;
-    padding-right: 36px;
-
-    */
 
     addPasteRules() {
         // if (!this.options.addPasteHandler) {
         //     return [];
         // }
-        const TELEGRAM_REGEX_GLOBAL = /^(https?:\/\/)?(t\.me)\/([^/]+\/[0-9]+)$/g;
+        const INSTAGRAM_REGEX_GLOBAL = /^(https?:\/\/)?(www\.instagram\.com)\/(.+)$/g;
 
         return [
             nodePasteRule({
-                find: TELEGRAM_REGEX_GLOBAL,
+                find: INSTAGRAM_REGEX_GLOBAL,
                 type: this.type,
                 getAttributes: (match) => {
-                    console.log("match", match);
-                    return { src: match[3] };
+                    return { src: match.input };
                 },
             }),
         ];
     },
 
-    renderHTML({ HTMLAttributes }) {
+    parseHTML() {
         return [
-            "div",
             {
-                class: "telegram-container",
+                tag: `div[data-type="${this.name}"]`,
             },
-            [
-                "script",
-                {
-                    type: "text/javascript",
-                    async: true,
-                    src: "https://telegram.org/js/telegram-widget.js?22",
-                    "data-telegram-post": HTMLAttributes.src,
-                    "data-width": "100%",
-                },
-            ],
         ];
+    },
+
+    renderHTML({ HTMLAttributes }) {
+        return ["div", { "data-type": this.name }];
+    },
+
+    addNodeView() {
+        return ReactNodeViewRenderer(InstagramEmbed);
     },
 });

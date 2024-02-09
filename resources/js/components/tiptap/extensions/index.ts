@@ -46,3 +46,6 @@ export { Columns, Column } from "./MultiColumn";
 export { emojiSuggestion } from "./EmojiSuggestion";
 export { FullWidthYoutube } from "./FullWidthYoutube";
 export { Telegram } from "./Telegram";
+export { Twitter } from "./Twitter";
+export { Instagram } from "./Instagram";
+export { Reddit } from "./Reddit";
