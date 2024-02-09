@@ -1,6 +1,14 @@
 import { Node, nodePasteRule } from "@tiptap/core";
 
-type SetTelegramOptions = { src: string };
+type SetOptions = { src: string };
+
+const REGEX_RULE = /^(https?:\/\/)?(t\.me)\/([^/]+\/[0-9]+)$/g;
+
+const isValidUrl = (src: string): bool => {
+    // @todo improve this
+    return src.includes("://t.me/");
+}
+
 export const Telegram = Node.create<{
     inline: boolean;
 }>({
@@ -31,20 +39,12 @@ export const Telegram = Node.create<{
         };
     },
 
-    parseHTML() {
-        return [];
-    },
-
     addCommands() {
         return {
-            setYoutubeVideo:
-                (options: SetTelegramOptions) =>
+            setTelegramPost:
+                (options: SetOptions) =>
                 ({ commands }) => {
-                    // if (!isValidYoutubeUrl(options.src)) {
-                    //     return false;
-                    // }
-
-                    if (!options.src.includes("://t.me/")) {
+                    if (!isValidUrl(options.src)) {
                         return false;
                     }
 
@@ -63,28 +63,33 @@ export const Telegram = Node.create<{
     */
 
     addPasteRules() {
-        // if (!this.options.addPasteHandler) {
-        //     return [];
-        // }
-        const TELEGRAM_REGEX_GLOBAL = /^(https?:\/\/)?(t\.me)\/([^/]+\/[0-9]+)$/g;
-
         return [
             nodePasteRule({
-                find: TELEGRAM_REGEX_GLOBAL,
+                find: REGEX_RULE,
                 type: this.type,
                 getAttributes: (match) => {
-                    console.log("match", match);
-                    return { src: match[3] };
+                    return {
+                        src: match.input,
+                    };
                 },
             }),
         ];
     },
 
-    renderHTML({ HTMLAttributes }) {
+    parseHTML() {
+        return [
+            {
+                tag: `div[data-type="${this.name}"]`,
+            },
+        ];
+    },
+
+    renderHTML({ HTMLAttributes, node }) {
         return [
             "div",
             {
                 class: "telegram-container",
+                'data-type': this.name,
             },
             [
                 "script",
@@ -92,7 +97,7 @@ export const Telegram = Node.create<{
                     type: "text/javascript",
                     async: true,
                     src: "https://telegram.org/js/telegram-widget.js?22",
-                    "data-telegram-post": HTMLAttributes.src,
+                    "data-telegram-post": REGEX_RULE.exec(node.attrs.src)[3],
                     "data-width": "100%",
                 },
             ],

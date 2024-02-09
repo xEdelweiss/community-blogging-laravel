@@ -1,9 +1,16 @@
 import { Node, nodePasteRule } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-import { ImageUpload as ImageUploadComponent } from "../ImageUpload/view";
 import InstagramEmbed from "./InstagramEmbed";
 
-type SetTelegramOptions = { src: string };
+type SetOptions = { src: string };
+
+const REGEX_RULE = /^(https?:\/\/)?(www\.instagram\.com)\/(.+)$/g;
+
+const isValidUrl = (src: string): bool => {
+    // @todo improve this
+    return src.includes("://www.instagram.com/");
+}
+
 export const Instagram = Node.create<{
     inline: boolean;
 }>({
@@ -32,14 +39,10 @@ export const Instagram = Node.create<{
 
     addCommands() {
         return {
-            setYoutubeVideo:
-                (options: SetTelegramOptions) =>
+            setInstagramPost:
+                (options: SetOptions) =>
                 ({ commands }) => {
-                    // if (!isValidYoutubeUrl(options.src)) {
-                    //     return false;
-                    // }
-
-                    if (!options.src.includes("://www.instagram.com/")) {
+                    if (!isValidUrl(options.src)) {
                         return false;
                     }
 
@@ -52,14 +55,9 @@ export const Instagram = Node.create<{
     },
 
     addPasteRules() {
-        // if (!this.options.addPasteHandler) {
-        //     return [];
-        // }
-        const INSTAGRAM_REGEX_GLOBAL = /^(https?:\/\/)?(www\.instagram\.com)\/(.+)$/g;
-
         return [
             nodePasteRule({
-                find: INSTAGRAM_REGEX_GLOBAL,
+                find: REGEX_RULE,
                 type: this.type,
                 getAttributes: (match) => {
                     return { src: match.input };
@@ -76,7 +74,7 @@ export const Instagram = Node.create<{
         ];
     },
 
-    renderHTML({ HTMLAttributes }) {
+    renderHTML() {
         return ["div", { "data-type": this.name }];
     },
 

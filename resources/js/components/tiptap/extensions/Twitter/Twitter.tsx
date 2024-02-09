@@ -1,9 +1,16 @@
 import { Node, nodePasteRule } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
-import { ImageUpload as ImageUploadComponent } from "../ImageUpload/view";
 import TwitterEmbed from "./TwitterEmbed";
 
-type SetTelegramOptions = { src: string };
+type SetOptions = { src: string };
+
+const REGEX_RULE = /^(https?:\/\/)?(twitter\.com)\/(.+)$/g;
+
+const isValidUrl = (src: string): bool => {
+    // @todo improve this
+    return src.includes("://twitter.com/")
+}
+
 export const Twitter = Node.create<{
     inline: boolean;
 }>({
@@ -18,7 +25,6 @@ export const Twitter = Node.create<{
     addOptions() {
         return {
             HTMLAttributes: {},
-            inline: false,
         };
     },
 
@@ -32,14 +38,11 @@ export const Twitter = Node.create<{
 
     addCommands() {
         return {
-            setYoutubeVideo:
-                (options: SetTelegramOptions) =>
+            setTwitterPost:
+                (options: SetOptions) =>
                 ({ commands }) => {
-                    // if (!isValidYoutubeUrl(options.src)) {
-                    //     return false;
-                    // }
 
-                    if (!options.src.includes("://twitter.com/")) {
+                    if (!isValidUrl(options.src)) {
                         return false;
                     }
 
@@ -52,14 +55,9 @@ export const Twitter = Node.create<{
     },
 
     addPasteRules() {
-        // if (!this.options.addPasteHandler) {
-        //     return [];
-        // }
-        const TWITTER_REGEX_GLOBAL = /^(https?:\/\/)?(twitter\.com)\/(.+)$/g;
-
         return [
             nodePasteRule({
-                find: TWITTER_REGEX_GLOBAL,
+                find: REGEX_RULE,
                 type: this.type,
                 getAttributes: (match) => {
                     return { src: match.input };
@@ -76,7 +74,7 @@ export const Twitter = Node.create<{
         ];
     },
 
-    renderHTML({ HTMLAttributes }) {
+    renderHTML() {
         return ["div", { "data-type": this.name }];
     },
 

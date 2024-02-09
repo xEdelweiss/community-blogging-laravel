@@ -2,7 +2,15 @@ import { Node, nodePasteRule } from "@tiptap/core";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 import RedditEmbed from "./RedditEmbed";
 
-type SetRedditOptions = { src: string };
+type SetOptions = { src: string };
+
+const REGEX_RULE = /^(https?:\/\/)?(www\.reddit\.com)\/(.+)$/g;
+
+const isValidUrl = (src: string): bool => {
+    // @todo improve this
+    return src.includes("://www.reddit.com/")
+}
+
 export const Reddit = Node.create<{
     inline: boolean;
 }>({
@@ -31,14 +39,10 @@ export const Reddit = Node.create<{
 
     addCommands() {
         return {
-            setYoutubeVideo:
-                (options: SetRedditOptions) =>
+            setRedditPost:
+                (options: SetOptions) =>
                 ({ commands }) => {
-                    // if (!isValidYoutubeUrl(options.src)) {
-                    //     return false;
-                    // }
-
-                    if (!options.src.includes("://www.reddit.com/")) {
+                    if (!isValidUrl(options.src)) {
                         return false;
                     }
 
@@ -51,14 +55,9 @@ export const Reddit = Node.create<{
     },
 
     addPasteRules() {
-        // if (!this.options.addPasteHandler) {
-        //     return [];
-        // }
-        const REDDIT_REGEX_GLOBAL = /^(https?:\/\/)?(www\.reddit\.com)\/(.+)$/g;
-
         return [
             nodePasteRule({
-                find: REDDIT_REGEX_GLOBAL,
+                find: REGEX_RULE,
                 type: this.type,
                 getAttributes: (match) => {
                     return { src: match.input };
@@ -75,7 +74,7 @@ export const Reddit = Node.create<{
         ];
     },
 
-    renderHTML({ HTMLAttributes }) {
+    renderHTML() {
         return ["div", { "data-type": this.name }];
     },
 
