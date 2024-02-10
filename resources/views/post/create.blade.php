@@ -99,6 +99,40 @@
                 </template>
             </div>
         </div>
+
+        <div x-data
+            class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
+
+            <div class="w-full text-left">
+                <p class="mb-2 text-left font-semibold">
+                    {{ __('Checklist:') }}
+                </p>
+                <ul class="ms-2 list-inside">
+                    <li class="flex items-center">
+
+                        <x-checkmark checked />
+                        <span class="ml-2">{{ __('Write title') }}</span>
+                    </li>
+                    <li class="flex items-center">
+                        <x-checkmark />
+                        <span class="ml-2">{{ __('Write intro') }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
+
+            <div class="w-full text-left">
+                <p class="mb-2 text-left font-semibold">
+                    {{ __('Editor tips:') }}
+                </p>
+                <ul class="ms-2 list-inside list-disc">
+                    <li>{{ __('To exit from code block use Shift+Enter') }}</li>
+                </ul>
+            </div>
+        </div>
     </x-slot>
 
 </x-main-layout>
