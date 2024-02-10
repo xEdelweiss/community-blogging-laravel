@@ -24,7 +24,7 @@
             <div x-post-editor="postContent"></div>
             <input :value="JSON.stringify(postContent)" type="hidden" name="content" />
         </div>
-    </div>
+    </form>
 
     {{-- sidebar --}}
     <x-slot name="rightSidebar">
