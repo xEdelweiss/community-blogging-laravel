@@ -1,4 +1,7 @@
-@props(['disabled' => false])
+@props([
+    'disabled' => false,
+    'name' => 'tags',
+])
 
 <!--  Input component start  -->
 <div x-data="{
@@ -40,17 +43,20 @@
 }">
     <div class="relative" @click.outside="showSuggestions=false">
         <div class="flex flex-row">
+            <template x-for="(item, index) in items">
+                <input type="hidden" name="{{ $name }}[]" :value="item" />
+            </template>
 
             <!--    Value list    -->
             <div class="flex flex-wrap gap-2 text-sm">
                 <template x-for="(item, index) in items">
-                    <a href="#" class="hover:text-primary" x-text="`#${item}`" @click.prevent="removeItem(index)"></a>
+                    <a href="#" class="pt-2 hover:text-primary" x-text="`#${item}`" @click.prevent="removeItem(index)"></a>
                 </template>
 
                 <!--    Input element    -->
                 <div>
                     <input aria-label="{{ __('Add up to 5 tags...') }}" :disabled="items.length >= 5"
-                        class="border-none px-0 py-0 text-sm text-gray-900 caret-black shadow-none focus:border-none focus:outline-none focus:ring-0 dark:text-gray-300 dark:caret-white"
+                        class="border-none px-0 pt-2 text-sm text-gray-900 caret-black shadow-none focus:border-none focus:outline-none focus:ring-0 dark:text-gray-300 dark:caret-white"
                         x-ref="input" @keydown.enter.prevent="addItem" @focus="showSuggestions=(items.length < 5)"
                         @keydown.backspace="removeLastItem" type="text" x-model.debounce="newItem"
                         :placeholder="items.length < 5 ? '{{ __('Add up to 5 tags...') }}' : '{{ __('Max 5 tags used') }}'" />

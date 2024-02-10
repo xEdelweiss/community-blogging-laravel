@@ -1,14 +1,15 @@
 <x-main-layout x-data="{ addUrlOpen: false, postContent: { type: 'doc', content: [] } }" title="✏️ {{ __('New post') }}">
     {{-- content --}}
-    <div class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
+    <form class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg" action="{{ route('post.store') }}" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
         <div class="flex flex-col">
-            <x-minimal-input class="w-full text-4xl" placeholder="{{ __('Your catchy title..') }}" />
-            <x-tags-input class="w-full text-sm" placeholder="{{ __('Add up to 5 tags..') }}" />
+            <x-minimal-input class="w-full pb-0 text-4xl" placeholder="{{ __('Your catchy title..') }}" name="title" />
+            <x-tags-input class="w-full text-sm" placeholder="{{ __('Add up to 5 tags..') }}" name="tags" />
         </div>
 
-        <template x-if="addUrlOpen">
-            <div class="mb-4 flex items-center gap-3">
-                <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" />
+        <div class="mb-4 flex items-center gap-3" :class="{ 'hidden': !addUrlOpen }">
+            <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" name="url" />
 
                 <x-minimal-button x-on:click.prevent="addUrlOpen = false">
                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -21,6 +22,7 @@
 
         <div class="text-gray-900 dark:text-gray-100">
             <div x-post-editor="postContent"></div>
+            <input :value="JSON.stringify(postContent)" type="hidden" name="content" />
         </div>
     </div>
 
