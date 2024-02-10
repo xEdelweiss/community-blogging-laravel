@@ -12,7 +12,7 @@ import { ColumnsMenu } from "../../extensions/MultiColumn/menus/ColumnsMenu";
 import { TableColumnMenu, TableRowMenu } from "../../extensions/Table/menus";
 import { TiptapProps } from "./types";
 import { TextMenu } from "../menus";
-import { ContentItemMenu } from "../menus";
+import { LeftContentItemMenu, RightContentItemMenu } from "../menus";
 import { EditorFooter } from "./components/EditorFooter";
 
 const Debug = ({ editor, type }: { editor: Editor; type: null | "html" | "json" }) => (
@@ -53,12 +53,12 @@ export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange },
             <div className="h-full" ref={menuContainerRef}>
                 <div className="relative flex flex-col flex-1 h-full">
                     <EditorContent editor={editor} ref={editorRef} className="flex-1 overflow-y-auto whitespace-pre-wrap break-words" />
-                    <EditorFooter characters={characterCount.characters()} words={characterCount.words()}>
-                        <ContentItemMenu
-                            editor={editor}
-                            onToggleDebug={(newValue) => setDebugType((cur) => (cur === newValue ? null : newValue))}
-                        />
-                    </EditorFooter>
+                    <LeftContentItemMenu editor={editor} />
+                    <RightContentItemMenu
+                        editor={editor}
+                        onToggleDebug={(newValue) => setDebugType((cur) => (cur === newValue ? null : newValue))}
+                    />
+                    <EditorFooter characters={characterCount.characters()} words={characterCount.words()} />
                     <LinkMenu editor={editor} appendTo={menuContainerRef} />
                     <TextMenu editor={editor} />
                     <ColumnsMenu editor={editor} appendTo={menuContainerRef} />

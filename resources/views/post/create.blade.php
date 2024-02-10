@@ -20,8 +20,8 @@
             </div>
         </template>
 
-        <div class="text-gray-900 dark:text-gray-100">
-            <div x-post-editor="postContent"></div>
+        <div class="text-gray-900 dark:text-gray-100 px-2 sm:px-0">
+            <div x-post-editor="postContent">Loading..</div>
             <input :value="JSON.stringify(postContent)" type="hidden" name="content" />
         </div>
     </form>

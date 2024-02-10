@@ -29,8 +29,9 @@ export const DragHandle = forwardRef<
             zIndex: number;
         };
         children: React.ReactNode;
+        className: string;
     }
->(({ pluginKey, editor, onNodeChange, tippyOptions, children }: any, ref) => {
+>(({ pluginKey, editor, onNodeChange, tippyOptions, children, className }: any, ref) => {
     const [position, setPosition] = React.useState({ x: 0, y: 0 });
 
     useEffect(() => {
@@ -43,7 +44,7 @@ export const DragHandle = forwardRef<
 
             // @fixme: this is a hack to fix the position of the drag handle
             setPosition({
-                x: -100,
+                // x: menuPos === "left" ? -24 - 22 : editor.view.dom.getBoundingClientRect().width - 10 + 22,
                 y: top + editor.view.dom.scrollTop - editor.view.dom.getBoundingClientRect().top - 10,
             });
 
@@ -61,10 +62,10 @@ export const DragHandle = forwardRef<
     return (
         <div
             ref={ref}
+            className={className}
             style={{
                 position: "absolute",
                 top: `${position.y}px`,
-                left: `${position.x}px`,
             }}
         >
             {children}{" "}

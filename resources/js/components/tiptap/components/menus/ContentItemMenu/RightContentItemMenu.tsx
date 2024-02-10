@@ -17,7 +17,7 @@ export type ContentItemMenuProps = {
     onToggleDebug: (type: "html" | "json") => void;
 };
 
-export const ContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuProps) => {
+export const RightContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const data = useData();
     const actions = useContentItemActions(editor, data.currentNode, data.currentNodePos);
@@ -39,15 +39,13 @@ export const ContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuProps)
                 offset: [-2, 16],
                 zIndex: 99,
             }}
+            className="right-[-2rem] sm:right-[-2.5rem]"
         >
             <div className="flex items-center gap-0.5">
-                <Toolbar.Button onClick={actions.handleAdd}>
-                    <Icon name="Plus" />
-                </Toolbar.Button>
                 <Popover.Root open={menuOpen} onOpenChange={setMenuOpen}>
                     <Popover.Trigger asChild>
-                        <Toolbar.Button>
-                            <Icon name="GripVertical" />
+                        <Toolbar.Button className={"sm:bg-white sm:shadow-sm"}>
+                            <Icon name="GripVertical" className={"w-3 h-3"} />
                         </Toolbar.Button>
                     </Popover.Trigger>
                     <Popover.Content side="bottom" align="start" sideOffset={8}>
