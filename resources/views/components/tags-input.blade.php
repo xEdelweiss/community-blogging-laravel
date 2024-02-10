@@ -44,13 +44,13 @@
     <div class="relative" @click.outside="showSuggestions=false">
         <div class="flex flex-row">
             <template x-for="(item, index) in items">
-                <input type="hidden" name="{{ $name }}[]" :value="item" />
+                <input type="hidden" name="{{ $name }}[]" :value="item.toLowerCase()" />
             </template>
 
             <!--    Value list    -->
             <div class="flex flex-wrap gap-2 text-sm">
                 <template x-for="(item, index) in items">
-                    <a href="#" class="pt-2 hover:text-primary" x-text="`#${item}`" @click.prevent="removeItem(index)"></a>
+                    <a href="#" class="pt-2 hover:text-primary" x-text="`#${item.toLowerCase()}`" @click.prevent="removeItem(index)"></a>
                 </template>
 
                 <!--    Input element    -->
@@ -66,7 +66,7 @@
                         x-show="showSuggestions">
                         <div class="rounded-md bg-white py-1 ring-1 ring-black ring-opacity-5 dark:bg-gray-700">
                             <template x-for="suggestion in suggestions">
-                                <button x-text="suggestion" @click.prevent="addSuggestedItem(suggestion)"
+                                <button x-text="suggestion.toLowerCase()" @click.prevent="addSuggestedItem(suggestion)"
                                     class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:bg-gray-800">
                                 </button>
                             </template>

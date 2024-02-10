@@ -26,9 +26,9 @@
             <div class="@if ($post->title) items-start @else items-start @endif flex justify-between">
                 <div>
                     <div class="flex gap-2 text-sm opacity-50 transition duration-150 ease-in hover:opacity-100">
-                        <a href="#" class="hover:text-primary">#lorem</a>
-                        <a href="#" class="hover:text-primary">#ipsum</a>
-                        <a href="#" class="hover:text-primary">#dolor</a>
+                        <a href="#" class="hover:text-primary">#it стартап</a>
+                        <a href="#" class="hover:text-primary">#довгочит</a>
+                        <a href="#" class="hover:text-primary">#зроблено в україні</a>
                     </div>
 
                     @if ($post->title)
