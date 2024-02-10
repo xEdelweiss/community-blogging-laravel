@@ -8,8 +8,8 @@ const REGEX_RULE = /^(https?:\/\/)?(twitter\.com)\/(.+)$/g;
 
 const isValidUrl = (src: string): bool => {
     // @todo improve this
-    return src.includes("://twitter.com/")
-}
+    return src.includes("://twitter.com/");
+};
 
 export const Twitter = Node.create<{
     inline: boolean;
@@ -41,7 +41,6 @@ export const Twitter = Node.create<{
             setTwitterPost:
                 (options: SetOptions) =>
                 ({ commands }) => {
-
                     if (!isValidUrl(options.src)) {
                         return false;
                     }

@@ -102,7 +102,7 @@ export const initialContent = {
         {
             type: "telegram",
             attrs: {
-                src: "ssternenko/25149",
+                src: "https://t.me/ssternenko/25149",
             },
         },
         {

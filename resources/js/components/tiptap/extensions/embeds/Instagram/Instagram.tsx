@@ -9,7 +9,7 @@ const REGEX_RULE = /^(https?:\/\/)?(www\.instagram\.com)\/(.+)$/g;
 const isValidUrl = (src: string): bool => {
     // @todo improve this
     return src.includes("://www.instagram.com/");
-}
+};
 
 export const Instagram = Node.create<{
     inline: boolean;
