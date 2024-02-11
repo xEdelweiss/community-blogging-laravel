@@ -14,10 +14,9 @@ import { useEffect, useState } from "react";
 
 export type ContentItemMenuProps = {
     editor: Editor;
-    onToggleDebug: (type: "html" | "json") => void;
 };
 
-export const LeftContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuProps) => {
+export const LeftContentItemMenu = ({ editor }: ContentItemMenuProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const data = useData();
     const actions = useContentItemActions(editor, data.currentNode, data.currentNodePos);
