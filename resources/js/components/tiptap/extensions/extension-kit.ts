@@ -136,7 +136,16 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     Placeholder.configure({
         includeChildren: true,
         showOnlyCurrent: false,
-        placeholder: () => "",
+        placeholder: ({ node }) => {
+            switch (node.type.name) {
+                case "paragraph":
+                    return "— paragraph";
+                case "heading":
+                    return "— heading";
+                default:
+                    return "";
+            }
+        },
     }),
     SlashCommand,
     Focus,

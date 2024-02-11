@@ -1,36 +1,50 @@
 .ProseMirror {
-  /* Placeholder Styles */
-  .is-empty::before {
-    @apply text-black/40 dark:text-white/40 float-left h-0 pointer-events-none w-full;
-  }
+    /* Placeholder Styles */
 
-  &.ProseMirror-focused {
-    /* Slashmenu Placeholder */
-    > p.has-focus.is-empty::before {
-      content: 'Type  \\  to browse options';
+    .is-empty::before {
+        @apply text-black/40 dark:text-white/40 text-left float-left h-0 pointer-events-none w-full;
     }
 
-    > [data-type='columns'] > [data-type='column'] > p.is-empty.has-focus::before {
-      content: 'Type  \\  to browse options';
+    [data-placeholder]::before {
+        @apply text-black/20 dark:text-white/20 text-right;
+        content: attr(data-placeholder);
     }
-  }
 
-  /* Default Placeholder */
-  & > .is-editor-empty::before {
-    content: 'Click here to start writing …';
-  }
+    &.ProseMirror-focused {
+        /* Slashmenu Placeholder */
 
-  /* Blockquote Placeholder */
-  blockquote .is-empty:not(.is-editor-empty):first-child:last-child::before {
-    content: 'Enter a quote';
-  }
+        > p.has-focus.is-empty::before {
+            content: 'Type  \\  to browse options';
+            @apply text-black/40 dark:text-white/40 text-left;
+        }
 
-  blockquote + figcaption.is-empty:not(.is-editor-empty)::before {
-    content: 'Author';
-  }
+        > [data-type='columns'] > [data-type='column'] > p.is-empty.has-focus::before {
+            content: 'Type  \\  to browse options';
+            @apply text-black/40 dark:text-white/40 text-left;
+        }
+    }
 
-  [data-placeholder][data-suggestion]::before,
-  [data-placeholder][data-suggestion] *::before {
-    content: none !important;
-  }
+    /* Default Placeholder */
+
+    & > .is-editor-empty::before {
+        content: 'Click here to start writing …';
+        @apply text-black/40 dark:text-white/40 text-left;
+    }
+
+    /* Blockquote Placeholder */
+
+    blockquote .is-empty:not(.is-editor-empty):first-child:last-child::before {
+        content: 'Enter a quote';
+        @apply text-black/40 dark:text-white/40 text-left;
+    }
+
+    blockquote + figcaption.is-empty:not(.is-editor-empty)::before {
+        content: 'Author';
+        @apply text-black/40 dark:text-white/40 text-left;
+    }
+
+    [data-placeholder][data-suggestion]::before,
+    [data-placeholder][data-suggestion] *::before {
+        content: none !important;
+    }
 }
