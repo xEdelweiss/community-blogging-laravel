@@ -9,7 +9,7 @@ import { MenuList } from "./MenuList";
 
 const extensionName = "slashCommand";
 
-const TRIGGER = "\\";
+export const TRIGGER = "\\";
 
 let popup: any;
 
