@@ -5,7 +5,7 @@
         @apply text-black/40 dark:text-white/40 text-left float-left h-0 pointer-events-none w-full;
     }
 
-    [data-placeholder]::before {
+    [data-placeholder]:not(:last-child)::before {
         @apply text-black/20 dark:text-white/20 text-right;
         content: attr(data-placeholder);
     }
