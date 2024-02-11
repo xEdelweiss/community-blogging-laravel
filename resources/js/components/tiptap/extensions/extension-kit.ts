@@ -10,7 +10,6 @@ import {
     Focus,
     FontFamily,
     FontSize,
-    FullWidthYoutube,
     Heading,
     Highlight,
     HorizontalRule,
@@ -37,6 +36,7 @@ import {
     Twitter,
     Typography,
     Underline,
+    Youtube,
 } from ".";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { ImageUpload } from "./ImageUpload";
@@ -89,7 +89,7 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     TableOfContentsNode,
     ImageUpload.configure(),
     ImageBlock,
-    FullWidthYoutube,
+    Youtube,
     Telegram,
     Twitter,
     Instagram,

@@ -46,7 +46,7 @@ export { Columns, Column } from "./MultiColumn";
 export { emojiSuggestion } from "./EmojiSuggestion";
 
 // Embeds
-export { FullWidthYoutube } from "./embeds/FullWidthYoutube";
+export { Youtube } from "./embeds/Youtube";
 export { Telegram } from "./embeds/Telegram";
 export { Twitter } from "./embeds/Twitter";
 export { Instagram } from "./embeds/Instagram";

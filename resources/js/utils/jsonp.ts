@@ -1,6 +1,6 @@
 let index = 0;
 
-export function jsonp(url: string, timeout: number = 5000): Promise {
+export function jsonp(url: string, timeout: number = 5000): Promise<unknown> {
     return new Promise((resolve, reject) => {
         const callbackName = "jsonp_callback_" + index++;
         const script = document.createElement("script");
@@ -9,10 +9,14 @@ export function jsonp(url: string, timeout: number = 5000): Promise {
             reject(new Error("JSONP request to " + url + " timed out"));
         }, timeout);
 
-        window[callbackName] = function (data) {
+        // @ts-ignore
+        window[callbackName] = function (data: any) {
             clearTimeout(timeoutId);
             document.getElementsByTagName("head")[0].removeChild(script);
+
+            // @ts-ignore
             delete window[callbackName];
+
             resolve(data);
         };
 

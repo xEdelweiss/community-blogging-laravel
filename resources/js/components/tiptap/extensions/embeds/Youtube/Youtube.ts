@@ -1,18 +1,14 @@
 import { Node, nodePasteRule } from "@tiptap/core";
-import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useRedditEmbed";
+import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useYoutubeEmbed.js";
 
 type SetOptions = { src: string };
 
-export const Reddit = Node.create<{
+const REGEX_IFRAME = /<iframe.+src="((?:https:\/\/)?(?:www\.)?youtube\.com\/embed\/(?:[^"]+))"(?:.*?)><\/iframe>/g;
+
+export const Youtube = Node.create<{
     inline: boolean;
 }>({
-    name: "reddit",
-    isolating: true,
-    defining: true,
-    group: "block",
-    draggable: true,
-    selectable: true,
-    inline: false,
+    name: "youtube",
 
     addOptions() {
         return {
@@ -20,6 +16,16 @@ export const Reddit = Node.create<{
             inline: false,
         };
     },
+
+    inline() {
+        return this.options.inline;
+    },
+
+    group() {
+        return this.options.inline ? "inline" : "block";
+    },
+
+    draggable: true,
 
     addAttributes() {
         return {
@@ -31,7 +37,7 @@ export const Reddit = Node.create<{
 
     addCommands() {
         return {
-            setRedditPost:
+            setYoutubeVideo:
                 (options: SetOptions) =>
                 ({ commands }) => {
                     if (!isValidUrl(options.src)) {
@@ -52,7 +58,18 @@ export const Reddit = Node.create<{
                 find: REGEX_RULE,
                 type: this.type,
                 getAttributes: (match) => {
-                    return { src: match.input };
+                    return {
+                        src: match.input,
+                    };
+                },
+            }),
+            nodePasteRule({
+                find: REGEX_IFRAME,
+                type: this.type,
+                getAttributes: (match) => {
+                    return {
+                        src: match[1],
+                    };
                 },
             }),
         ];
@@ -63,7 +80,7 @@ export const Reddit = Node.create<{
             {
                 tag: `div[data-type="${this.name}"]`,
                 getAttrs: (dom) => ({
-                    src: dom.getAttribute("x-reddit") ?? "",
+                    src: dom.getAttribute("x-youtube") ?? "",
                 }),
             },
         ];
@@ -74,7 +91,7 @@ export const Reddit = Node.create<{
             "div",
             {
                 "data-type": this.name,
-                "x-reddit": HTMLAttributes.src,
+                "x-youtube": HTMLAttributes.src,
             },
         ];
     },

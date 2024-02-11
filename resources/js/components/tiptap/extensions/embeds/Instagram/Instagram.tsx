@@ -1,15 +1,7 @@
 import { Node, nodePasteRule } from "@tiptap/core";
-import { ReactNodeViewRenderer } from "@tiptap/react";
-import InstagramEmbed from "./InstagramEmbed";
+import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useInstagramEmbed";
 
 type SetOptions = { src: string };
-
-const REGEX_RULE = /^(https?:\/\/)?(www\.instagram\.com)\/(.+)$/g;
-
-const isValidUrl = (src: string): bool => {
-    // @todo improve this
-    return src.includes("://www.instagram.com/");
-};
 
 export const Instagram = Node.create<{
     inline: boolean;
@@ -70,15 +62,20 @@ export const Instagram = Node.create<{
         return [
             {
                 tag: `div[data-type="${this.name}"]`,
+                getAttrs: (dom) => ({
+                    src: dom.getAttribute("x-instagram") ?? "",
+                }),
             },
         ];
     },
 
-    renderHTML() {
-        return ["div", { "data-type": this.name }];
-    },
-
-    addNodeView() {
-        return ReactNodeViewRenderer(InstagramEmbed);
+    renderHTML({ HTMLAttributes, node }) {
+        return [
+            "div",
+            {
+                "data-type": this.name,
+                "x-instagram": HTMLAttributes.src,
+            },
+        ];
     },
 });

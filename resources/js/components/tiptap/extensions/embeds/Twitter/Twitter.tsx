@@ -1,15 +1,7 @@
 import { Node, nodePasteRule } from "@tiptap/core";
-import { ReactNodeViewRenderer } from "@tiptap/react";
-import TwitterEmbed from "./TwitterEmbed";
+import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useTwitterEmbed";
 
 type SetOptions = { src: string };
-
-const REGEX_RULE = /^(https?:\/\/)?(twitter\.com)\/(.+)$/g;
-
-const isValidUrl = (src: string): bool => {
-    // @todo improve this
-    return src.includes("://twitter.com/");
-};
 
 export const Twitter = Node.create<{
     inline: boolean;
@@ -69,15 +61,20 @@ export const Twitter = Node.create<{
         return [
             {
                 tag: `div[data-type="${this.name}"]`,
+                getAttrs: (dom) => ({
+                    src: dom.getAttribute("x-twitter") ?? "",
+                }),
             },
         ];
     },
 
-    renderHTML() {
-        return ["div", { "data-type": this.name }];
-    },
-
-    addNodeView() {
-        return ReactNodeViewRenderer(TwitterEmbed);
+    renderHTML({ HTMLAttributes, node }) {
+        return [
+            "div",
+            {
+                "data-type": this.name,
+                "x-twitter": HTMLAttributes.src,
+            },
+        ];
     },
 });
