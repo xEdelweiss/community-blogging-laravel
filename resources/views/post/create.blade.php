@@ -11,16 +11,15 @@
         <div class="mb-4 flex items-center gap-3" :class="{ 'hidden': !addUrlOpen }">
             <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" name="url" />
 
-                <x-minimal-button x-on:click.prevent="addUrlOpen = false">
-                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                </x-minimal-button>
-            </div>
-        </template>
+            <x-minimal-button x-on:click.prevent="addUrlOpen = false">
+                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </x-minimal-button>
+        </div>
 
-        <div class="text-gray-900 dark:text-gray-100 px-2 sm:px-0">
+        <div class="px-2 text-gray-900 dark:text-gray-100 sm:px-0">
             <div x-post-editor="postContent">Loading..</div>
             <input :value="JSON.stringify(postContent)" type="hidden" name="content" />
         </div>
