@@ -28,4 +28,5 @@ php artisan optimize:clear
 
 # TODO
 
-- [ ] Highlight embeds selection in editor (see `.ProseMirror-selectednode`)
+- [x] Highlight embeds selection in editor (see `.ProseMirror-selectednode`)
+- [ ] Sometimes multiple embeds are selected
