@@ -19,3 +19,75 @@
 .application-logo:hover .application-logo-text {
     fill: #000000;
 }
+
+/** Embeds */
+
+/*.embed-container {
+    .youtube-container,
+    .reddit-container,
+    .telegram-container,
+    .twitter-container,
+    .instagram-container {
+        @apply bg-gradient-to-r from-gray-500 via-gray-400 to-gray-500 rounded-lg overflow-hidden;
+
+        background-size: 400%;
+        !*height: 400px;*!
+
+        -webkit-animation: AnimationName 3s ease infinite;
+        -moz-animation: AnimationName 3s ease infinite;
+        animation: AnimationName 3s ease infinite;
+    }
+}
+
+@keyframes AnimationName {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}*/
+
+.youtube-container,
+.reddit-container {
+    @apply w-full;
+
+    * {
+        @apply w-full;
+    }
+}
+
+.telegram-container,
+.twitter-container,
+.instagram-container {
+    @apply w-[500px] mx-auto !important;
+
+    * {
+        @apply w-full;
+    }
+}
+
+.twitter-container {
+    blockquote {
+        @apply prose;
+
+        p:first-child {
+            @apply mt-0;
+        }
+
+        p {
+            @apply mb-2
+        }
+
+        font-weight: 500;
+        font-style: italic;
+        color: var(--tw-prose-quotes);
+        border-left-width: 0.25rem;
+        border-left-color: var(--tw-prose-quote-borders);
+        quotes: "\201C" "\201D" "\2018" "\2019";
+        margin-top: 1.6em;
+        margin-bottom: 1.6em;
+        padding-left: 1em;
+    }
+}

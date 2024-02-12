@@ -6,13 +6,11 @@ import useRedditEmbed from "./embeds/useRedditEmbed.js";
 import useTwitterEmbed from "./embeds/useTwitterEmbed.js";
 import useInstagramEmbed from "./embeds/useInstagramEmbed.js";
 import useYoutubeEmbed from "./embeds/useYoutubeEmbed.js";
+import useUnifiedEmbed from "./embeds/useUnifiedEmbed.js";
+import useUrlEmbed from "./embeds/useUrlEmbed.js";
 
 usePostEditor();
 
-useTelegramEmbed();
-useRedditEmbed();
-useTwitterEmbed();
-useInstagramEmbed();
-useYoutubeEmbed();
+useUnifiedEmbed([useTelegramEmbed(), useRedditEmbed(), useTwitterEmbed(), useInstagramEmbed(), useYoutubeEmbed(), useUrlEmbed()]);
 
 Livewire.start();

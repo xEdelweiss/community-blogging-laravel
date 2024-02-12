@@ -32,4 +32,10 @@ export default function useTwitterEmbed() {
             }, 0);
         });
     });
+
+    return {
+        name: "twitter",
+        REGEX_RULE,
+        isValidUrl,
+    };
 }

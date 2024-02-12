@@ -3,38 +3,6 @@
         @apply text-neutral-500 dark:text-neutral-400;
     }
 
-    .telegram-container {
-        iframe {
-            @apply w-[536px] mx-auto pr-9;
-            /*width: 536px;*/
-            /*margin: 0 auto;*/
-            /*padding-right: 36px;*/
-        }
-    }
-
-    .reddit-container {
-        iframe {
-            @apply w-full;
-            /*@apply w-[500px] mx-auto;*/
-        }
-    }
-
-    .twitter-container {
-        @apply w-[500px] mx-auto;
-
-        blockquote.twitter-tweet {
-            @apply bg-neutral-100 dark:bg-neutral-800 p-4 rounded-lg w-full
-        }
-    }
-
-    .instagram-container {
-        @apply w-[500px] mx-auto;
-
-        iframe.instagram-media {
-            @apply w-[500px] rounded-lg
-        }
-    }
-
     & > *:first-child,
     [data-type='column'] > * {
         @apply first:mt-0 last:mb-0;

@@ -22,19 +22,24 @@ export default function useInstagramEmbed() {
         const src = expression.match(REGEX_RULE) ? expression : evaluate(expression);
         element.classList.add("instagram-container");
 
+        // data-instgrm-captioned="true"
         element.insertAdjacentHTML(
             "beforeend",
             `<blockquote
                     class="instagram-media"
-                    data-instgrm-captioned="true"
                     data-instgrm-permalink="${src}"
                     data-instgrm-version="14"
                 ></blockquote>`,
         );
 
         setTimeout(() => {
-            // blockquote.instagram-tweet -> div.instagram-tweet.instagram-tweet-rendered
             loadScriptOrCallIt();
         }, 0);
     });
+
+    return {
+        name: "instagram",
+        REGEX_RULE,
+        isValidUrl,
+    };
 }

@@ -1,4 +1,4 @@
-<x-main-layout x-data="{ addUrlOpen: false, postContent: { type: 'doc', content: [] } }" title="✏️ {{ __('New post') }}">
+<x-main-layout x-data="{ addUrlOpen: true, url: null, postContent: { type: 'doc', content: [] } }" title="✏️ {{ __('New post') }}">
     {{-- content --}}
     <form class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg" action="{{ route('post.store') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -8,15 +8,19 @@
             <x-tags-input class="w-full text-sm" placeholder="{{ __('Add up to 5 tags..') }}" name="tags" />
         </div>
 
-        <div class="mb-4 flex items-center gap-3" :class="{ 'hidden': !addUrlOpen }">
-            <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" name="url" />
+        <div class="mb-4 flex flex-col gap-3">
+            <div class="flex items-center gap-3" :class="{ 'hidden': !addUrlOpen }">
+                <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" name="url" x-model="url" />
 
-            <x-minimal-button x-on:click.prevent="addUrlOpen = false">
-                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                </svg>
-            </x-minimal-button>
+                <x-minimal-button x-on:click.prevent="addUrlOpen = false">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </x-minimal-button>
+            </div>
+
+            <div x-embed="url" class="w-full"></div>
         </div>
 
         <div class="px-2 text-gray-900 dark:text-gray-100 sm:px-0">

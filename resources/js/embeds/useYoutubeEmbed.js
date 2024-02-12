@@ -33,4 +33,10 @@ export default function useYoutubeEmbed() {
                 ></iframe>`,
         );
     });
+
+    return {
+        name: "youtube",
+        REGEX_RULE,
+        isValidUrl,
+    };
 }

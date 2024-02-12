@@ -23,4 +23,10 @@ export default function useRedditEmbed() {
         script.src = "https://embed.reddit.com/widgets.js";
         document.body.appendChild(script);
     });
+
+    return {
+        name: "reddit",
+        REGEX_RULE,
+        isValidUrl,
+    };
 }

@@ -24,9 +24,9 @@ export default function useTelegramEmbed() {
 
         observer.observe(element, { childList: true });
 
-        // REGEX_RULE.lastIndex = 0;
+        REGEX_RULE.lastIndex = 0;
         const postId = REGEX_RULE.exec(src)?.groups?.postId;
-        // REGEX_RULE.lastIndex = 0;
+        REGEX_RULE.lastIndex = 0;
 
         element.classList.add("telegram-container");
 
@@ -39,4 +39,10 @@ export default function useTelegramEmbed() {
         element.appendChild(script);
         element.id = `nnn${postId}nnn`;
     });
+
+    return {
+        name: "telegram",
+        REGEX_RULE,
+        isValidUrl,
+    };
 }
