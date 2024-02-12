@@ -24,6 +24,7 @@ php artisan optimize:clear
     1. Logout
     2. Click "Write post" -> Redirect to login page
     3. "New post" page is opened, but editor is not initialized
+- ImageBlockView is redrawing on click due to decorators, this leads to image refetching
 
 # TODO
 

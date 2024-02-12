@@ -1,36 +1,42 @@
-import { Extension } from '@tiptap/core'
-import { Plugin, PluginKey } from '@tiptap/pm/state'
-import { Decoration, DecorationSet } from '@tiptap/pm/view'
+import { Extension } from "@tiptap/core";
+import { Plugin, PluginKey } from "@tiptap/pm/state";
+import { Decoration, DecorationSet } from "@tiptap/pm/view";
 
 export const Selection = Extension.create({
-  name: 'selection',
+    name: "selection",
 
-  addProseMirrorPlugins() {
-    const { editor } = this
+    addProseMirrorPlugins() {
+        const { editor } = this;
 
-    return [
-      new Plugin({
-        key: new PluginKey('selection'),
-        props: {
-          decorations(state) {
-            if (state.selection.empty) {
-              return null
-            }
+        return [
+            new Plugin({
+                key: new PluginKey("selection"),
+                props: {
+                    decorations(state) {
+                        const decorations = [];
 
-            if (editor.isFocused === true) {
-              return null
-            }
+                        if (!editor.isFocused && !state.selection.empty) {
+                            decorations.push(
+                                Decoration.inline(state.selection.from, state.selection.to, {
+                                    class: "selection",
+                                }),
+                            );
+                        }
 
-            return DecorationSet.create(state.doc, [
-              Decoration.inline(state.selection.from, state.selection.to, {
-                class: 'selection',
-              }),
-            ])
-          },
-        },
-      }),
-    ]
-  },
-})
+                        state.doc.nodesBetween(state.selection.from, state.selection.to, (node, pos) => {
+                            decorations.push(
+                                Decoration.node(pos, pos + node.nodeSize, {
+                                    class: "node-selection",
+                                }),
+                            );
+                        });
 
-export default Selection
+                        return DecorationSet.create(state.doc, decorations);
+                    },
+                },
+            }),
+        ];
+    },
+});
+
+export default Selection;

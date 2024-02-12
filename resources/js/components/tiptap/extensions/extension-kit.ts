@@ -59,6 +59,7 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     }),
     HorizontalRule,
     StarterKit.configure({
+        gapcursor: false,
         document: false,
         dropcursor: false,
         heading: false,

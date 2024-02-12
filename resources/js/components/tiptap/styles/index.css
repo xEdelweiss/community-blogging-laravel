@@ -6,6 +6,7 @@
 @import './partials/placeholder.css';
 @import './partials/table.css';
 @import './partials/typography.css';
+@import './partials/embeds.css';
 
 .ProseMirror {
   @apply caret-black dark:caret-white outline-0 px-0 pb-16 z-0;

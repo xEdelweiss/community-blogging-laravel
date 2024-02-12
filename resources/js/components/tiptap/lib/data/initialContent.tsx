@@ -460,6 +460,14 @@ export const initialContent = {
             },
         },
         {
+            type: "imageBlock",
+            attrs: {
+                src: "https://placehold.it/800x400",
+                width: "100%",
+                align: "center",
+            },
+        },
+        {
             type: "heading",
             attrs: {
                 textAlign: "left",

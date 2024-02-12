@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+    @apply bg-primary/80 text-white !important;
+}
+
 .application-logo .application-logo-blob {
     fill: theme('colors.primary');
     transition: fill 0.15s ease-in;
@@ -49,22 +53,91 @@
     }
 }*/
 
+.embed-screen {
+    @apply absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10;
+}
+
+.highlighted-embed {
+    @apply rounded-xl overflow-hidden;
+
+    &:before {
+        content: "";
+        @apply absolute top-0 left-0 right-0 bottom-0 bg-primary/80 rounded-xl;
+
+        pointer-events: none;
+    }
+}
+
+.node-imageBlock {
+    & > div {
+        @apply relative;
+
+        &:before {
+            content:"";
+            @apply embed-screen
+        }
+    }
+
+    &.ProseMirror-selectednode > div > div,
+    &.node-selection > div > div {
+        @apply relative;
+
+        & > div {
+            @apply highlighted-embed;
+        }
+
+        img {
+            @apply my-0 !important;
+        }
+    }
+}
+
+.youtube-container,
+.reddit-container,
+.telegram-container,
+.twitter-container,
+.instagram-container {
+    @apply w-full relative;
+
+    .screen {
+        display: none;
+    }
+
+    .embed > * {
+        @apply w-full my-0 !important;
+    }
+}
+
 .youtube-container,
 .reddit-container {
-    @apply w-full;
-
-    * {
-        @apply w-full;
+    .embed {
+        @apply w-full relative;
     }
 }
 
 .telegram-container,
 .twitter-container,
 .instagram-container {
-    @apply w-[500px] mx-auto !important;
+    .embed {
+        @apply w-[500px] relative mx-auto;
+    }
+}
 
-    * {
-        @apply w-full;
+.ProseMirror {
+    .youtube-container,
+    .reddit-container,
+    .telegram-container,
+    .twitter-container,
+    .instagram-container {
+        .screen {
+            display: block;
+            @apply embed-screen;
+        }
+
+        &.ProseMirror-selectednode > .embed,
+        &.node-selection > .embed {
+            @apply highlighted-embed;
+        }
     }
 }
 

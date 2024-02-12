@@ -14,9 +14,12 @@ export default function useRedditEmbed() {
         element.classList.add("reddit-container");
         element.insertAdjacentHTML(
             "beforeend",
-            `<blockquote class="reddit-embed-bq">
-                    <a href="${src}"></a>
-                </blockquote>`,
+            `<div class="screen"></div>
+                 <div class="embed">
+                    <blockquote class="reddit-embed-bq">
+                      <a href="${src}"></a>
+                    </blockquote>
+                 </div>`,
         );
 
         const script = document.createElement("script");

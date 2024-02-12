@@ -36,8 +36,10 @@ export default function useTelegramEmbed() {
         script.src = "https://telegram.org/js/telegram-widget.js?22";
         script.dataset.telegramPost = postId;
         script.dataset.width = "100%";
-        element.appendChild(script);
-        element.id = `nnn${postId}nnn`;
+
+        element.insertAdjacentHTML("beforeend", `<div class="screen"></div><div class="embed"></div>`);
+
+        element.querySelector(".embed").appendChild(script);
     });
 
     return {

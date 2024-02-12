@@ -3,27 +3,18 @@ import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useTelegramEmbed.j
 
 type SetOptions = { src: string };
 
-export const Telegram = Node.create<{
-    inline: boolean;
-}>({
+export const Telegram = Node.create({
     name: "telegram",
+    selectable: true,
+    group: "block",
+    inline: false,
+    draggable: true,
 
     addOptions() {
         return {
             HTMLAttributes: {},
-            inline: false,
         };
     },
-
-    inline() {
-        return this.options.inline;
-    },
-
-    group() {
-        return this.options.inline ? "inline" : "block";
-    },
-
-    draggable: true,
 
     addAttributes() {
         return {

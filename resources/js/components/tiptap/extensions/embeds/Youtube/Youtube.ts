@@ -5,24 +5,16 @@ type SetOptions = { src: string };
 
 const REGEX_IFRAME = /<iframe.+src="((?:https:\/\/)?(?:www\.)?youtube\.com\/embed\/(?:[^"]+))"(?:.*?)><\/iframe>/g;
 
-export const Youtube = Node.create<{
-    inline: boolean;
-}>({
+export const Youtube = Node.create({
     name: "youtube",
+    group: "block",
+    selectable: true,
+    atom: true,
 
     addOptions() {
         return {
             HTMLAttributes: {},
-            inline: false,
         };
-    },
-
-    inline() {
-        return this.options.inline;
-    },
-
-    group() {
-        return this.options.inline ? "inline" : "block";
     },
 
     draggable: true,

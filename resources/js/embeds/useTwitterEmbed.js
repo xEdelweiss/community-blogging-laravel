@@ -24,7 +24,11 @@ export default function useTwitterEmbed() {
         element.classList.add("twitter-container");
 
         jsonp("https://publish.twitter.com/oembed?url=" + encodeURIComponent(src)).then((res) => {
-            element.insertAdjacentHTML("beforeend", res.html);
+            element.insertAdjacentHTML(
+                "beforeend",
+                `<div class="screen"></div>
+                     <div class="embed">${res.html}</div>`,
+            );
 
             setTimeout(() => {
                 // blockquote.twitter-tweet -> div.twitter-tweet.twitter-tweet-rendered

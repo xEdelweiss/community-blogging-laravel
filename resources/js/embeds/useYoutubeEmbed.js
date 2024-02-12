@@ -16,21 +16,24 @@ export default function useYoutubeEmbed() {
 
         element.insertAdjacentHTML(
             "beforeend",
-            `<iframe width="100%" height="100%"
-                    allowfullscreen="true"
-                    autoplay="false"
-                    disablekbcontrols="false"
-                    enableiframeapi="false"
-                    endtime="0"
-                    ivloadpolicy="0"
-                    loop="false"
-                    modestbranding="false"
-                    origin=""
-                    playlist=""
-                    src="${embedSrc}"
-                    start="0"
-                    class="w-full aspect-video rounded-xl overflow-hidden"
-                ></iframe>`,
+            `<div class="screen"></div>
+                 <div class="embed">
+                    <iframe width="100%" height="100%"
+                        allowfullscreen="true"
+                        autoplay="false"
+                        disablekbcontrols="false"
+                        enableiframeapi="false"
+                        endtime="0"
+                        ivloadpolicy="0"
+                        loop="false"
+                        modestbranding="false"
+                        origin=""
+                        playlist=""
+                        src="${embedSrc}"
+                        start="0"
+                        class="w-full aspect-video rounded-xl overflow-hidden"
+                    ></iframe>
+                 </div>`,
         );
     });
 

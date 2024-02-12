@@ -25,11 +25,14 @@ export default function useInstagramEmbed() {
         // data-instgrm-captioned="true"
         element.insertAdjacentHTML(
             "beforeend",
-            `<blockquote
-                    class="instagram-media"
-                    data-instgrm-permalink="${src}"
-                    data-instgrm-version="14"
-                ></blockquote>`,
+            `<div class="screen"></div>
+                 <div class="embed">
+                    <blockquote
+                        class="instagram-media"
+                        data-instgrm-permalink="${src}"
+                        data-instgrm-version="14"
+                    ></blockquote>
+                 </div>`,
         );
 
         setTimeout(() => {
