@@ -11,21 +11,18 @@ use function Pest\Laravel\json;
 class EmbedController extends Controller
 {
     // @fixme auth + rate limit
-    public function fetchMeta(Request $request)
+    public function show(Request $request, Embed $embed)
     {
-        $embed = new Embed();
-        // $meta = get_meta_tags($request->url, true);
-        $info = $embed->get($request->url);
+        $url = $request->validate(['url' => 'required|url'])['url'];
+        $info = $embed->get($url);
 
-        return response()->json([
+        return view('embed.link', [
             'title' => $info->title ?? '',
             'description' => $info->description ?? '',
             'image_url' => $info->image ?? '',
             'provider' => $info->providerName ?? '',
             'icon_url' => $info->favicon ?? '',
-            'published_at' => $info->publishedTime ? $info->publishedTime->getTimestamp() : null,
-
-            // 'raw' => $meta,
+            'published_at' => $info->publishedTime ? Carbon::createFromTimestamp($info->publishedTime->getTimestamp())->diffForHumans() : null,
         ]);
     }
 }

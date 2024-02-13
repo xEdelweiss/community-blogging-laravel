@@ -10,7 +10,7 @@
 
         <div class="mb-4 flex flex-col gap-3">
             <div class="flex items-center gap-3" :class="{ 'hidden': !addUrlOpen }">
-                <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" name="url" x-model="url" />
+                <x-text-input class="w-full" placeholder="{{ __('Your URL goes here..') }}" name="url" x-model.debounce.500ms="url" />
 
                 <x-minimal-button x-on:click.prevent="addUrlOpen = false">
                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
