@@ -23,7 +23,16 @@
             "@shufo/prettier-plugin-blade"
         ],
         "sortTailwindcssClasses": true,
-        "printWidth": 140
+        "printWidth": 140,
+        "overrides": [
+            {
+                "files": "*.blade.php",
+                "options": {
+                    "parser": "blade",
+                    "printWidth": 80
+                }
+            }
+        ]
     },
     "dependencies": {
         "@radix-ui/react-dropdown-menu": "^2.0.6",
