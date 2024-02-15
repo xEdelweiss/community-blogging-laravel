@@ -24,6 +24,15 @@
     fill: #000000;
 }
 
+/** Pagination */
+
+.pagination nav {
+    @apply flex justify-center items-center space-x-2;
+    & > span {
+        @apply opacity-0;
+    }
+}
+
 /** Embeds */
 
 /*.embed-container {
