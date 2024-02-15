@@ -2,12 +2,14 @@
     {{-- content --}}
     <header class="mb-4 flex flex-wrap justify-start gap-x-4 px-3 sm:px-0">
         @auth()
-            <a href="#" class="px-3 py-1 hover:text-primary">{{ __('Relevant') }}</a>
+            <a href="#"
+                class="px-3 py-1 hover:text-primary">{{ __('Relevant') }}</a>
         @endauth
 
         <a href="#"
             class="overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary dark:bg-gray-800">{{ __('Latest') }}</a>
-        <a href="#" class="px-3 py-1 hover:text-primary">{{ __('Top') }}</a>
+        <a href="#"
+            class="px-3 py-1 hover:text-primary">{{ __('Top') }}</a>
     </header>
 
     <div class="flex flex-col gap-6">
@@ -16,7 +18,7 @@
         @endforeach
 
         @if ($posts->hasPages())
-            <div class="flex justify-center gap-4">
+            <div class="pagination flex justify-center gap-4">
                 {{ $posts->links() }}
             </div>
         @endif
@@ -39,9 +41,11 @@
 
                     <a href="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}"
                         class="group flex flex-col gap-1 px-4 text-left">
-                        <span class="line-clamp-2 leading-snug group-hover:text-primary">{{ $post->title }}</span>
+                        <span
+                            class="line-clamp-2 leading-snug group-hover:text-primary">{{ $post->title }}</span>
 
-                        <div class="text-sm font-semibold text-gray-400">{{ random_int(100, 250) }} comments</div>
+                        <div class="text-sm font-semibold text-gray-400">
+                            {{ random_int(100, 250) }} comments</div>
                     </a>
                 @endforeach
             </div>

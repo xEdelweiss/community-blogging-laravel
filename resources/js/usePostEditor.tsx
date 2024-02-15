@@ -1,11 +1,16 @@
 import { Alpine } from "../../vendor/livewire/livewire/dist/livewire.esm";
-import { Content, Editor } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 
 export default function usePostEditor() {
     Alpine.directive("post-editor", async (element: HTMLElement, { expression }, { evaluate, cleanup, Alpine: { watch } }) => {
         const { BlockEditor } = await import("./components/tiptap/components/BlockEditor/BlockEditor");
         const React = await import("react");
         const { createRoot } = await import("react-dom/client");
+
+        const focusHandler = () => {
+            editorRef.current?.view?.focus();
+        };
+        element.addEventListener("editor-open", focusHandler);
 
         const editorRef = React.createRef<Editor>();
 
@@ -32,6 +37,8 @@ export default function usePostEditor() {
 
         cleanup(() => {
             root.unmount();
+
+            element.removeEventListener("editor-open", focusHandler);
         });
     });
 }

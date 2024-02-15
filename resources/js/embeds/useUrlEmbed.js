@@ -6,7 +6,7 @@ export const isValidUrl = (src) => {
 };
 
 export default function useUrlEmbed() {
-    Alpine.directive("url", async (element, { expression }, { evaluate }) => {
+    Alpine.directive("url", async (element, { expression }, { evaluate, Alpine }) => {
         const src = isValidUrl(expression) ? expression : evaluate(expression);
 
         if (!isValidUrl(src)) {
@@ -27,9 +27,10 @@ export default function useUrlEmbed() {
                 throw new Error("Network response was not ok: " + response.status + " " + response.statusText);
             }
 
-            const meta = await response.text();
+            const meta = await response.json();
 
-            element.insertAdjacentHTML("beforeend", meta);
+            window.dispatchEvent(new CustomEvent("embed-loaded", { detail: { title: meta.title, element } }));
+            element.insertAdjacentHTML("beforeend", meta.html);
         } catch (e) {
             console.error("Error fetching meta", e);
         }

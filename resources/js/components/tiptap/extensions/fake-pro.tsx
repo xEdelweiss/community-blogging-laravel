@@ -32,32 +32,37 @@ export const DragHandle = forwardRef<
         className: string;
     }
 >(({ pluginKey, editor, onNodeChange, tippyOptions, children, className }: any, ref) => {
-    const [position, setPosition] = React.useState({ x: 0, y: 0 });
+    const [position, setPosition] = React.useState({
+        y: 0,
+        height: 28, // @fixme hardcoded paragraph height
+    });
 
     useEffect(() => {
         const handleNodeChange = () => {
             const node = editor.state.doc.nodeAt(editor.state.selection.$anchor.pos);
             const pos = editor.state.selection.anchor;
 
-            const cursorCoords = editor.view.coordsAtPos(editor.state.selection.$anchor.pos);
-            const { top, left } = cursorCoords;
+            const domNode = editor.view.domAtPos(editor.state.selection.$anchor.pos).node;
+            const domNodeHeight = domNode.getBoundingClientRect().height;
 
-            // @fixme: this is a hack to fix the position of the drag handle
             setPosition({
-                // x: menuPos === "left" ? -24 - 22 : editor.view.dom.getBoundingClientRect().width - 10 + 22,
-                y: top + editor.view.dom.scrollTop - editor.view.dom.getBoundingClientRect().top - 10,
+                y: domNode.offsetTop,
+                height: domNodeHeight,
             });
 
-            onNodeChange({ node, editor, pos });
+            onNodeChange({ node, editor, pos }); // @todo check if it works
         };
 
         editor.on("selectionUpdate", handleNodeChange);
-        handleNodeChange();
+        editor.on("focus", handleNodeChange);
+        editor.on("update", handleNodeChange);
 
         return () => {
             editor.off("selectionUpdate", handleNodeChange);
+            editor.off("focus", handleNodeChange);
+            editor.off("update", handleNodeChange);
         };
-    }, [editor, onNodeChange]);
+    }, [editor, onNodeChange, ref]);
 
     return (
         <div
@@ -66,6 +71,7 @@ export const DragHandle = forwardRef<
             style={{
                 position: "absolute",
                 top: `${position.y}px`,
+                height: `${position.height}px`,
             }}
         >
             {children}{" "}

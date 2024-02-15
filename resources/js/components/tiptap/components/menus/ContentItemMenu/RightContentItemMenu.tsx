@@ -39,12 +39,12 @@ export const RightContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuP
                 offset: [-2, 16],
                 zIndex: 99,
             }}
-            className="right-[-2rem] sm:right-[-2.5rem]"
+            className="right-[-2rem] flex items-start"
         >
-            <div className="flex items-center gap-0.5">
+            <div className="flex items-center gap-0.5 h-full">
                 <Popover.Root open={menuOpen} onOpenChange={setMenuOpen}>
                     <Popover.Trigger asChild>
-                        <Toolbar.Button className={"sm:bg-white sm:shadow-sm"}>
+                        <Toolbar.Button className={"min-w-[1rem] px-1"}>
                             <Icon name="GripVertical" className={"w-3 h-3"} />
                         </Toolbar.Button>
                     </Popover.Trigger>

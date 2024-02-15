@@ -4,8 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Topic;
 use App\Models\User;
-use Faker\Generator;
-use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -33,27 +31,27 @@ class PostFactory extends Factory
             '700x900',
             '1900x1080',
         ]);
-        // $illustration = "https://source.unsplash.com/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
-        $illustration = "https://placehold.co/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
+        // $cover = "https://source.unsplash.com/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
+        $cover = "https://placehold.co/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
 
         $actualTitle = $this->optional(60, $title);
         $url = $this->optional(80, $this->faker->url);
-        $actualIllustration = $this->optional(80, $illustration);
+        $actualCover = $this->optional(80, $cover);
         $actualIntro = $this->optional(50, $intro);
         $publishedAt = $this->optional(80, $createdAt);
 
-        if ($url && $actualIllustration && $actualIntro) {
+        if ($url && $actualCover && $actualIntro) {
             if ($this->faker->boolean(50)) {
                 $actualIntro = $this->faker->paragraphs(2, true);
             } else {
-                $actualIllustration = $illustration;
+                $actualCover = $cover;
             }
         }
 
         return [
             'title' => $actualTitle,
             'url' => $url,
-            'illustration' => $actualIllustration,
+            'cover' => $actualCover,
             'intro' => $actualIntro,
             'author_id' => User::inRandomOrder()->first()->id,
             'topic_id' => $topic->id,

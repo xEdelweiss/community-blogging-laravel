@@ -16,13 +16,16 @@ class EmbedController extends Controller
         $url = $request->validate(['url' => 'required|url'])['url'];
         $info = $embed->get($url);
 
-        return view('embed.link', [
+        return response()->json([
             'title' => $info->title ?? '',
-            'description' => $info->description ?? '',
-            'image_url' => $info->image ?? '',
-            'provider' => $info->providerName ?? '',
-            'icon_url' => $info->favicon ?? '',
-            'published_at' => $info->publishedTime ? Carbon::createFromTimestamp($info->publishedTime->getTimestamp())->diffForHumans() : null,
+            'html' => view('embed.link', [
+                'title' => $info->title ?? '',
+                'description' => $info->description ?? '',
+                'image_url' => $info->image ?? '',
+                'provider' => $info->providerName ?? '',
+                'icon_url' => $info->favicon ?? '',
+                'published_at' => $info->publishedTime ? Carbon::createFromTimestamp($info->publishedTime->getTimestamp())->diffForHumans() : null,
+            ])->render(),
         ]);
     }
 }

@@ -38,10 +38,10 @@ export const LeftContentItemMenu = ({ editor }: ContentItemMenuProps) => {
                 offset: [-2, 16],
                 zIndex: 99,
             }}
-            className="left-[-2rem] sm:left-[-2.5rem]"
+            className="left-[-2.25rem] flex items-start"
         >
-            <div className="flex items-center gap-0.5">
-                <Toolbar.Button onClick={actions.handleAdd} className={"sm:bg-white sm:shadow-sm"}>
+            <div className="flex items-center gap-0.5 h-full">
+                <Toolbar.Button onClick={actions.handleAdd} className={"min-w-[1rem] px-1"}>
                     <Icon name="Plus" className={"w-3 h-3"} />
                 </Toolbar.Button>
             </div>

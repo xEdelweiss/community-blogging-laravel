@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('title')->nullable();
             $table->string('url')->nullable();
-            $table->string('illustration')->nullable();
+            $table->string('cover')->nullable();
             $table->string('intro')->nullable();
 
             $table

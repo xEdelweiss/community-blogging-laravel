@@ -8,9 +8,10 @@ import useInstagramEmbed from "./embeds/useInstagramEmbed.js";
 import useYoutubeEmbed from "./embeds/useYoutubeEmbed.js";
 import useUnifiedEmbed from "./embeds/useUnifiedEmbed.js";
 import useUrlEmbed from "./embeds/useUrlEmbed.js";
+import useAutosize from "./useAutosize.js";
 
 usePostEditor();
-
+useAutosize();
 useUnifiedEmbed([useTelegramEmbed(), useRedditEmbed(), useTwitterEmbed(), useInstagramEmbed(), useYoutubeEmbed(), useUrlEmbed()]);
 
 Livewire.start();
