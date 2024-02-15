@@ -27,7 +27,12 @@ class Avatar extends Component
     public function link(): string
     {
         return route('user.show', [
-            'user' => $this->user->id,
+            'user' => $this->user,
         ]);
+    }
+
+    public function avatarUrl(): string
+    {
+        return $this->user->avatar;
     }
 }

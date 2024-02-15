@@ -15,7 +15,7 @@ class UserController extends Controller
             'user' => $user,
             'posts' => $user->posts()
                 ->published()
-                ->newest()
+                ->latest()
                 ->with(['author', 'topic'])
                 ->cursorPaginate(10),
         ]);

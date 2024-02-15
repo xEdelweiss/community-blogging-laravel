@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/', '/latest');
+
 Route::controller(\App\Http\Controllers\HomeController::class)->group(static function () {
-    Route::get('/', 'latest')->name('home');
+    Route::get('latest/{topic:slug?}', 'latest')->name('home');
+    Route::get('relevant/{topic:slug?}', 'relevant')->name('home.relevant');
+    Route::get('top/{topic:slug?}', 'top')->name('home.top');
 });
 
 Route::controller(\App\Http\Controllers\PostController::class)->group(static function () {
@@ -30,12 +34,10 @@ Route::controller(\App\Http\Controllers\PostController::class)->group(static fun
 });
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(static function () {
-    Route::get('user/{user}', 'show')->name('user.show');
+    Route::get('user/{user:id}', 'show')->name('user.show');
 });
 
 Route::controller(\App\Http\Controllers\TopicController::class)->group(static function () {
-    Route::get('topic/{topic:slug}', 'show')->name('topic.show');
-
     Route::group(['middleware' => 'auth'], static function () {
         Route::get('topic', 'create')->name('topic.create');
     });

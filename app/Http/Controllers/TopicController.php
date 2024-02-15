@@ -33,16 +33,6 @@ class TopicController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Topic $topic)
-    {
-        echo '<h1>"' . $topic->title . '" topic</h1>';
-        dump($topic->toArray());
-        echo '<a href="' . route('home') . '">Home</a>';
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Topic $topic)

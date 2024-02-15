@@ -9,7 +9,8 @@
                 <div>
                     <div
                         class="text-sm font-bold text-gray-900 hover:text-primary">
-                        <a href="#">{{ $post->author->name }}</a>
+                        <a
+                            href="{{ route('user.show', ['user' => $post->author]) }}">{{ $post->author->name }}</a>
                     </div>
 
                     <div class="text-xs">{{ __('Posted on') }} <time
@@ -29,14 +30,24 @@
             <div
                 class="@if ($post->title) items-start @else items-start @endif flex justify-between">
                 <div>
-                    <div
-                        class="flex gap-2 text-sm opacity-50 transition duration-150 ease-in hover:opacity-100">
-                        <a href="#" class="hover:text-primary">#it
-                            стартап</a>
-                        <a href="#"
-                            class="hover:text-primary">#довгочит</a>
-                        <a href="#" class="hover:text-primary">#зроблено в
-                            україні</a>
+                    <div class="flex gap-2 text-sm">
+                        @foreach ($post->tags as $tag)
+                            <a href="{{ route('home', ['tag' => $tag->slug]) }}"
+                                class="flex align-baseline opacity-50 transition duration-150 ease-in hover:text-primary hover:opacity-100">
+                                <span class="inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="inline-block h-3 w-3 text-primary-dark">
+                                        <path stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
+                                    </svg>
+                                </span>
+
+                                <span>{{ str($tag->name)->lower() }}</span>
+                            </a>
+                        @endforeach
                     </div>
 
                     @if ($post->title)

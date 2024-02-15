@@ -34,7 +34,6 @@ class PostFactory extends Factory
         // $cover = "https://source.unsplash.com/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
         $cover = "https://placehold.co/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
 
-        $actualTitle = $this->optional(60, $title);
         $url = $this->optional(80, $this->faker->url);
         $actualCover = $this->optional(80, $cover);
         $actualIntro = $this->optional(50, $intro);
@@ -49,7 +48,7 @@ class PostFactory extends Factory
         }
 
         return [
-            'title' => $actualTitle,
+            'title' => $title,
             'url' => $url,
             'cover' => $actualCover,
             'intro' => $actualIntro,

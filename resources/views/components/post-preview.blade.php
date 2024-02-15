@@ -19,7 +19,7 @@
                         class="flex items-center space-x-2 text-xs font-semibold text-gray-400">
                         @if (!$noAuthor)
                             <div
-                                class="font-bold text-gray-900 hover:text-primary">
+                                class="z-20 font-bold text-gray-900 hover:text-primary">
                                 <a
                                     href="{{ route('user.show', [$post->author]) }}">{{ $post->author->name }}</a>
                             </div>
