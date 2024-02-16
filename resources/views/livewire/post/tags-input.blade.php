@@ -64,6 +64,11 @@ new class extends Component {
         if (tag && this.tags.length < 5) {
             this.tags.push(tag);
         }
+
+        if (this.tags.length >= 5) {
+            this.query = '';
+            this.open = false;
+        }
     },
     addQueryAsTag() {
         this.addTag(this.query);

@@ -4,7 +4,7 @@ export const REGEX_RULE = /^(https?:\/\/)?(www\.)?(instagram\.com)\/(.+)$/g;
 
 export const isValidUrl = (src) => {
     // @todo improve this
-    return src.includes("://www.instagram.com/");
+    return src.includes("://www.instagram.com/") || src.includes("://instagram.com/");
 };
 
 const loadScriptOrCallIt = () => {

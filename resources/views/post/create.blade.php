@@ -35,7 +35,7 @@
                     x-ref="title" x-model="title"
                     placeholder="{{ __('Your catchy title') }}" name="title"
                     no-border
-                    x-on:embed-loaded.window="$refs.title.value = $event.detail.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));" />
+                    x-on:embed-loaded.window="$refs.title.value = $refs.title.value || $event.detail.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));" />
 
                 {{-- limit counter --}}
                 <div class="absolute -bottom-[8px] end-0 text-xs opacity-75"
