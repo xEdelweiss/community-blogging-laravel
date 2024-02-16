@@ -1,3 +1,7 @@
-<a href="{{ $link }}">
-    <img src="{{ $avatarUrl }}" alt="avatar" class="h-10 w-10 rounded-xl" />
-</a>
+@if ($withLink)
+    <a href="{{ $link }}" class="{{ $linkClass }}">
+        <img src="{{ $avatarUrl }}" {{ $attributes->merge(['class' => 'h-10 w-10 rounded-xl']) }} alt="{{ __('Avatar') }}" />
+    </a>
+@else
+    <img src="{{ $avatarUrl }}" {{ $attributes->merge(['class' => 'h-10 w-10 rounded-xl']) }} alt="{{ __('Avatar') }}" />
+@endif

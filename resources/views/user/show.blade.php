@@ -27,8 +27,7 @@
         <div x-data
             class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
 
-            <img src="{{ $user->avatar }}" alt="avatar"
-                class="mb-1 w-full rounded-xl" />
+            <x-avatar :user="$user" class="mb-1 w-full h-full rounded-xl" />
 
             <div class="flex flex-col items-center gap-2">
                 <div class="text-lg font-semibold leading-none">

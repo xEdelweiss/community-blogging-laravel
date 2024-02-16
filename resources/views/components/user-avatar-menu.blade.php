@@ -18,8 +18,7 @@ new class extends Component {
             class="flex items-center text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300">
 
             @auth
-                <img src="{{ auth()->user()->avatar }}" alt="avatar"
-                    class="h-10 w-10 cursor-pointer rounded-xl" />
+                <x-avatar :user="auth()->user()" class="h-10 w-10 cursor-pointer rounded-xl" />
             @else
                 <svg class="h-10 w-10 cursor-pointer rounded-xl"
                     viewBox="0 0 61.7998 61.7998" xmlns="http://www.w3.org/2000/svg"
