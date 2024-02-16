@@ -13,14 +13,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::redirect('/', '/latest');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::controller(\App\Http\Controllers\HomeController::class)->group(static function () {
+    Route::get('latest/{topic:slug?}', 'latest')->name('home');
+    Route::get('relevant/{topic:slug?}', 'relevant')->name('home.relevant');
+    Route::get('top/{topic:slug?}', 'top')->name('home.top');
+});
+
+Route::controller(\App\Http\Controllers\PostController::class)->group(static function () {
+    Route::get('post/{post}-{slug}', 'show')->name('post.show');
+
+    Route::group(['middleware' => 'auth'], static function () {
+        Route::get('post', 'create')->name('post.create');
+        Route::post('post', 'store')->name('post.store');
+        Route::get('post/{post}/edit', 'edit')->name('post.edit');
+        Route::put('post/{post}', 'update')->name('post.update');
+        Route::delete('post/{post}', 'destroy')->name('post.delete');
+    });
+});
+
+Route::controller(\App\Http\Controllers\UserController::class)->group(static function () {
+    Route::get('user/{user:id}', 'show')->name('user.show');
+});
+
+Route::controller(\App\Http\Controllers\TopicController::class)->group(static function () {
+    Route::group(['middleware' => 'auth'], static function () {
+        Route::get('topic', 'create')->name('topic.create');
+    });
+});
+
+Route::get('api/fetch-meta', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.fetch-meta');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+Route::controller(\App\Http\Controllers\Api\UploadController::class)->group(static function () {
+    Route::post('api/upload-image', 'image')->name('image.upload');
+});
+
+require __DIR__ . '/auth.php';

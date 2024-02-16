@@ -1,3 +1,175 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::selection {
+    @apply bg-primary/80 text-white !important;
+}
+
+.application-logo .application-logo-blob {
+    fill: theme('colors.primary');
+    transition: fill 0.15s ease-in;
+}
+
+.application-logo:hover .application-logo-blob {
+    fill: theme('colors.primary-dark');
+}
+
+.application-logo .application-logo-text {
+    fill: #333333;
+    transition: fill 0.15s ease-in;
+}
+
+.application-logo:hover .application-logo-text {
+    fill: #000000;
+}
+
+/** Pagination */
+
+.pagination nav {
+    @apply flex justify-center items-center space-x-2;
+    & > span {
+        @apply opacity-0;
+    }
+}
+
+/** Embeds */
+
+/*.embed-container {
+    .youtube-container,
+    .reddit-container,
+    .telegram-container,
+    .twitter-container,
+    .instagram-container {
+        @apply bg-gradient-to-r from-gray-500 via-gray-400 to-gray-500 rounded-lg overflow-hidden;
+
+        background-size: 400%;
+        !*height: 400px;*!
+
+        -webkit-animation: AnimationName 3s ease infinite;
+        -moz-animation: AnimationName 3s ease infinite;
+        animation: AnimationName 3s ease infinite;
+    }
+}
+
+@keyframes AnimationName {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}*/
+
+.embed-screen {
+    @apply absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10;
+}
+
+.highlighted-embed {
+    @apply rounded-xl overflow-hidden;
+
+    &:before {
+        content: "";
+        @apply absolute top-0 left-0 right-0 bottom-0 bg-primary/80 rounded-xl;
+
+        pointer-events: none;
+    }
+}
+
+.node-imageBlock {
+    & > div {
+        @apply relative;
+
+        &:before {
+            content:"";
+            @apply embed-screen
+        }
+    }
+
+    &.ProseMirror-selectednode > div > div,
+    &.node-selection > div > div {
+        @apply relative;
+
+        & > div {
+            @apply highlighted-embed;
+        }
+
+        img {
+            @apply my-0 !important;
+        }
+    }
+}
+
+.youtube-container,
+.reddit-container,
+.telegram-container,
+.twitter-container,
+.instagram-container {
+    @apply w-full relative;
+
+    .screen {
+        display: none;
+    }
+
+    .embed > * {
+        @apply w-full my-0 !important;
+    }
+}
+
+.youtube-container,
+.reddit-container {
+    .embed {
+        @apply w-full relative;
+    }
+}
+
+.telegram-container,
+.twitter-container,
+.instagram-container {
+    .embed {
+        @apply max-w-[500px] relative mx-auto;
+    }
+}
+
+.ProseMirror {
+    .youtube-container,
+    .reddit-container,
+    .telegram-container,
+    .twitter-container,
+    .instagram-container {
+        .screen {
+            display: block;
+            @apply embed-screen;
+        }
+
+        &.ProseMirror-selectednode > .embed,
+        &.node-selection > .embed {
+            @apply highlighted-embed;
+        }
+    }
+}
+
+.twitter-container {
+    blockquote {
+        @apply prose;
+
+        p:first-child {
+            @apply mt-0;
+        }
+
+        p {
+            @apply mb-2
+        }
+
+        font-weight: 500;
+        font-style: italic;
+        color: var(--tw-prose-quotes);
+        border-left-width: 0.25rem;
+        border-left-color: var(--tw-prose-quote-borders);
+        quotes: "\201C" "\201D" "\2018" "\2019";
+        margin-top: 1.6em;
+        margin-bottom: 1.6em;
+        padding-left: 1em;
+    }
+}
