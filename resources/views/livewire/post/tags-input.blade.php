@@ -94,7 +94,7 @@ new class extends Component {
         </template>
 
         <!--    Value list    -->
-        <div class="flex flex-wrap gap-2 text-sm">
+        <div class="flex flex-wrap gap-x-2 text-sm">
             <template x-for="tag in tags">
                 <a href="#"
                     class="group flex pt-2 align-baseline hover:text-primary-dark"
