@@ -23,8 +23,9 @@
     }
 }" title="✏️ {{ __('New post') }}">
 
-    <form class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg"
-          action="{{ route('post.store') }}" method="post">
+    <form
+        action="{{ route('post.store') }}" method="post">
+    <div class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
         <div class="flex flex-col">
@@ -102,6 +103,30 @@
                 <span class="h-4">{{ __('Add more content') }}</span>
             </x-minimal-button>
         </div>
+    </div>
+
+    <div class="sm:hidden flex w-full flex-col gap-y-2 px-4 mt-4">
+        <x-primary-button class="flex w-full justify-center" disabled
+                          x-bind:disabled="!valid">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                 fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+            </svg>
+
+            <span>{{ __('Publish') }}</span>
+        </x-primary-button>
+
+        <template x-if="!valid">
+            <div class="w-full text-center text-sm text-gray-500">
+                <p>
+                    {{ __('Add more content to publish') }}
+                </p>
+            </div>
+        </template>
+    </div>
+
     </form>
 
     {{-- sidebar --}}
