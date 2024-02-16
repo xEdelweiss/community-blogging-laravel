@@ -34,7 +34,7 @@
                 <div>
                     <div class="flex flex-wrap gap-x-2 mb-1 sm:mb-0 text-sm">
                         @foreach ($post->tags as $tag)
-                            <a href="{{ route('home', ['tag' => $tag->slug]) }}"
+                            <a href="{{ route('home', ['tag' => $tag]) }}"
                                 class="flex whitespace-nowrap align-baseline opacity-50 transition duration-150 ease-in hover:text-primary hover:opacity-100">
                                 <span class="inline-block">
                                     <x-icons.hash class="inline-block h-3 w-3 text-primary-dark" />
