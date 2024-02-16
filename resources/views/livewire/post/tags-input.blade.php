@@ -100,22 +100,10 @@ new class extends Component {
                     class="group flex pt-2 align-baseline hover:text-primary-dark"
                     @click.prevent="removeTag(tag)">
                     <span class="hidden group-hover:inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="inline-block h-3 w-3">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6 18 18 6M6 6l12 12" />
-                        </svg>
+                        <x-icons.cross class="inline-block h-3 w-3" />
                     </span>
                     <span class="inline-block group-hover:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor"
-                            class="inline-block h-3 w-3 text-primary-dark">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
-                        </svg>
-
+                        <x-icons.hash class="inline-block h-3 w-3 text-primary-dark" />
                     </span>
                     <span x-text="tag.toLowerCase()"></span>
                 </a>
