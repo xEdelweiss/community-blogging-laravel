@@ -3,16 +3,9 @@
         <div class="comment-container relative mt-4 flex rounded-xl bg-white">
             <div class="flex flex-1 px-5 py-6">
                 <div class="flex-none">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=2"
-                            alt="avatar" class="h-14 w-14 rounded-xl" />
-                    </a>
+                    <x-avatar :user="\App\Models\User::inRandomOrder()->first()" class="h-14 w-14" with-link />
                 </div>
                 <div class="mx-4 flex w-full flex-col justify-between">
-                    {{-- <h4 class="text-xl font-semibold mb-3">
-                        <a href="#" class="hover:underline">A random title</a>
-                    </h4> --}}
-
                     <div class="flex-1 text-gray-600">
                         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
                         consectetur adipisicing elit.
@@ -43,10 +36,10 @@
                                 <ul
                                     class="absolute ml-8 hidden w-44 rounded-xl bg-white py-3 text-left font-semibold shadow-dialog">
                                     <li><a href="#"
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
+                                           class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
                                             as Spam</a></li>
                                     <li><a href="#"
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
+                                           class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
                                             Post</a></li>
                                 </ul>
                             </button>
@@ -60,19 +53,16 @@
             class="is-admin comment-container relative mt-4 flex rounded-xl bg-white">
             <div class="flex flex-1 px-5 py-6">
                 <div class="flex-none">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=3"
-                            alt="avatar" class="h-14 w-14 rounded-xl" />
-                    </a>
+                    <x-avatar :user="\App\Models\User::inRandomOrder()->first()" class="h-14 w-14" with-link />
 
                     <div
                         class="text-blue mt-1 text-center text-xxs font-bold uppercase">
-                        Admin</div>
+                        Admin
+                    </div>
                 </div>
                 <div class="mx-4 flex w-full flex-col justify-between">
                     <h4 class="mb-3 text-xl font-semibold">
-                        <a href="#" class="hover:underline">Status changed
-                            to "Consideration"</a>
+                        <a href="#" class="hover:underline">Title changed to "Updated title"</a>
                     </h4>
 
                     <div class="flex-1 text-gray-600">
@@ -105,10 +95,10 @@
                                 <ul
                                     class="absolute ml-8 hidden w-44 rounded-xl bg-white py-3 text-left font-semibold shadow-dialog">
                                     <li><a href="#"
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
+                                           class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
                                             as Spam</a></li>
                                     <li><a href="#"
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
+                                           class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
                                             Post</a></li>
                                 </ul>
                             </button>
@@ -121,10 +111,7 @@
         <div class="comment-container relative mt-4 flex rounded-xl bg-white">
             <div class="flex flex-1 px-5 py-6">
                 <div class="flex-none">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=4"
-                            alt="avatar" class="h-14 w-14 rounded-xl" />
-                    </a>
+                    <x-avatar :user="\App\Models\User::inRandomOrder()->first()" class="h-14 w-14" with-link />
                 </div>
                 <div class="mx-4 flex w-full flex-col justify-between">
                     {{-- <h4 class="text-xl font-semibold mb-3">
@@ -161,10 +148,10 @@
                                 <ul
                                     class="absolute ml-8 hidden w-44 rounded-xl bg-white py-3 text-left font-semibold shadow-dialog">
                                     <li><a href="#"
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
+                                           class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark
                                             as Spam</a></li>
                                     <li><a href="#"
-                                            class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
+                                           class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete
                                             Post</a></li>
                                 </ul>
                             </button>

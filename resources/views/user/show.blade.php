@@ -12,7 +12,7 @@
 
     <div class="flex flex-col gap-6">
         @foreach ($posts as $post)
-            <x-post-preview :post="$post" noAuthor />
+            <x-post.preview :post="$post" noAuthor />
         @endforeach
 
         @if ($posts->hasPages())

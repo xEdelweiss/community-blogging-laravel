@@ -4,7 +4,7 @@
 
     <div class="flex flex-col gap-6">
         @foreach ($posts as $post)
-            <x-post-preview :post="$post" />
+            <x-post.preview :post="$post" />
         @endforeach
 
         @if ($posts->hasPages())
@@ -15,6 +15,6 @@
     </div>
 
     <x-slot name="rightSidebar">
-        @include('home._active-posts')
+        <x-post.active-posts-sidebar />
     </x-slot>
 </x-main-layout>

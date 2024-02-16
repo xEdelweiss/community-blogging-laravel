@@ -1,13 +1,13 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Post;
 
 use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PostComments extends Component
+class Comments extends Component
 {
     /**
      * Create a new component instance.
@@ -24,6 +24,6 @@ class PostComments extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.post-comments');
+        return view('components.post.comments');
     }
 }

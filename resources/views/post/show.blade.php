@@ -116,6 +116,6 @@
     </div>
 
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <x-post-comments :post="$post" />
+        <x-post.comments :post="$post" />
     </div>
 </x-main-layout>

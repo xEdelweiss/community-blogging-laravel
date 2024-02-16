@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Topic;
+use App\Services\PostCriteria;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,30 +13,28 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HomeController extends Controller
 {
-    public function latest(?Topic $topic = null)
+    public function latest()
     {
-        $tag = $this->getTag();
+        $criteria = PostCriteria::fromRequest(request());
 
         return view('home.show', [
-            'title' => $this->getTitle(trans('Latest posts'), $topic, $tag),
-            'topic' => $topic,
-            'tag' => $tag,
-            'posts' => $this->getPosts($topic, $tag)
+            'title' => $this->getTitle(trans('Latest posts'), $criteria),
+            'criteria' => $criteria,
+            'posts' => $this->getPosts($criteria)
                 ->latest()
                 ->cursorPaginate(10),
             'likedPosts' => $this->getLikedPosts(),
         ]);
     }
 
-    public function relevant(?Topic $topic = null)
+    public function relevant()
     {
-        $tag = $this->getTag();
+        $criteria = PostCriteria::fromRequest(request());
 
         return view('home.show', [
-            'title' => $this->getTitle(trans('Relevant posts'), $topic, $tag),
-            'topic' => $topic,
-            'tag' => $tag,
-            'posts' => $this->getPosts($topic, $tag)
+            'title' => $this->getTitle(trans('Relevant posts'), $criteria),
+            'criteria' => $criteria,
+            'posts' => $this->getPosts($criteria)
                 ->relevant(auth()->user())
                 ->cursorPaginate(10),
             'likedPosts' => $this->getLikedPosts(),
@@ -43,24 +42,25 @@ class HomeController extends Controller
 
     }
 
-    public function top(?Topic $topic = null)
+    public function top()
     {
-        $tag = $this->getTag();
+        $criteria = PostCriteria::fromRequest(request());
 
         return view('home.show', [
-            'title' => $this->getTitle('Top posts', $topic, $tag),
-            'topic' => $topic,
-            'tag' => $tag,
-            'posts' => $this->getPosts($topic, $tag)
+            'title' => $this->getTitle('Top posts', $criteria),
+            'criteria' => $criteria,
+            'posts' => $this->getPosts($criteria)
                 ->mostLiked('1 month')
                 ->cursorPaginate(10),
             'likedPosts' => $this->getLikedPosts(),
         ]);
     }
 
-    private function getPosts(?Topic $topic, ?Tag $tag): Builder|HasMany|BelongsToMany
+    private function getPosts(PostCriteria $criteria): Builder|HasMany|BelongsToMany
     {
-        $owner = $topic?->posts() ?? $tag?->posts() ?? Post::query();
+        $owner = $criteria->topic?->posts()
+            ?? $criteria->tag?->posts()
+            ?? Post::query();
 
         return $owner->published()->with(['author', 'topic']);
     }
@@ -74,23 +74,16 @@ class HomeController extends Controller
             ->get();
     }
 
-    private function getTitle(string $section, ?Topic $topic, ?Tag $tag): string
+    private function getTitle(string $section, PostCriteria $criteria): string
     {
-        if ($tag) {
-            $tagName = $tag->name;
-            return "#{$tagName} - {$section}";
+        if ($criteria->tag) {
+            return "#{$criteria->tag->name} - {$section}";
         }
 
-        if ($topic) {
-            $topicName = $topic->title;
-            return "{$topicName} - {$section}";
+        if ($criteria->topic) {
+            return "{$criteria->topic->title} - {$section}";
         }
 
         return $section;
-    }
-
-    private function getTag(): ?Tag
-    {
-        return request('tag') ? Tag::whereSlug(request('tag'))->first() : null;
     }
 }
