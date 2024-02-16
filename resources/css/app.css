@@ -128,7 +128,7 @@
 .twitter-container,
 .instagram-container {
     .embed {
-        @apply w-[500px] relative mx-auto;
+        @apply max-w-[500px] relative mx-auto;
     }
 }
 

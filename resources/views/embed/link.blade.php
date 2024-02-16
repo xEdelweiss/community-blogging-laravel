@@ -1,6 +1,6 @@
-<figure class="flex justify-start gap-4 rounded-xl border p-4">
+<figure class="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4 rounded-xl border p-4">
     @if ($image_url)
-        <img class="h-24 rounded" src="{{ $image_url }}" title="{{ $title }}" alt="{{ $title }}">
+        <img class="h-24 w-full sm:w-auto sm:max-w-[30%] rounded object-cover sm:object-contain" src="{{ $image_url }}" title="{{ $title }}" alt="{{ $title }}">
     @endif
 
     <div class="flex flex-1 flex-col gap-2 text-left">

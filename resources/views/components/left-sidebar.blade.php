@@ -1,6 +1,6 @@
 <div x-data="{ sidebarOpen: false }" @left-sidebar-open.window="sidebarOpen = true" :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
     @click="sidebarOpen = false"
-    class="sm:inset-none fixed inset-0 z-10 hidden bg-backdrop sm:relative sm:sticky sm:top-[40px] sm:block sm:self-start sm:bg-transparent">
+    class="sm:inset-none fixed inset-0 z-30 hidden bg-backdrop sm:relative sm:sticky sm:top-[40px] sm:block sm:self-start sm:bg-transparent">
     <div @click.stop class="h-screen w-2/3 bg-white shadow-dialog sm:h-auto sm:w-full sm:bg-transparent sm:shadow-none">
 
         {{-- navigation-like panel --}}

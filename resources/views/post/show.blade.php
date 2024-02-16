@@ -28,12 +28,12 @@
 
         <div>
             <div
-                class="@if ($post->title) items-start @else items-start @endif flex justify-between">
+                class="@if ($post->title) items-start @else items-start @endif gap-x-1 flex justify-between">
                 <div>
-                    <div class="flex gap-2 text-sm">
+                    <div class="flex flex-wrap gap-x-2 mb-1 sm:mb-0 text-sm">
                         @foreach ($post->tags as $tag)
                             <a href="{{ route('home', ['tag' => $tag->slug]) }}"
-                                class="flex align-baseline opacity-50 transition duration-150 ease-in hover:text-primary hover:opacity-100">
+                                class="flex whitespace-nowrap align-baseline opacity-50 transition duration-150 ease-in hover:text-primary hover:opacity-100">
                                 <span class="inline-block">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24"
