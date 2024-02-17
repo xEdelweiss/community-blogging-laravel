@@ -28,39 +28,87 @@
 
 .pagination nav {
     @apply flex justify-center items-center space-x-2;
+
     & > span {
         @apply opacity-0;
     }
 }
 
-/** Embeds */
+/** Comments */
 
-/*.embed-container {
-    .youtube-container,
-    .reddit-container,
-    .telegram-container,
-    .twitter-container,
-    .instagram-container {
-        @apply bg-gradient-to-r from-gray-500 via-gray-400 to-gray-500 rounded-lg overflow-hidden;
+.comments-level,
+.comment-container,
+.comment-container-parent {
+    @apply relative;
+}
 
-        background-size: 400%;
-        !*height: 400px;*!
-
-        -webkit-animation: AnimationName 3s ease infinite;
-        -moz-animation: AnimationName 3s ease infinite;
-        animation: AnimationName 3s ease infinite;
+.comments-container > .comments-level {
+    & > .comment-container:first-child {
+        @apply pt-6;
     }
 }
 
-@keyframes AnimationName {
-    0%,
-    100% {
-        background-position: 0% 50%;
+.comments-level {
+    @apply ml-8;
+
+    .comment-container {
+        @apply pt-4;
+
+        /* vertical line */
+
+        &::before {
+            content: "";
+            @apply absolute top-0 -left-[1px] -ml-4 h-full w-4;
+            @apply border-l-2 border-l-gray-200;
+            /*@apply bg-red-100;*/
+        }
     }
-    50% {
-        background-position: 100% 50%;
+
+    .comment-container:not(:last-child) {
+        & > .comment-container-parent {
+            @apply relative;
+
+            /* horizontal line */
+
+            &::before {
+                content: "";
+                @apply absolute top-0 -left-[1px] -ml-4 h-1/2 w-4;
+                @apply border-b-2 border-b-gray-200;
+                /*@apply bg-blue-100;*/
+            }
+        }
     }
-}*/
+
+    .comment-container:last-child {
+        @apply pt-4;
+
+        /* remove vertical from last level */
+
+        & > .comments-level {
+            &::before {
+                content: "";
+                @apply absolute top-0 -left-[1px] -ml-12 h-full w-4;
+                @apply border-l-2 border-l-gray-100;
+                /*@apply bg-green-100 z-20;*/
+            }
+        }
+
+        & > .comment-container-parent {
+            @apply relative;
+
+            /* remove last vertical half from last comment */
+
+            &::before {
+                content: "";
+                @apply absolute bottom-0 -left-[1px] -ml-4 h-1/2 border-t-2 border-t-gray-200 w-4;
+                @apply border-l-2 border-l-gray-100;
+                /*@apply bg-yellow-100 z-30;*/
+            }
+        }
+    }
+}
+
+/** Embeds */
 
 .embed-screen {
     @apply absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10;
@@ -82,7 +130,7 @@
         @apply relative;
 
         &:before {
-            content:"";
+            content: "";
             @apply embed-screen
         }
     }

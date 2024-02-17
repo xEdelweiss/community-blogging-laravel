@@ -62,7 +62,9 @@ class HomeController extends Controller
             ?? $criteria->tag?->posts()
             ?? Post::query();
 
-        return $owner->published()->with(['author', 'topic']);
+        return $owner->published()
+            ->with(['author', 'topic'])
+            ->withCount('comments');
     }
 
     private function getLikedPosts(): Collection

@@ -1,5 +1,4 @@
 <x-main-layout :title="$post->title">
-
     <div
         class="flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
         <div class="mb-2 flex items-center justify-between">
@@ -30,14 +29,15 @@
 
         <div>
             <div
-                class="@if ($post->title) items-start @else items-start @endif gap-x-1 flex justify-between">
+                class="@if ($post->title) items-start @else items-start @endif flex justify-between gap-x-1">
                 <div>
-                    <div class="flex flex-wrap gap-x-2 mb-1 sm:mb-0 text-sm">
+                    <div class="mb-1 flex flex-wrap gap-x-2 text-sm sm:mb-0">
                         @foreach ($post->tags as $tag)
                             <a href="{{ route('home', ['tag' => $tag]) }}"
                                 class="flex whitespace-nowrap align-baseline opacity-50 transition duration-150 ease-in hover:text-primary hover:opacity-100">
                                 <span class="inline-block">
-                                    <x-icons.hash class="inline-block h-3 w-3 text-primary-dark" />
+                                    <x-icons.hash
+                                        class="inline-block h-3 w-3 text-primary-dark" />
                                 </span>
 
                                 <span>{{ str($tag->name)->lower() }}</span>
@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
         <x-post.comments :post="$post" />
     </div>
 </x-main-layout>

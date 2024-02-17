@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -28,9 +29,23 @@ class Post extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    public function syncTags(array $tagNames): self
+    {
+        $ids = Tag::findOrCreateAll($tagNames)->pluck('id');
+
+        $this->tags()->sync($ids);
+
+        return $this;
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function slug(): Attribute
