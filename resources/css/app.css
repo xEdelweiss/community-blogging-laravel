@@ -44,21 +44,21 @@
 
 .comments-container > .comments-level {
     & > .comment-container:first-child {
-        @apply pt-6;
+        @apply pt-4 sm:pt-6;
     }
 }
 
 .comments-level {
-    @apply ml-8;
+    @apply ml-4 sm:ml-8;
 
     .comment-container {
-        @apply pt-4;
+        @apply pt-2 sm:pt-4;
 
         /* vertical line */
 
         &::before {
             content: "";
-            @apply absolute top-0 -left-[1px] -ml-4 h-full w-4;
+            @apply absolute top-0 -left-[1px] -ml-2 sm:-ml-4 h-full w-2 sm:w-4;
             @apply border-l-2 border-l-gray-200;
             /*@apply bg-red-100;*/
         }
@@ -72,7 +72,7 @@
 
             &::before {
                 content: "";
-                @apply absolute top-0 -left-[1px] -ml-4 h-1/2 w-4;
+                @apply absolute top-0 -left-[1px] -ml-2 sm:-ml-4 h-1/2 w-2 sm:w-4;
                 @apply border-b-2 border-b-gray-200;
                 /*@apply bg-blue-100;*/
             }
@@ -87,7 +87,7 @@
         & > .comments-level {
             &::before {
                 content: "";
-                @apply absolute top-0 -left-[1px] -ml-12 h-full w-4;
+                @apply absolute top-0 -left-[1px] -ml-6 sm:-ml-12 h-full w-2 sm:w-4;
                 @apply border-l-2 border-l-gray-100;
                 /*@apply bg-green-100 z-20;*/
             }
@@ -100,7 +100,7 @@
 
             &::before {
                 content: "";
-                @apply absolute bottom-0 -left-[1px] -ml-4 h-1/2 border-t-2 border-t-gray-200 w-4;
+                @apply absolute bottom-0 -left-[1px] -ml-2 sm:-ml-4 h-1/2 border-t-2 border-t-gray-200 w-2 sm:w-4;
                 @apply border-l-2 border-l-gray-100;
                 /*@apply bg-yellow-100 z-30;*/
             }

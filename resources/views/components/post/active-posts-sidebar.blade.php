@@ -10,12 +10,12 @@
             <hr class="w-full border-b-2 border-gray-100" />
 
             <a href="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}"
-               class="group flex flex-col gap-1 px-4 text-left">
+                class="group flex flex-col gap-1 px-4 text-left">
                 <span
                     class="line-clamp-2 leading-snug group-hover:text-primary">{{ $post->title }}</span>
 
                 <div class="text-sm font-semibold text-gray-400">
-                    {{ random_int(100, 250) }} comments
+                    + {{ $post->comments_count }} comments
                 </div>
             </a>
         @endforeach

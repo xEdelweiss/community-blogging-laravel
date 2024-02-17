@@ -45,7 +45,8 @@ class Post extends Model
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)
+            ->orderBy('created_at');
     }
 
     public function slug(): Attribute
@@ -79,6 +80,15 @@ class Post extends Model
     public function scopeMostLiked(Builder $builder, string $period = '3 days'): void
     {
         $this->inRandomOrder(); // @todo replace with real logic
+    }
+
+    public function scopeMostCommented(Builder $builder, string $period = '3 days'): void
+    {
+        $dateFrom = now()->sub($period);
+
+        // @todo try not rewriting the real comments count
+        $builder
+            ->withCount(['comments' => fn($query) => $query->where('created_at', '>=', $dateFrom)]);
     }
 
     public function scopeRelevant(Builder $builder, User $user): void

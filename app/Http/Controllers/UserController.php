@@ -17,6 +17,7 @@ class UserController extends Controller
                 ->published()
                 ->latest()
                 ->with(['author', 'topic'])
+                ->withCount('comments')
                 ->cursorPaginate(10),
         ]);
     }

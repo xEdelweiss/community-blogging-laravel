@@ -31,4 +31,9 @@ class CommentButton extends Component
             'slug' => $this->post->slug ?? 'none',
         ]);
     }
+
+    public function commentsCount(): int
+    {
+        return $this->post->comments_count ?? $this->post->comments->count();
+    }
 }
