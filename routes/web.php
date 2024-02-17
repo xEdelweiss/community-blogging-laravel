@@ -33,6 +33,14 @@ Route::controller(\App\Http\Controllers\PostController::class)->group(static fun
     });
 });
 
+Route::controller(\App\Http\Controllers\CommentController::class)->group(static function () {
+    Route::group(['middleware' => 'auth'], static function () {
+        Route::post('comment', 'store')->name('comment.store');
+        Route::put('comment/{comment}', 'update')->name('comment.update');
+        Route::delete('comment/{comment}', 'destroy')->name('comment.delete');
+    });
+});
+
 Route::controller(\App\Http\Controllers\UserController::class)->group(static function () {
     Route::get('user/{user:id}', 'show')->name('user.show');
 });

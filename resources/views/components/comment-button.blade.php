@@ -1,7 +1,7 @@
-@props(['post'])
+@props(['post', 'disabled' => false])
 
-<a href="{{ $link }}"
-    class="flex cursor-pointer items-center gap-x-1 text-sm hover:text-black"
+<a @unless ($disabled) href="{{ $link }}#comments" @endunless
+    class="@if ($disabled) cursor-default @else hover:text-black @endif flex items-center gap-x-1 text-sm"
     @click.stop="">
     <x-icons.comment class="h-6 w-6" />
     <span>{{ $commentsCount }}</span>

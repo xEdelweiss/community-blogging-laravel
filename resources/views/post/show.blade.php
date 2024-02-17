@@ -105,7 +105,7 @@
             <div
                 class="flex items-center gap-4 space-x-2 text-xs font-semibold text-gray-400">
                 <x-like-button :post="$post" />
-                <x-comment-button :post="$post" />
+                <x-comment-button :post="$post" disabled />
             </div>
 
             <div class="flex items-center gap-4 text-gray-400">
@@ -115,7 +115,41 @@
         </div>
     </div>
 
-    <div class="mx-auto max-w-7xl">
+    <div id="comments" class="mx-auto max-w-7xl">
         <x-post.comments :post="$post" />
+
+        @auth()
+            <div
+                class="comment-container-parent relative flex rounded-l-md bg-white sm:rounded-xl">
+                <div class="flex w-full flex-col gap-y-3 px-5 pb-4 pt-6">
+                    <form action="{{ route('comment.store') }}" method="post"
+                        class="flex w-full flex-col">
+                        @csrf
+                        <input type="hidden" name="post_id"
+                            value="{{ $post->id }}" />
+
+                        <div class="flex flex-1 gap-x-4">
+                            <div class="flex w-full flex-col justify-between">
+                                <div class="flex-1 text-gray-600">
+                                    <x-minimal-textarea no-border x-ref="reply"
+                                        name="comment" class="w-full resize-none"
+                                        rows="2"
+                                        placeholder="{{ __('Write a comment...') }}" />
+                                </div>
+                            </div>
+
+                            <div class="flex-none">
+                                <x-avatar :user="auth()->user()" class="h-14 w-14"
+                                    with-link />
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <x-primary-button>{{ __('Comment') }}</x-primary-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endauth
     </div>
 </x-main-layout>

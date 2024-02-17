@@ -3,6 +3,7 @@
         @foreach ($comments->where('parent_id', $parentId) as $comment)
             <div class="comment-container">
                 @include('components.post._comment', [
+                    'post' => $post,
                     'comment' => $comment,
                 ])
 
@@ -11,7 +12,6 @@
                     'comments' => $post->comments,
                     'level' => $level + 1,
                 ])
-
             </div>
         @endforeach
     </div>

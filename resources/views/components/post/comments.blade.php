@@ -2,6 +2,7 @@
 
     @include('components.post._comments-level', [
         'parentId' => null,
+        'post' => $post,
         'comments' => $post->comments,
         'level' => 0,
     ])

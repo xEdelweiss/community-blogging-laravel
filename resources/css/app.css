@@ -51,7 +51,7 @@
 .comments-level {
     @apply ml-4 sm:ml-8;
 
-    .comment-container {
+    & > .comment-container {
         @apply pt-2 sm:pt-4;
 
         /* vertical line */
@@ -64,7 +64,7 @@
         }
     }
 
-    .comment-container:not(:last-child) {
+    & > .comment-container:not(:last-child) {
         & > .comment-container-parent {
             @apply relative;
 
@@ -79,7 +79,7 @@
         }
     }
 
-    .comment-container:last-child {
+    & > .comment-container:last-child {
         @apply pt-4;
 
         /* remove vertical from last level */
