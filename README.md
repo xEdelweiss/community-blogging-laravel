@@ -25,6 +25,7 @@ php artisan optimize:clear
     2. Click "Write post" -> Redirect to login page
     3. "New post" page is opened, but editor is not initialized
 - ImageBlockView is redrawing on click due to decorators, this leads to image refetching
+- TextArea height is not recalculated after page was resized
 
 # TODO
 

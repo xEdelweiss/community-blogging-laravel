@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\PostService;
 
 use App\Models\Tag;
 use App\Models\Topic;
