@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -12,14 +11,12 @@ class PostSeeder extends Seeder
         $titles = collect(json_decode(file_get_contents(storage_path('stubs/posts.json')), true))
             ->take(50);
 
-        foreach ($titles as $title) {
-            // $tags = Tag::inRandomOrder()->limit(random_int(1, 5))->get();
+        $maxTitleLength = 150;
 
+        foreach ($titles as $title) {
             \App\Models\Post::factory()
-                // ->hasAttached($tags)
-                // ->hasComments(random_int(0, 15))
                 ->create([
-                    'title' => $title,
+                    'title' => str($title)->substr(0, $maxTitleLength),
                 ]);
         }
     }

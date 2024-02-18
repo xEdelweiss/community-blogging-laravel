@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
+            $table->string('title', 150);
             $table->string('url')->nullable();
             $table->string('cover')->nullable();
-            $table->string('intro')->nullable();
+            $table->string('intro', 300)->nullable();
 
             $table
                 ->foreignIdFor(\App\Models\User::class, 'author_id')

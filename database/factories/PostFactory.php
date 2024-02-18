@@ -20,7 +20,7 @@ class PostFactory extends Factory
     {
         $title = $this->faker->sentence;
         $topic = Topic::inRandomOrder()->first();
-        $intro = $this->faker->paragraph(2);
+        $intro = $this->faker->realText(300);
         $createdAt = $this->faker->dateTimeBetween('-2 months');
         $imgVersion = $this->faker->randomNumber(2);
 
@@ -41,7 +41,7 @@ class PostFactory extends Factory
 
         if ($url && $actualCover && $actualIntro) {
             if ($this->faker->boolean(50)) {
-                $actualIntro = $this->faker->paragraphs(2, true);
+                $actualIntro = $intro;
             } else {
                 $actualCover = $cover;
             }
