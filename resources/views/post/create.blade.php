@@ -1,65 +1,21 @@
-<x-main-layout x-data="{
-    addUrlOpen: true,
-    editorOpen: false,
-    url: '',
-    title: '',
-    maxTitleLength: 150,
-    get titleIndicatorColor() {
-        if (this.title.length < this.maxTitleLength * 0.4) {
-            return 'bg-green-500';
-        }
-
-        if (this.title.length < this.maxTitleLength * 0.7) {
-            return 'bg-yellow-500';
-        }
-
-        return 'bg-red-500';
-    },
-    intro: '',
-    maxIntroLength: 300,
-    postContent: { type: 'doc', content: [] },
-    get valid() {
-        return this.title.length > 0 && this.intro.length > 0 && (!this.url || this.url.contains('://'));
-    },
-
-    init() {
-        $watch('postContent.content', (value) => {
-            const valuePreset = value.length > 1 ||
-                (value.length === 1 && value[0].type !== 'paragraph') ||
-                (value.length === 1 && value[0].type === 'paragraph' && value[0].content?.length > 0);
-
-            if (valuePreset) {
-                this.editorOpen = true;
-            }
-
-        });
-    }
-}" title="✏️ {{ __('New post') }}">
-
-    <form action="{{ route('post.store') }}" method="post">
+<x-main-layout title="✏️ {{ __('New post') }}" x-data="postForm">
+    <form x-ref="form" @post-form-submit.window="submitForm()"
+        action="{{ route('post.store') }}" method="post">
         <div
             class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            @csrf
 
             <div class="flex flex-col">
                 {{-- title --}}
                 <div class="relative">
                     <x-minimal-textarea x-bind:maxlength="maxTitleLength"
-                        class="w-full resize-none overflow-hidden pb-0 text-4xl"
                         x-ref="title" x-model="title"
+                        class="w-full resize-none overflow-hidden pb-0 text-4xl"
                         placeholder="{{ __('Your catchy title') }}"
                         name="title" no-border />
 
-                    {{-- limit counter --}}
-                    <div class="absolute -bottom-[8px] end-0 text-xs opacity-75"
-                        x-show="title.length > 0">
-                        <span class="align-center">
-                            <span :class="titleIndicatorColor"
-                                class="inline-block h-2 w-2 rounded-full"></span>
-                        </span>
-                        <span x-text="title.length"></span>/<span
-                            x-text="maxTitleLength"></span>
-                    </div>
+                    <x-text-limit-indicator x-data="limit(maxTitleLength)"
+                        x-limit-value="title" />
                 </div>
 
                 {{-- tags --}}
@@ -69,8 +25,7 @@
             <x-topic-select />
 
             {{-- url --}}
-            <div class="mb-4 flex flex-col gap-3"
-                :class="{ 'hidden': !addUrlOpen }">
+            <div class="mb-4 flex flex-col gap-3">
                 <div class="flex items-center gap-3">
                     <x-minimal-input class="w-full"
                         placeholder="{{ __('URL to embed (optional)') }}"
@@ -78,25 +33,21 @@
                 </div>
 
                 <div x-embed="url"
-                    x-on:embed-loaded="console.log('got dispatched event', $event); $refs.title.value = $refs.title.value || $event.detail.embed.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));"
+                    @embed-loaded="updateTitle($event.detail.embed.title)"
                     class="w-full"></div>
             </div>
 
             {{-- intro textarea --}}
             <div class="relative flex flex-col gap-3">
                 <x-minimal-textarea x-bind:maxlength="maxIntroLength"
-                    rows="4"
+                    x-ref="intro" x-model="intro" rows="4"
                     class="w-full resize-none overflow-hidden pb-0"
-                    x-ref="intro" x-model="intro"
                     placeholder="{{ __('Add intro text to make your post more attractive and get better preview') }}"
                     name="intro" />
 
                 {{-- limit counter --}}
-                <div class="absolute -bottom-[8px] end-0 text-xs opacity-75"
-                    x-show="intro.length > 0">
-                    <span x-text="intro.length"></span>/<span
-                        x-text="maxIntroLength"></span>
-                </div>
+                <x-text-limit-indicator x-data="limit(maxIntroLength)"
+                    x-limit-value="intro" />
             </div>
 
             <div x-show="editorOpen"
@@ -106,8 +57,7 @@
                     name="content" />
             </div>
             <div x-show="!editorOpen" class="flex flex-row-reverse">
-                <x-minimal-button class="gap-x-2"
-                    x-on:click="editorOpen = true; $nextTick(() => $refs.editor.dispatchEvent(new Event('editor-open')))">
+                <x-minimal-button class="gap-x-2" @click="openEditor()">
                     <x-icons.pen class="h-4 w-4" with-paper />
                     <span class="h-4">{{ __('Add more content') }}</span>
                 </x-minimal-button>
@@ -157,7 +107,8 @@
                 </x-secondary-button>
 
                 <x-primary-button class="flex w-full justify-center gap-x-2"
-                    disabled x-bind:disabled="!valid">
+                    @click.prevent="$dispatch('post-form-submit')" disabled
+                    x-bind:disabled="!valid">
                     <x-icons.publish class="h-4 w-4" />
                     <span>{{ __('Publish') }}</span>
                 </x-primary-button>
