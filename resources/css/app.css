@@ -9,6 +9,10 @@
     @apply bg-primary/80 text-white !important;
 }
 
+input, textarea {
+    @apply placeholder-gray-500;
+}
+
 .application-logo .application-logo-blob {
     fill: theme('colors.primary');
     transition: fill 0.15s ease-in;

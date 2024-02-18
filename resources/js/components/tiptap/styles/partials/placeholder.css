@@ -2,7 +2,7 @@
     /* Placeholder Styles */
 
     .is-empty::before {
-        @apply text-black/40 dark:text-white/40 text-left float-left h-0 pointer-events-none w-full;
+        @apply text-gray-500 dark:text-white/40 text-left float-left h-0 pointer-events-none w-full;
     }
 
     [data-placeholder]:not(:last-child)::before {
@@ -15,12 +15,12 @@
 
         > p.has-focus.is-empty::before {
             content: 'Type  \\  to browse options';
-            @apply text-black/40 dark:text-white/40 text-left;
+            @apply text-gray-500 dark:text-white/40 text-left;
         }
 
         > [data-type='columns'] > [data-type='column'] > p.is-empty.has-focus::before {
             content: 'Type  \\  to browse options';
-            @apply text-black/40 dark:text-white/40 text-left;
+            @apply text-gray-500 dark:text-white/40 text-left;
         }
     }
 
@@ -28,19 +28,19 @@
 
     & > .is-editor-empty::before {
         content: 'Click here to start writing …';
-        @apply text-black/40 dark:text-white/40 text-left;
+        @apply text-gray-500 dark:text-white/40 text-left;
     }
 
     /* Blockquote Placeholder */
 
     blockquote .is-empty:not(.is-editor-empty):first-child:last-child::before {
         content: 'Enter a quote';
-        @apply text-black/40 dark:text-white/40 text-left;
+        @apply text-gray-500 dark:text-white/40 text-left;
     }
 
     blockquote + figcaption.is-empty:not(.is-editor-empty)::before {
         content: 'Author';
-        @apply text-black/40 dark:text-white/40 text-left;
+        @apply text-gray-500 dark:text-white/40 text-left;
     }
 
     [data-placeholder][data-suggestion]::before,
