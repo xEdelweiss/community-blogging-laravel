@@ -20,6 +20,14 @@
     postContent: { type: 'doc', content: [] },
     get valid() {
         return this.title.length > 0 && this.intro.length > 0 && (!this.url || this.url.contains('://'));
+    },
+
+    init() {
+        $watch('postContent.content', (value) => {
+            if (value.length > 0) {
+                this.editorOpen = true;
+            }
+        });
     }
 }" title="✏️ {{ __('New post') }}">
 
