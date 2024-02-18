@@ -24,9 +24,14 @@
 
     init() {
         $watch('postContent.content', (value) => {
-            if (value.length > 0) {
+            const valuePreset = value.length > 1 ||
+                (value.length === 1 && value[0].type !== 'paragraph') ||
+                (value.length === 1 && value[0].type === 'paragraph' && value[0].content?.length > 0);
+
+            if (valuePreset) {
                 this.editorOpen = true;
             }
+
         });
     }
 }" title="✏️ {{ __('New post') }}">

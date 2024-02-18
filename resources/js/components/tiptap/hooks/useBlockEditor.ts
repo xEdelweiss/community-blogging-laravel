@@ -1,6 +1,5 @@
 import { Content, Editor, useEditor } from "@tiptap/react";
 import { ExtensionKit } from "../extensions/extension-kit";
-import { initialContent } from "../lib/data/initialContent";
 
 declare global {
     interface Window {
@@ -15,6 +14,7 @@ export const useBlockEditor = ({ value, onChange }: { value: Content; onChange: 
             onCreate: ({ editor }) => {
                 if (editor.isEmpty) {
                     editor.commands.setContent(value);
+                    onChange(editor.getJSON());
                 }
             },
             onUpdate: ({ editor }) => onChange(editor.getJSON()),
