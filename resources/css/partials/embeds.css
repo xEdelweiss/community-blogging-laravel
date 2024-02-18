@@ -11,7 +11,7 @@
     }
 
     .embed > * {
-        @apply w-full my-0 !important;
+        @apply w-full min-w-0 my-0 !important;
     }
 }
 

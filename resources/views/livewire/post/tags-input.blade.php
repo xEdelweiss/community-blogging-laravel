@@ -103,7 +103,8 @@ new class extends Component {
                         <x-icons.cross class="inline-block h-3 w-3" />
                     </span>
                     <span class="inline-block group-hover:hidden">
-                        <x-icons.hash class="inline-block h-3 w-3 text-primary-dark" />
+                        <x-icons.hash
+                            class="inline-block h-3 w-3 text-primary-dark" />
                     </span>
                     <span x-text="tag.toLowerCase()"></span>
                 </a>
@@ -134,7 +135,8 @@ new class extends Component {
                     <div
                         class="rounded-md bg-white py-1 ring-1 ring-black ring-opacity-5 dark:bg-gray-700">
                         <template x-for="suggestion in suggestions">
-                            <a class='block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:bg-gray-800'
+                            <a href="#"
+                                class='block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:bg-gray-800'
                                 x-text="suggestion.toLowerCase()"
                                 @click.prevent="addSuggestedTag(suggestion)"></a>
                         </template>
