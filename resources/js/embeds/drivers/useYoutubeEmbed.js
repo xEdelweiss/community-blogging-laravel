@@ -1,4 +1,4 @@
-import { Alpine } from "../../../vendor/livewire/livewire/dist/livewire.esm.js";
+import { Alpine } from "../../../../vendor/livewire/livewire/dist/livewire.esm.js";
 
 export const REGEX_RULE = /^(https?:\/\/)?(www\.)?(youtube\.com)\/(.+)$/g;
 
@@ -41,5 +41,6 @@ export default function useYoutubeEmbed() {
         name: "youtube",
         REGEX_RULE,
         isValidUrl,
+        title: "request",
     };
 }

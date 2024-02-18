@@ -1,5 +1,5 @@
 import { Node, nodePasteRule } from "@tiptap/core";
-import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useTelegramEmbed.js";
+import { isValidUrl, REGEX_RULE } from "../../../../../embeds/drivers/useTelegramEmbed.js";
 
 type SetOptions = { src: string };
 

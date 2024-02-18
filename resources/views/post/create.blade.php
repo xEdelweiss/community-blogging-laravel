@@ -36,7 +36,7 @@
                         x-ref="title" x-model="title"
                         placeholder="{{ __('Your catchy title') }}"
                         name="title" no-border
-                        x-on:embed-loaded.window="$refs.title.value = $refs.title.value || $event.detail.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));" />
+                        x-on:embed-loaded.window="$refs.title.value = $refs.title.value || $event.detail.embed.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));" />
 
                     {{-- limit counter --}}
                     <div class="absolute -bottom-[8px] end-0 text-xs opacity-75"
@@ -65,7 +65,8 @@
                         name="url" x-model.debounce.500ms="url" />
                 </div>
 
-                <div x-embed="url" class="w-full"></div>
+                <div x-dynamic-embed="url" x-watch-embed-title="title"
+                    class="w-full"></div>
             </div>
 
             {{-- intro textarea --}}

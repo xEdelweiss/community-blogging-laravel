@@ -1,5 +1,5 @@
-import { Alpine } from "../../../vendor/livewire/livewire/dist/livewire.esm.js";
-import { jsonp } from "../utils/jsonp.ts";
+import { Alpine } from "../../../../vendor/livewire/livewire/dist/livewire.esm.js";
+import { jsonp } from "../../utils/jsonp.ts";
 
 export const REGEX_RULE = /^(https?:\/\/)?(twitter\.com)\/(.+)$/g;
 
@@ -41,5 +41,6 @@ export default function useTwitterEmbed() {
         name: "twitter",
         REGEX_RULE,
         isValidUrl,
+        title: "none",
     };
 }

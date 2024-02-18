@@ -1,4 +1,4 @@
-import { Alpine } from "../../../vendor/livewire/livewire/dist/livewire.esm.js";
+import { Alpine } from "../../../../vendor/livewire/livewire/dist/livewire.esm.js";
 
 export const REGEX_RULE = /^(https?:\/\/)?(t\.me)\/(?<postId>[^/]+\/[0-9]+)$/g;
 
@@ -13,7 +13,11 @@ export default function useTelegramEmbed() {
 
         const observer = new MutationObserver((records) => {
             records.forEach((record) => {
+                console.log("RECORD", record);
+
                 record.addedNodes.forEach((node) => {
+                    console.log("NODE UPDATED", node);
+
                     if (node.tagName === "IFRAME") {
                         node.removeAttribute("id");
                         observer.disconnect();
@@ -22,13 +26,15 @@ export default function useTelegramEmbed() {
             });
         });
 
-        observer.observe(element, { childList: true });
+        element.classList.add("telegram-container");
+
+        element.insertAdjacentHTML("beforeend", `<div class="screen"></div><div class="embed"></div>`);
+
+        observer.observe(element.querySelector(".embed"), { childList: true });
 
         REGEX_RULE.lastIndex = 0;
         const postId = REGEX_RULE.exec(src)?.groups?.postId;
         REGEX_RULE.lastIndex = 0;
-
-        element.classList.add("telegram-container");
 
         const script = document.createElement("script");
         script.type = "text/javascript";
@@ -37,8 +43,6 @@ export default function useTelegramEmbed() {
         script.dataset.telegramPost = postId;
         script.dataset.width = "100%";
 
-        element.insertAdjacentHTML("beforeend", `<div class="screen"></div><div class="embed"></div>`);
-
         element.querySelector(".embed").appendChild(script);
     });
 
@@ -46,5 +50,6 @@ export default function useTelegramEmbed() {
         name: "telegram",
         REGEX_RULE,
         isValidUrl,
+        title: "none",
     };
 }

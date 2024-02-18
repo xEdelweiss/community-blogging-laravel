@@ -1,5 +1,5 @@
 import { Node, nodePasteRule } from "@tiptap/core";
-import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useYoutubeEmbed.js";
+import { isValidUrl, REGEX_RULE } from "../../../../../embeds/drivers/useYoutubeEmbed.js";
 
 type SetOptions = { src: string };
 

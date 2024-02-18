@@ -1,5 +1,5 @@
 import { Node, nodePasteRule } from "@tiptap/core";
-import { isValidUrl, REGEX_RULE } from "../../../../../embeds/useRedditEmbed";
+import { isValidUrl, REGEX_RULE } from "../../../../../embeds/drivers/useRedditEmbed";
 
 type SetOptions = { src: string };
 

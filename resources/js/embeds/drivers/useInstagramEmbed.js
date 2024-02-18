@@ -1,4 +1,4 @@
-import { Alpine } from "../../../vendor/livewire/livewire/dist/livewire.esm.js";
+import { Alpine } from "../../../../vendor/livewire/livewire/dist/livewire.esm.js";
 
 export const REGEX_RULE = /^(https?:\/\/)?(www\.)?(instagram\.com)\/(.+)$/g;
 
@@ -44,5 +44,6 @@ export default function useInstagramEmbed() {
         name: "instagram",
         REGEX_RULE,
         isValidUrl,
+        title: "none",
     };
 }

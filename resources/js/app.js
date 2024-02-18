@@ -1,17 +1,20 @@
 import "./bootstrap";
 import { Livewire } from "../../vendor/livewire/livewire/dist/livewire.esm";
 import usePostEditor from "./usePostEditor.tsx";
-import useTelegramEmbed from "./embeds/useTelegramEmbed.js";
-import useRedditEmbed from "./embeds/useRedditEmbed.js";
-import useTwitterEmbed from "./embeds/useTwitterEmbed.js";
-import useInstagramEmbed from "./embeds/useInstagramEmbed.js";
-import useYoutubeEmbed from "./embeds/useYoutubeEmbed.js";
-import useUnifiedEmbed from "./embeds/useUnifiedEmbed.js";
-import useUrlEmbed from "./embeds/useUrlEmbed.js";
+import useTelegramEmbed from "./embeds/drivers/useTelegramEmbed.js";
+import useRedditEmbed from "./embeds/drivers/useRedditEmbed.js";
+import useTwitterEmbed from "./embeds/drivers/useTwitterEmbed.js";
+import useInstagramEmbed from "./embeds/drivers/useInstagramEmbed.js";
+import useYoutubeEmbed from "./embeds/drivers/useYoutubeEmbed.js";
+import useDynamicEmbed from "./embeds/useDynamicEmbed.js";
+import useUrlEmbed from "./embeds/drivers/useUrlEmbed.js";
 import useAutosize from "./useAutosize.js";
+import useWatchEmbedTitle from "./embeds/useWatchEmbedTitle.js";
 
 usePostEditor();
 useAutosize();
-useUnifiedEmbed([useTelegramEmbed(), useRedditEmbed(), useTwitterEmbed(), useInstagramEmbed(), useYoutubeEmbed(), useUrlEmbed()]);
+
+useWatchEmbedTitle();
+useDynamicEmbed([useTelegramEmbed(), useRedditEmbed(), useTwitterEmbed(), useInstagramEmbed(), useYoutubeEmbed(), useUrlEmbed()]);
 
 Livewire.start();

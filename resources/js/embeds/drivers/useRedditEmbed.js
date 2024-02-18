@@ -1,4 +1,4 @@
-import { Alpine } from "../../../vendor/livewire/livewire/dist/livewire.esm.js";
+import { Alpine } from "../../../../vendor/livewire/livewire/dist/livewire.esm.js";
 
 export const REGEX_RULE = /^(https?:\/\/)?(www\.reddit\.com)\/(.+)$/g;
 
@@ -31,5 +31,6 @@ export default function useRedditEmbed() {
         name: "reddit",
         REGEX_RULE,
         isValidUrl,
+        title: "request",
     };
 }

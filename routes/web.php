@@ -51,7 +51,7 @@ Route::controller(\App\Http\Controllers\TopicController::class)->group(static fu
     });
 });
 
-Route::get('api/fetch-meta', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.fetch-meta');
+Route::get('api/embed', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.show');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
