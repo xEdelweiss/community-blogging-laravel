@@ -43,8 +43,7 @@
                         class="w-full resize-none overflow-hidden pb-0 text-4xl"
                         x-ref="title" x-model="title"
                         placeholder="{{ __('Your catchy title') }}"
-                        name="title" no-border
-                        x-on:embed-loaded.window="$refs.title.value = $refs.title.value || $event.detail.embed.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));" />
+                        name="title" no-border />
 
                     {{-- limit counter --}}
                     <div class="absolute -bottom-[8px] end-0 text-xs opacity-75"
@@ -73,7 +72,8 @@
                         name="url" x-model.debounce.500ms="url" />
                 </div>
 
-                <div x-dynamic-embed="url" x-watch-embed-title="title"
+                <div x-embed="url"
+                    x-on:embed-loaded="console.log('got dispatched event', $event); $refs.title.value = $refs.title.value || $event.detail.embed.title.substring(0, maxTitleLength); $refs.title.dispatchEvent(new Event('input'));"
                     class="w-full"></div>
             </div>
 

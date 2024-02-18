@@ -36,6 +36,7 @@ import {
     Twitter,
     Typography,
     Underline,
+    Vimeo,
     Youtube,
 } from ".";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
@@ -91,6 +92,7 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     ImageUpload.configure(),
     ImageBlock,
     Youtube,
+    Vimeo,
     Telegram,
     Twitter,
     Instagram,

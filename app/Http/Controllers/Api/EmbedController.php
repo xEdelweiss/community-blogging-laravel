@@ -41,6 +41,18 @@ class EmbedController extends Controller
 
     private function renderHtml(EmbedMetaDto $meta): string
     {
-        return view('embed.link', ['meta' => $meta])->render();
+        $provider = \Str::lower($meta->providerName);
+
+        $view = match ($provider) {
+            'instagram' => view('embed.instagram', ['meta' => $meta]),
+            'reddit' => view('embed.reddit', ['meta' => $meta]),
+            'telegram' => view('embed.telegram', ['meta' => $meta]),
+            'twitter' => view('embed.twitter', ['meta' => $meta]),
+            'youtube' => view('embed.youtube', ['meta' => $meta]),
+            'vimeo' => view('embed.vimeo', ['meta' => $meta]),
+            default => view('embed.link', ['meta' => $meta]),
+        };
+
+        return $view->render();
     }
 }

@@ -1,4 +1,4 @@
-<figure
+<figure provider-name="{{ $meta->providerName }}"
     class="flex flex-col items-center justify-start gap-4 rounded-xl border p-4 sm:flex-row sm:items-start">
     @if ($meta->imageUrl)
         <img class="h-24 w-full rounded object-cover sm:w-auto sm:max-w-[30%] sm:object-contain"

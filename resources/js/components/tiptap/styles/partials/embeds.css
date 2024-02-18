@@ -15,6 +15,7 @@
 
 .ProseMirror {
     [data-type="youtube"],
+    [data-type="vimeo"],
     [data-type="reddit"],
     [data-type="telegram"],
     [data-type="twitter"],

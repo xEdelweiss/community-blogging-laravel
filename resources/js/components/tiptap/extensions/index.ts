@@ -51,3 +51,4 @@ export { Telegram } from "./embeds/Telegram";
 export { Twitter } from "./embeds/Twitter";
 export { Instagram } from "./embeds/Instagram";
 export { Reddit } from "./embeds/Reddit";
+export { Vimeo } from "./embeds/Vimeo";

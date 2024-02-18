@@ -1,90 +1,23 @@
-import { Node, nodePasteRule } from "@tiptap/core";
-import { isValidUrl, REGEX_RULE } from "../../../../../embeds/drivers/useYoutubeEmbed.js";
+import { Node } from "@tiptap/core";
+import { makeNamedEmbedExtension } from "../makeNamedEmbedExtension";
 
-type SetOptions = { src: string };
-
+const REGEX_RULE = /^(https?:\/\/)?(www\.)?(youtube\.com)\/(.+)$/g;
 const REGEX_IFRAME = /<iframe.+src="((?:https:\/\/)?(?:www\.)?youtube\.com\/embed\/(?:[^"]+))"(?:.*?)><\/iframe>/g;
 
-export const Youtube = Node.create({
-    name: "youtube",
-    group: "block",
-    selectable: true,
-    atom: true,
+export const isValidUrl = (src: string) => {
+    // @todo improve this
+    return src.includes("://youtube.com/") || src.includes("://www.youtube.com/") || src.includes("://youtu.be/");
+};
 
-    addOptions() {
-        return {
-            HTMLAttributes: {},
-        };
-    },
-
-    draggable: true,
-
-    addAttributes() {
-        return {
-            src: {
-                default: null,
+export const Youtube = Node.create(
+    makeNamedEmbedExtension("youtube", "setYoutubeVideo", REGEX_RULE, isValidUrl, [
+        {
+            find: REGEX_IFRAME,
+            getAttributes: (match) => {
+                return {
+                    src: match[1],
+                };
             },
-        };
-    },
-
-    addCommands() {
-        return {
-            setYoutubeVideo:
-                (options: SetOptions) =>
-                ({ commands }) => {
-                    if (!isValidUrl(options.src)) {
-                        return false;
-                    }
-
-                    return commands.insertContent({
-                        type: this.name,
-                        attrs: options,
-                    });
-                },
-        };
-    },
-
-    addPasteRules() {
-        return [
-            nodePasteRule({
-                find: REGEX_RULE,
-                type: this.type,
-                getAttributes: (match) => {
-                    return {
-                        src: match.input,
-                    };
-                },
-            }),
-            nodePasteRule({
-                find: REGEX_IFRAME,
-                type: this.type,
-                getAttributes: (match) => {
-                    return {
-                        src: match[1],
-                    };
-                },
-            }),
-        ];
-    },
-
-    parseHTML() {
-        return [
-            {
-                tag: `div[data-type="${this.name}"]`,
-                getAttrs: (dom) => ({
-                    src: dom.getAttribute("x-youtube") ?? "",
-                }),
-            },
-        ];
-    },
-
-    renderHTML({ HTMLAttributes, node }) {
-        return [
-            "div",
-            {
-                "data-type": this.name,
-                "x-youtube": HTMLAttributes.src,
-            },
-        ];
-    },
-});
+        },
+    ]),
+);

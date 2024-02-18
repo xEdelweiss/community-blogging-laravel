@@ -112,6 +112,12 @@ export const initialContent = {
             },
         },
         {
+            type: "vimeo",
+            attrs: {
+                src: "https://vimeo.com/53812885",
+            },
+        },
+        {
             type: "instagram",
             attrs: {
                 src: "https://www.instagram.com/p/C269qZcN2r4/",
