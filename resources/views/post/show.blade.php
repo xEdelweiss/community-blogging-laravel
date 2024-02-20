@@ -12,11 +12,15 @@
                             href="{{ route('user.show', ['user' => $post->author]) }}">{{ $post->author->name }}</a>
                     </div>
 
-                    <div class="text-xs">{{ __('Posted on') }} <time
-                            datetime="{{ $post->published_at->toDateTimeString() }}"
-                            class="date-no-year"
-                            title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
-                    </div>
+                    @if (!$post->published_at)
+                        <div class="text-xs">{{ __('Not published yet') }}</div>
+                    @else
+                        <div class="text-xs">{{ __('Posted on') }} <time
+                                datetime="{{ $post->published_at->toDateTimeString() }}"
+                                class="date-no-year"
+                                title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
+                        </div>
+                    @endif
                 </div>
             </div>
 

@@ -67,6 +67,7 @@
         <div class="mt-4 flex w-full flex-col gap-y-2 px-4 sm:hidden">
             <x-primary-button class="mr-2 flex w-full justify-center" disabled
                 x-bind:disabled="!valid">
+
                 <x-icons.publish class="h-4 w-4" />
                 <span>{{ __('Publish') }}</span>
             </x-primary-button>

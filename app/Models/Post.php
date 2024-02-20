@@ -19,6 +19,16 @@ class Post extends Model
         'published_at' => 'datetime',
     ];
 
+    protected $fillable = [
+        'title',
+        'url',
+        'intro',
+        'content',
+        'author_id',
+        'topic_id',
+        'published_at',
+    ];
+
     public function topic(): BelongsTo
     {
         return $this->belongsTo(Topic::class);

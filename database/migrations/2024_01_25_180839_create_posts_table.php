@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('cover')->nullable();
             $table->string('intro', 300)->nullable();
+            $table->text('content')->nullable();
 
             $table
                 ->foreignIdFor(\App\Models\User::class, 'author_id')

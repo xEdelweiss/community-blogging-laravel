@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,24 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $post = Post::create([
+            'title' => $request->get('title'),
+            'url' => $request->get('url'),
+            'intro' => $request->get('intro'),
+            'content' => $request->get('content'),
+            'author_id' => $request->user()->id,
+            'topic_id' => $request->topic_id,
+            'published_at' => now(),
+        ]);
+
+        $post->syncTags($request->tags);
+
+        return redirect()->route('post.show', [
+            'post' => $post,
+            'slug' => $post->slug ?? 'none',
+        ]);
     }
 
     /**
@@ -28,6 +44,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('view', $post);
         return view('post.show', [
             'post' => $post,
         ]);

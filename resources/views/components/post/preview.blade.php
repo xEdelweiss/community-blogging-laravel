@@ -46,8 +46,14 @@
     @endif
 
     @if ($post->intro)
-        <div class="line-clamp-3 text-gray-900 dark:text-gray-100">
-            <a href="{{ $link }}">{{ $post->intro }}</a>
+        <div class="text-gray-900 dark:text-gray-100">
+            <a href="{{ $link }}">{!! nl2br($post->intro) !!}</a>
+        </div>
+    @endif
+
+    @if ($post->url)
+        <div class="mb-4 flex flex-col gap-3">
+            <div x-embed="{{ $post->url }}" class="w-full"></div>
         </div>
     @endif
 
