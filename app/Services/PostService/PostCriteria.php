@@ -15,8 +15,8 @@ readonly class PostCriteria
 
     public static function fromRequest(Request $request): self
     {
-        $tag = $request->tag ? Tag::find($request->tag) : null;
-        $topic = $request->topic ? Topic::find($request->topic) : null;
+        $tag = $request->tag ? Tag::whereSlug($request->tag)->first() : null;
+        $topic = $request->topic ? Topic::whereSlug($request->topic)->first() : null;
 
         return new self($tag, $topic);
     }
