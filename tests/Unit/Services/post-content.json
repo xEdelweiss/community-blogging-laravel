@@ -1,0 +1,586 @@
+{
+    "type": "doc",
+    "content": [
+        {
+            "type": "tableOfContentsNode"
+        },
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "left",
+                "level": 2
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Spilka is a new platform for community blogging"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "attrs": {
+                "class": null,
+                "textAlign": "left"
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Welcome! We are excited to announce the launch of our new platform at "
+                },
+                {
+                    "type": "text",
+                    "marks": [
+                        {
+                            "type": "link",
+                            "attrs": {
+                                "href": "https://spilka.dev/",
+                                "target": "_blank",
+                                "class": null
+                            }
+                        }
+                    ],
+                    "text": "Spilka"
+                },
+                {
+                    "type": "text",
+                    "text": ", "
+                },
+                {
+                    "type": "text",
+                    "text": "where you can create and share your own blog posts. "
+                },
+                {
+                    "type": "text",
+                    "text": "Join our community and start writing today!"
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "left",
+                "level": 2
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Features"
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "center",
+                "level": 3
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Embeddable links"
+                }
+            ]
+        },
+        {
+            "type": "youtube",
+            "attrs": {
+                "src": "https://www.youtube.com/watch?v=MASAqbRMnaM",
+                "start": 0,
+                "width": 640,
+                "height": 480
+            }
+        },
+        {
+            "type": "telegram",
+            "attrs": {
+                "src": "https://t.me/ssternenko/25149"
+            }
+        },
+        {
+            "type": "twitter",
+            "attrs": {
+                "src": "https://twitter.com/MykhailoRohoza/status/1755010559584469221"
+            }
+        },
+        {
+            "type": "vimeo",
+            "attrs": {
+                "src": "https://vimeo.com/53812885"
+            }
+        },
+        {
+            "type": "instagram",
+            "attrs": {
+                "src": "https://www.instagram.com/p/C269qZcN2r4/"
+            }
+        },
+        {
+            "type": "reddit",
+            "attrs": {
+                "src": "https://www.reddit.com/r/laravel/comments/1akxkha/what_do_you_actually_do_with_laravel/"
+            }
+        },
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "center",
+                "level": 3
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Complex formatting"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "attrs": {
+                "class": null,
+                "textAlign": "right"
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "ThisIsAVeryLongStringThatSaysThat"
+                },
+                {
+                    "type": "text",
+                    "text": "ThisIsAVeryLongStringThatSaysThat"
+                },
+                {
+                    "type": "text",
+                    "text": "ThisIsAVeryLongStringThatSaysThat"
+                },
+                {
+                    "type": "text",
+                    "text": "ThisIsAVeryLongStringThatSaysThat"
+                },
+                {
+                    "type": "text",
+                    "text": "ThisIsAVeryLongStringThatSaysThat"
+                }
+            ]
+        },
+        {
+            "type": "codeBlock",
+            "attrs": {
+                "language": null
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "import { useEditor, EditorContent } from '@tiptap/react'\n\nfunction App() {\n  const editor = useEditor()\n\n  return <EditorContent editor={editor} />\n}"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "attrs": {
+                "class": null,
+                "textAlign": "left"
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Our post editor includes features like:"
+                }
+            ]
+        },
+        {
+            "type": "bulletList",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "A DragHandle including a DragHandle menu"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "A Slash menu that can be triggered via typing a "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "code"
+                                        }
+                                    ],
+                                    "text": "/"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": " into an empty paragraph or by using the "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "bold"
+                                        }
+                                    ],
+                                    "text": "+ Button"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": " next to the drag handle"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "A TextFormatting menu that allows you to change the "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "textStyle",
+                                            "attrs": {
+                                                "fontSize": "18px",
+                                                "fontFamily": null,
+                                                "color": null
+                                            }
+                                        }
+                                    ],
+                                    "text": "font size"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ", "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "bold"
+                                        }
+                                    ],
+                                    "text": "font weight"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ", "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "textStyle",
+                                            "attrs": {
+                                                "fontSize": null,
+                                                "fontFamily": "Georgia",
+                                                "color": null
+                                            }
+                                        }
+                                    ],
+                                    "text": "font family"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ", "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "textStyle",
+                                            "attrs": {
+                                                "fontSize": null,
+                                                "fontFamily": null,
+                                                "color": "#b91c1c"
+                                            }
+                                        }
+                                    ],
+                                    "text": "color"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ", "
+                                },
+                                {
+                                    "type": "text",
+                                    "marks": [
+                                        {
+                                            "type": "highlight",
+                                            "attrs": {
+                                                "color": "#7e7922"
+                                            }
+                                        }
+                                    ],
+                                    "text": "highlight"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": " and more"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "A Table of Contents that can be viewed via clicking on the button on the top left corner"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "imageBlock",
+            "attrs": {
+                "src": "https://placehold.it/800x400",
+                "width": "100%",
+                "align": "center"
+            }
+        },
+        {
+            "type": "imageBlock",
+            "attrs": {
+                "src": "https://placehold.it/800x400",
+                "width": "100%",
+                "align": "center"
+            }
+        },
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "left",
+                "level": 3
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Bullet example"
+                }
+            ]
+        },
+        {
+            "type": "bulletList",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "First bullet entry"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Second bullet entry"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "left",
+                "level": 3
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Numbered example"
+                }
+            ]
+        },
+        {
+            "type": "bulletList",
+            "content": [
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "First numbered entry"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "listItem",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Second numbered entry"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "blockquoteFigure",
+            "content": [
+                {
+                    "type": "quote",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "attrs": {
+                                "class": null,
+                                "textAlign": "left"
+                            },
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Famous words that tell you to become motivated"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "quoteCaption",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": "Smart Person"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "attrs": {
+                "textAlign": "left",
+                "level": 2
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Get started"
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "attrs": {
+                "class": null,
+                "textAlign": "left"
+            },
+            "content": [
+                {
+                    "type": "text",
+                    "text": "To access our post editor, simply head over to "
+                },
+                {
+                    "type": "text",
+                    "marks": [
+                        {
+                            "type": "link",
+                            "attrs": {
+                                "href": "https://spilka.dev/post",
+                                "target": "_blank",
+                                "class": null
+                            }
+                        }
+                    ],
+                    "text": "New Post Page"
+                },
+                {
+                    "type": "text",
+                    "text": ". If you are not already a member, sign up for an account and we will send you an invite to activate your account."
+                }
+            ]
+        },
+        {
+            "type": "paragraph",
+            "attrs": {
+                "class": null,
+                "textAlign": "left"
+            }
+        }
+    ]
+}
