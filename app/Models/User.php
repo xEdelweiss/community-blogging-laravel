@@ -50,6 +50,55 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'author_id');
     }
 
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function like(Post|Comment $likeable): self
+    {
+        if ($this->hasLike($likeable)) {
+            return $this;
+        }
+
+        $like = new Like();
+        $like->user()->associate($this);
+        $like->likeable()->associate($likeable);
+        $like->save();
+
+        return $this;
+    }
+
+    public function unlike(Post|Comment $likeable): self
+    {
+        if (!$this->hasLike($likeable)) {
+            return $this;
+        }
+
+        $likeable->likes()
+            ->whereUserId($this->id)
+            ->delete();
+
+        return $this;
+    }
+
+    public function hasLike(Post|Comment $likeable): bool
+    {
+        if (!$likeable->exists) {
+            return false;
+        }
+
+        return $this->likes()
+            ->whereLikeableId($likeable->id)
+            ->whereLikeableType($likeable->getMorphClass())
+            ->exists();
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->email_verified_at !== null;
+    }
+
     public function uploadAvatar(UploadedFile $file): self
     {
         $path = $file->storePublicly('avatars', 'public');

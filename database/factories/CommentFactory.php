@@ -19,6 +19,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
+            'post_id' => Post::inRandomOrder()->first()?->id ?? Post::factory(),
             'content' => $this->faker->text(200),
             'author_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
             'created_at' => $this->faker->dateTimeBetween('-2 months'),

@@ -9,7 +9,7 @@
             <div class="flex flex-col">
                 @if ($post->title)
                     <div
-                        class="line-clamp-2 text-xl font-semibold group-hover:text-primary dark:text-gray-100">
+                        class="line-clamp-2 text-xl font-semibold {{--group-hover:text-primary--}} dark:text-gray-100">
                         {{ $post->title }}
                     </div>
                 @endif

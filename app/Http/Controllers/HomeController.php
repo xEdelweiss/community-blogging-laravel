@@ -62,7 +62,7 @@ class HomeController extends Controller
 
         return $owner->published()
             ->with(['author', 'topic'])
-            ->withCount('comments');
+            ->withCount('comments', 'likes');
     }
 
     private function getLikedPosts(): Collection

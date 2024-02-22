@@ -51,11 +51,17 @@ Route::controller(\App\Http\Controllers\TopicController::class)->group(static fu
     });
 });
 
-Route::get('api/embed', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.show');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get('api/embed', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.show');
+
+Route::middleware('auth')->group(function () {
+    Route::post('like', [\App\Http\Controllers\Api\LikeController::class, 'like'])->name('like');
+    Route::delete('like', [\App\Http\Controllers\Api\LikeController::class, 'unlike'])->name('unlike');
+});
 
 Route::controller(\App\Http\Controllers\Api\UploadController::class)->group(static function () {
     Route::post('api/upload-image', 'image')->name('image.upload');
