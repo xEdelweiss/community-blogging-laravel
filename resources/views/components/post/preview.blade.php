@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    @if ($post->cover)
+    @if ($post->cover && !$post->url)
         <div class="flex justify-center">
             <a href="{{ $link }}">
                 <img loading="lazy"

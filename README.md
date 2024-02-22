@@ -31,3 +31,4 @@ php artisan optimize:clear
 
 - [x] Highlight embeds selection in editor (see `.ProseMirror-selectednode`)
 - [ ] Sometimes multiple embeds are selected
+- [ ] Should cover image be displayed if embed is added?
