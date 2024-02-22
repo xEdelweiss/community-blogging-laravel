@@ -40,10 +40,34 @@ export default function useEmbed() {
         watch(
             () => (isUrl(expression) ? expression : evaluate(expression)),
             async (newValue) => {
-                const embed = await reload(element, newValue);
+                await reload(element, newValue);
             },
         );
 
-        const embed = await reload(element, src);
+        await reload(element, src);
     });
+
+    Alpine.data("embedIntro", (intro) => ({
+        introContent: intro,
+        embedDetail: null,
+        init() {
+            this.$watch('embedDetail', value => {
+                if (value?.type === 'youtube') {
+                    this.introContent = this.introContent.replace(/(\d+:\d+)/g, `<a href="#" class="text-primary" @click="embedDetail.player.goToCode('$1')">$1</a>`);
+                }
+            });
+        },
+
+        intro: {
+            ['x-html']() {
+                return this.introContent;
+            }
+        },
+
+        embed: {
+            ['x-on:embed-injected']($event) {
+                this.embedDetail = $event.detail;
+            }
+        }
+    }))
 }

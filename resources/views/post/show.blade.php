@@ -60,19 +60,22 @@
             </div>
         </div>
 
-        @if ($post->intro)
-            <div class="text-gray-900 dark:text-gray-100">
-                {{ $post->intro }}
-            </div>
-        @endif
-
         @if ($post->cover)
             <div class="flex justify-center">
                 <img loading="lazy"
-                    class="max-h-[400px] rounded-xl object-cover"
-                    src="{{ $post->cover }}" />
+                     class="max-h-[400px] rounded-xl object-cover"
+                     alt=""
+                     src="{{ $post->cover }}" />
             </div>
         @endif
+
+        <div x-data="embedIntro({{ json_encode(nl2br($post->intro)) }})">
+            <div x-bind="intro" class="text-gray-900 dark:text-gray-100">{!! nl2br($post->intro) !!}</div>
+
+            @if ($post->url)
+                <div x-bind="embed" x-embed="{{ $post->url }}" class="w-full mt-4"></div>
+            @endif
+        </div>
 
         <div
             class="ProseMirror prose max-w-none text-gray-900 dark:text-gray-100">
