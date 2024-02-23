@@ -36,6 +36,10 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (\App\Models\User $user) {
+            if (app()->environment('testing')) {
+                return;
+            }
+
             $file = UploadedFile::fake()
                 ->createWithContent('avatar.jpg', file_get_contents(storage_path("stubs/images/{$user->id}.jpg")));
 

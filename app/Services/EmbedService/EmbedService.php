@@ -3,7 +3,6 @@
 namespace App\Services\EmbedService;
 
 use Carbon\Carbon;
-use Embed\Detectors\ProviderName;
 use Embed\Embed;
 use Embed\Extractor;
 
@@ -37,7 +36,7 @@ class EmbedService
             $extractor->providerName,
             $extractor->favicon,
             $extractor->publishedTime ? Carbon::createFromTimestamp($extractor->publishedTime->getTimestamp())->diffForHumans() : null,
-            $extractor->code
+            $extractor->code,
         );
     }
 

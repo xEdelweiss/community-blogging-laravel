@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    @if ($post->cover)
+    @if ($post->cover && !$post->url)
         <div class="flex justify-center">
             <a href="{{ $link }}">
                 <img loading="lazy"
@@ -45,17 +45,15 @@
         </div>
     @endif
 
-    @if ($post->intro)
-        <div class="text-gray-900 dark:text-gray-100">
-            <a href="{{ $link }}">{!! nl2br($post->intro) !!}</a>
-        </div>
-    @endif
+    <div x-data="embedIntro({{ json_encode(nl2br($post->intro)) }})">
+        @if ($post->intro)
+            <div x-bind="intro" class="text-gray-900 dark:text-gray-100">{!! nl2br($post->intro) !!}</div>
+        @endif
 
-    @if ($post->url)
-        <div class="mb-4 flex flex-col gap-3">
-            <div x-embed="{{ $post->url }}" class="w-full"></div>
-        </div>
-    @endif
+        @if ($post->url)
+            <div x-bind="embed" x-embed="{{ $post->url }}" class="w-full mt-4"></div>
+        @endif
+    </div>
 
     <div class="mt-1 flex items-center justify-between pe-1">
         <div
