@@ -13,9 +13,15 @@ php artisan storage:link
 
 # FAQ
 
-#### Blade component constructor receives empty entity
+### Blade component constructor receives empty entity
 ```shell
 php artisan optimize:clear
+```
+
+### Elasticsearch or Kibana crashes due to permission issues
+```shell
+sudo chmod -R 775 storage/docker/elastic
+sudo chmod -R 775 storage/docker/kibana
 ```
 
 # Known issues

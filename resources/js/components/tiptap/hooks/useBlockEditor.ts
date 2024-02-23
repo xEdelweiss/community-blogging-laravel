@@ -1,5 +1,6 @@
 import { Content, Editor, useEditor } from "@tiptap/react";
 import { ExtensionKit } from "../extensions/extension-kit";
+import { initialContent } from "../lib/data/initialContent";
 
 declare global {
     interface Window {

@@ -53,6 +53,10 @@ Route::controller(\App\Http\Controllers\TopicController::class)->group(static fu
 
 Route::get('api/embed', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.show');
 
+Route::controller(\App\Http\Controllers\Api\SearchController::class)->group(static function () {
+    Route::get('api/search/posts', 'posts')->name('search.posts');
+});
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');

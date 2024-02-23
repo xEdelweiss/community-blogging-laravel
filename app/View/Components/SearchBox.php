@@ -8,6 +8,8 @@ use Illuminate\View\Component;
 
 class SearchBox extends Component
 {
+    public array $results = [];
+
     /**
      * Create a new component instance.
      */
