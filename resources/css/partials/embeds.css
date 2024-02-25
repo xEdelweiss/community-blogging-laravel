@@ -1,3 +1,7 @@
+.embed-container {
+    @apply my-6;
+}
+
 .youtube-container,
 .vimeo-container,
 .reddit-container,

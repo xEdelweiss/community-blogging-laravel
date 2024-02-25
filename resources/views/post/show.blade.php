@@ -50,7 +50,7 @@
                     </div>
 
                     @if ($post->title)
-                        <h1 class="text-3xl font-semibold">
+                        <h1 class="text-4xl font-semibold">
                             {{ $post->title }}
                         </h1>
                     @endif
@@ -63,49 +63,29 @@
         @if ($post->cover)
             <div class="flex justify-center">
                 <img loading="lazy"
-                     class="max-h-[400px] rounded-xl object-cover"
-                     alt=""
-                     src="{{ $post->cover }}" />
+                    class="max-h-[400px] rounded-xl object-cover" alt=""
+                    src="{{ $post->cover }}" />
             </div>
         @endif
 
-        <div x-data="embedIntro({{ json_encode(nl2br($post->intro)) }})">
-            <div x-bind="intro" class="text-gray-900 dark:text-gray-100">{!! nl2br($post->intro) !!}</div>
+        @if ($post->intro || $post->url)
+            <div class="space-y-4" x-data="embedIntro({{ json_encode(nl2p($post->intro)) }})">
+                @if ($post->intro)
+                    <div x-bind="intro"
+                        class="prose max-w-none text-gray-900 dark:text-gray-100">
+                        {!! nl2p($post->intro) !!}</div>
+                @endif
 
-            @if ($post->url)
-                <div x-bind="embed" x-embed="{{ $post->url }}" class="w-full mt-4"></div>
-            @endif
-        </div>
+                @if ($post->url)
+                    <div x-bind="embed" x-embed="{{ $post->url }}"
+                        class="w-full"></div>
+                @endif
+            </div>
+        @endif
 
         <div
-            class="ProseMirror prose max-w-none text-gray-900 dark:text-gray-100">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At ab
-                voluptas enim aperiam vitae
-                sed recusandae quod? <strong>Enim deserunt quas</strong>,
-                beatae, amet aliquam perspiciatis modi sapiente asperiores
-                eveniet corrupti tenetur consequuntur nobis repellendus
-                accusantium laboriosam repudiandae quod rerum ut
-                debitis reiciendis reprehenderit odio at. Magni quisquam quae ab
-                modi voluptatem.</p>
-
-            <p>В однобітовому монохроматичному дисплеї розміром 32 на 48
-                використовуються бактерії, наповнені флуоресцентним
-                білком. <strong>При цьому кожна з них діє як окремий
-                    піксель.</strong> Саме завдяки цьому дисплею з дуже низькою
-                роздільною
-                здатністю ви
-                можете відтворити ігровий процес Doom за допомогою клітин.</p>
-
-            <p><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    <strong>Omnis, voluptatum.</strong></em></p>
-
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Consequuntur explicabo nemo non
-                quos possimus asperiores, nesciunt iste voluptatibus! Assumenda
-                eius ullam commodi, nisi magnam odit
-                ipsam, recusandae officiis corporis quos, adipisci accusamus
-                exercitationem est cupiditate nulla placeat
-                inventore error dolor ipsum quis deleniti corrupti sint?</p>
+            class="ProseMirror prose max-w-none break-words text-gray-900 dark:text-gray-100">
+            {!! $post->html !!}
         </div>
 
         <div class="mt-1 flex items-center justify-between pe-1">
