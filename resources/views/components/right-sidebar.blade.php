@@ -1,4 +1,4 @@
-<div class="sticky top-[40px] hidden w-[266px] self-start 2xl:block">
+<div class="sticky top-[40px] hidden w-[266px] self-start lg:block">
     <div class="pb-15 max-h-screen space-y-4 overflow-auto">
         {{ $slot }}
 
