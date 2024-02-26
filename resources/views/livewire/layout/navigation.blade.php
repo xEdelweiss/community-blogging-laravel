@@ -16,7 +16,7 @@ new class extends Component {
         $this->redirect('/', navigate: true);
     }
 }; ?>
-<nav class="w-full px-2 pe-4 sm:px-8">
+<nav class="w-full px-2 pe-4 lg:px-8">
 
     <div class="mx-auto" style="max-width: 1400px;">
         <div class="flex h-20 items-center justify-between">

@@ -31,6 +31,11 @@ export default {
                 main: "68.5rem",
             },
 
+            gridTemplateColumns: {
+                14: "repeat(14, minmax(0, 1fr))",
+                18: "repeat(18, minmax(0, 1fr))",
+            },
+
             fontFamily: {
                 sans: ["Fixel", ...defaultTheme.fontFamily.sans],
             },

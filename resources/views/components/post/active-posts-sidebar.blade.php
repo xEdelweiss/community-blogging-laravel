@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col items-start justify-between rounded-xl bg-white py-5 text-center text-black transition-colors duration-300">
+    class="right-sidebar-card flex flex-col items-start justify-between py-5 text-center text-black transition-colors duration-300">
 
     <div class="px-4 pb-4 pt-1 text-lg font-semibold leading-none">
         {{ __('Active discussions') }}
