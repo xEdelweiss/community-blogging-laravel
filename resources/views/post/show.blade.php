@@ -51,7 +51,8 @@
 
                     @if ($post->title)
                         <h1 class="text-4xl font-semibold">
-                            {{ $post->title }}
+                            <a
+                                href="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}">{{ $post->title }}</a>
                         </h1>
                     @endif
                 </div>
@@ -83,17 +84,26 @@
             </div>
         @endif
 
-        <div
-            class="ProseMirror prose max-w-none break-words text-gray-900 dark:text-gray-100">
-            {!! $post->html !!}
-        </div>
-
-        <div class="mt-1 flex items-center justify-between pe-1">
+        @if ($post->html)
             <div
-                class="flex items-center gap-4 space-x-2 text-xs font-semibold text-gray-400">
+                class="ProseMirror prose max-w-none break-words text-gray-900 dark:text-gray-100">
+                {!! $post->html !!}
+            </div>
+
+            @if (app()->environment('local'))
+                <pre class="whitespace-pre-wrap text-xs text-gray-400">{{ json_encode(json_decode($post->content), JSON_PRETTY_PRINT) }}</pre>
+            @endif
+        @endif
+
+        <div
+            class="mt-1 flex items-center justify-between pe-1 text-sm text-gray-400">
+            <div class="z-20 flex items-center gap-4 space-x-2">
                 <livewire:common.rating :post="$post" :user-like="$userLike"
                     :like-score="$likesScore" />
                 <x-comment-button :post="$post" disabled />
+
+                <span
+                    class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">Editorial</span>
             </div>
 
             <div class="flex items-center gap-4 text-gray-400">
