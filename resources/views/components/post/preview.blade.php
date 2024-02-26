@@ -1,4 +1,4 @@
-@props(['post', 'noAuthor' => false])
+@props(['post', 'userLike', 'likeScore', 'noAuthor' => false])
 
 <div x-data onclick="window.location='{{ $link }}';"
     class="group relative flex cursor-pointer flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800 sm:rounded-lg">
@@ -55,14 +55,15 @@
         @endif
     </div>
 
-    <div class="mt-1 flex items-center justify-between pe-1">
-        <div
-            class="z-20 flex items-center gap-4 space-x-2 text-xs font-semibold text-gray-400">
-            <x-like-button :post="$post" />
+    <div
+        class="mt-1 flex items-center justify-between pe-1 text-sm text-gray-400">
+        <div class="z-20 flex items-center gap-4 space-x-2">
+            <livewire:common.rating :post="$post" :user-like="$userLike"
+                :like-score="$likeCount" />
             <x-comment-button :post="$post" />
         </div>
 
-        <div class="z-20 flex items-center gap-4 text-gray-400">
+        <div class="z-20 flex items-center gap-4">
             <x-views-count-indicator :post="$post" />
             <x-bookmark-button :post="$post" />
         </div>

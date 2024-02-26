@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Post;
 
+use App\Models\Like;
 use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -14,6 +15,8 @@ class Preview extends Component
      */
     public function __construct(
         public Post $post,
+        public ?Like $userLike,
+        public int $likeCount,
     ) {}
 
     /**

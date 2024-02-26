@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Services\LikeService;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct(
+        private readonly LikeService $likeService,
+    )
+    {
+        // $this->authorizeResource(Post::class, 'post');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -45,8 +53,19 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $this->authorize('view', $post);
+
+        $userLike = $this->likeService
+            ->getUserLikes(auth()->user(), Post::class, $post->id)
+            ->first();
+
+        $likesScore = $this->likeService
+            ->getLikesScore(Post::class, $post->id)
+            ->first();
+
         return view('post.show', [
             'post' => $post,
+            'userLike' => $userLike,
+            'likesScore' => $likesScore,
         ]);
     }
 

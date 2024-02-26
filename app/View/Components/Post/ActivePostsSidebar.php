@@ -32,8 +32,9 @@ class ActivePostsSidebar extends Component
     private function getActivePosts(): Collection
     {
         return Post::published()
+            ->without('author', 'topic')
             ->mostCommented($this->interval)
-            ->orderByDesc('comments_count')
+            ->latestPublications()
             ->limit($this->count)
             ->get();
     }

@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/latest');
 
 Route::controller(\App\Http\Controllers\HomeController::class)->group(static function () {
-    Route::get('latest/{topic?}', 'latest')->name('home');
-    Route::get('relevant/{topic?}', 'relevant')->name('home.relevant');
-    Route::get('top/{topic?}', 'top')->name('home.top');
+    Route::get('latest/{topic?}', 'posts')->name('home');
+    Route::get('relevant/{topic?}', 'posts')->name('home.relevant');
+    Route::get('top/{topic?}', 'posts')->name('home.top');
 });
 
 Route::controller(\App\Http\Controllers\PostController::class)->group(static function () {

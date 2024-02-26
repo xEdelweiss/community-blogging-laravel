@@ -1,4 +1,4 @@
-<x-main-layout :title="$post->title">
+<x-main-layout :title="$post->title" x-data>
     <div
         class="flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
         <div class="mb-2 flex items-center justify-between">
@@ -91,7 +91,8 @@
         <div class="mt-1 flex items-center justify-between pe-1">
             <div
                 class="flex items-center gap-4 space-x-2 text-xs font-semibold text-gray-400">
-                <x-like-button :post="$post" />
+                <livewire:common.rating :post="$post" :user-like="$userLike"
+                    :like-score="$likesScore" />
                 <x-comment-button :post="$post" disabled />
             </div>
 

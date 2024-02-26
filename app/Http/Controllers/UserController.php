@@ -15,7 +15,7 @@ class UserController extends Controller
             'user' => $user,
             'posts' => $user->posts()
                 ->published()
-                ->latest()
+                ->latestPublications()
                 ->with(['author', 'topic'])
                 ->withCount('comments')
                 ->cursorPaginate(10),
