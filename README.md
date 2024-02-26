@@ -1,7 +1,7 @@
 # Run in development mode
 
 ```shell
-npm run dev
+docker-compose up
 php artisan serve
 ```
 
@@ -20,15 +20,16 @@ php artisan optimize:clear
 
 # Known issues
 
-- "Component already initialized":
-    1. Logout
-    2. Click "Write post" -> Redirect to login page
-    3. "New post" page is opened, but editor is not initialized
 - ImageBlockView is redrawing on click due to decorators, this leads to image refetching
 - TextArea height is not recalculated after page was resized
 
 # TODO
 
-- [x] Highlight embeds selection in editor (see `.ProseMirror-selectednode`)
-- [ ] Sometimes multiple embeds are selected
+- [ ] Ensure frontend Post editor works as expected
+  - [x] Highlight embeds selection in editor (see `.ProseMirror-selectednode`)
+  - [ ] Sometimes multiple embeds are selected
+- [ ] Ensure Post content rendering is consistent with editor
+  - [ ] Implement Table of Contents rendering by PHP
+  - [ ] Implement Image rendering by PHP
 - [ ] Should cover image be displayed if embed is added?
+- [ ] Refactor Likes/Dislikes to get rid of liked/rate/score mix
