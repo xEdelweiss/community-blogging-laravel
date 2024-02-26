@@ -36,6 +36,11 @@ class UserFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (\App\Models\User $user) {
+            // id 1 is reserved for me
+            if ($user->id > 1 && $user->id < 5) {
+                $user->email = "user-{$user->id}@test.wip";
+            }
+
             if (app()->environment('testing')) {
                 return;
             }

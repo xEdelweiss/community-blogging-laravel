@@ -34,7 +34,7 @@ class PostFactory extends Factory
         // $cover = "https://source.unsplash.com/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
         $cover = "https://placehold.co/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
 
-        $url = $this->optional(80, $this->faker->url);
+        $url = '';
         $actualCover = $this->optional(80, $cover);
         $actualIntro = $this->optional(50, $intro);
         $publishedAt = $this->optional(80, $createdAt);
