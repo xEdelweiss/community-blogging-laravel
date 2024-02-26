@@ -60,7 +60,7 @@ class PostController extends Controller
 
         $likesScore = $this->likeService
             ->getLikesScore(Post::class, $post->id)
-            ->first();
+            ->first(default: 0);
 
         return view('post.show', [
             'post' => $post,

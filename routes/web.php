@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/latest');
 
-Route::controller(\App\Http\Controllers\HomeController::class)->group(static function () {
+Route::controller(\App\Http\Controllers\ListingController::class)->group(static function () {
     Route::get('latest/{topic?}', 'posts')->name('home');
     Route::get('relevant/{topic?}', 'posts')->name('home.relevant');
     Route::get('top/{topic?}', 'posts')->name('home.top');
+
+    Route::get('user/{user:id}', 'author')->name('user.show');
 });
 
 Route::controller(\App\Http\Controllers\PostController::class)->group(static function () {
@@ -39,10 +41,6 @@ Route::controller(\App\Http\Controllers\CommentController::class)->group(static 
         Route::put('comment/{comment}', 'update')->name('comment.update');
         Route::delete('comment/{comment}', 'destroy')->name('comment.delete');
     });
-});
-
-Route::controller(\App\Http\Controllers\UserController::class)->group(static function () {
-    Route::get('user/{user:id}', 'show')->name('user.show');
 });
 
 Route::controller(\App\Http\Controllers\TopicController::class)->group(static function () {

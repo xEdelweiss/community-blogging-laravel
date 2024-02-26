@@ -24,11 +24,4 @@ class ListingService
             ->when($order->isRelevant(), fn(Builder $query) => $query->relevant($user))
             ->when($order->isMostLiked(), fn(Builder $query) => $query->mostLiked($criteria->period->toInterval(), $criteria->minScore));
     }
-
-    public function getPaginatedListing(PostCriteria $criteria, ListingOrder $order, ?User $user = null, int $perPage = self::PER_PAGE): LengthAwarePaginator
-    {
-        return $this->getListing($criteria, $order, $user)
-            ->paginate($perPage)
-            ->withQueryString();
-    }
 }

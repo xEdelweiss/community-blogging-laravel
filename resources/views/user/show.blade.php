@@ -12,12 +12,13 @@
 
     <div class="flex flex-col gap-6">
         @foreach ($posts as $post)
-            <x-post.preview :post="$post" noAuthor />
+            <x-post.preview :post="$post" :user-like="$likesByPost->get($post->id)"
+                :like-count="$likesScoresByPost->get($post->id, 0)" noAuthor />
         @endforeach
 
         @if ($posts->hasPages())
             <div class="pagination flex justify-center gap-4">
-                {{ $posts->links() }}
+                {{ $posts->links('pagination::simple-tailwind') }}
             </div>
         @endif
     </div>
@@ -27,7 +28,7 @@
         <div x-data
             class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
 
-            <x-avatar :user="$user" class="mb-1 w-full h-full rounded-xl" />
+            <x-avatar :user="$user" class="mb-1 h-full w-full rounded-xl" />
 
             <div class="flex flex-col items-center gap-2">
                 <div class="text-lg font-semibold leading-none">
