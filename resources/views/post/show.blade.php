@@ -106,7 +106,11 @@
                     class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">Editorial</span>
             </div>
 
-            <div class="flex items-center gap-4 text-gray-400">
+            <div class="z-20 flex items-center gap-4">
+                <span
+                    class="pt-[0.125rem] text-right text-xs">{{ random_int(2, 20) }}
+                    min
+                    read</span>
                 <x-views-count-indicator :post="$post" />
                 <x-bookmark-button :post="$post" />
             </div>
