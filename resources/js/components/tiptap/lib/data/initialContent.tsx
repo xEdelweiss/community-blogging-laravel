@@ -1,9 +1,9 @@
 export const initialContent = {
     type: "doc",
     content: [
-        {
-            type: "tableOfContentsNode",
-        },
+        // {
+        //     type: "tableOfContentsNode",
+        // },
         {
             type: "heading",
             attrs: {

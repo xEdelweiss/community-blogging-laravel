@@ -1,9 +1,11 @@
 @props(['post', 'userLike', 'likeScore', 'noAuthor' => false])
 
 <div x-data onclick="window.location='{{ $link }}';"
-    class="group relative flex cursor-pointer flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800 sm:rounded-lg">
+    class="group relative flex cursor-pointer flex-col gap-3 overflow-hidden bg-white p-6 pb-4 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800 sm:rounded-lg">
+
     <a title="{{ $post->title }}" href="{{ $link }}"
         class="absolute inset-0 z-10"></a>
+
     <div class="flex flex-col gap-1 pe-1">
         <div class="flex flex-nowrap items-start justify-between gap-4">
             <div class="flex flex-col">
@@ -45,13 +47,16 @@
         </div>
     @endif
 
-    <div x-data="embedIntro({{ json_encode(nl2br($post->intro)) }})">
+    <div class="space-y-4" x-data="embedIntro({{ json_encode(nl2p($post->intro)) }})">
         @if ($post->intro)
-            <div x-bind="intro" class="text-gray-900 dark:text-gray-100">{!! nl2br($post->intro) !!}</div>
+            <div x-bind="intro"
+                class="space-y-1 text-gray-900 dark:text-gray-100">
+                {!! nl2p($post->intro) !!}</div>
         @endif
 
         @if ($post->url)
-            <div x-bind="embed" x-embed="{{ $post->url }}" class="w-full mt-4"></div>
+            <div x-bind="embed" x-embed="{{ $post->url }}" class="w-full">
+            </div>
         @endif
     </div>
 

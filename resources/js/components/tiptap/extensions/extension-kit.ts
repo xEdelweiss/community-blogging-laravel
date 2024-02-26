@@ -41,7 +41,6 @@ import {
 } from ".";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { ImageUpload } from "./ImageUpload";
-import { TableOfContentsNode } from "./TableOfContentsNode";
 import { lowlight } from "lowlight";
 
 interface ExtensionKitProps {}
@@ -87,8 +86,7 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     Highlight.configure({ multicolor: true }),
     Underline,
     CharacterCount.configure({ limit: 50000 }),
-    // TableOfContents,
-    TableOfContentsNode,
+    // TableOfContentsNode,
     ImageUpload.configure(),
     ImageBlock,
     Youtube,
