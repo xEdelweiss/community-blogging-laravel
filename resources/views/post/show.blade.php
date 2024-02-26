@@ -1,6 +1,5 @@
 <x-main-layout :title="$post->title" x-data>
-    <div
-        class="flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
+    <div class="main-card flex flex-col gap-3 overflow-hidden p-6">
         <div class="mb-2 flex items-center justify-between">
             <div class="flex items-center space-x-2 font-semibold text-gray-400">
                 <x-avatar :user="$post->author" with-link />

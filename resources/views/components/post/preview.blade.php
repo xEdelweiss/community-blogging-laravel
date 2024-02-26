@@ -1,7 +1,7 @@
 @props(['post', 'userLike', 'likeScore', 'noAuthor' => false])
 
 <div x-data onclick="window.location='{{ $link }}';"
-    class="group relative flex cursor-pointer flex-col gap-3 overflow-hidden bg-white p-6 pb-4 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800 sm:rounded-lg">
+    class="main-card group relative flex cursor-pointer flex-col gap-3 overflow-hidden p-6 pb-4 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800">
 
     <a title="{{ $post->title }}" href="{{ $link }}"
         class="pointer-events-none absolute inset-0 z-10"></a>

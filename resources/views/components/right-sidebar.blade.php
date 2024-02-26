@@ -1,11 +1,11 @@
-<div class="sticky top-[40px] hidden w-[266px] self-start 2xl:block">
+<div class="sticky top-[40px]">
     <div class="pb-15 max-h-screen space-y-4 overflow-auto">
         {{ $slot }}
 
         {{-- dummy block --}}
         <a class="inherits-color block flex-1" href="/">
             <div
-                class="panel light relative flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-8 py-4 text-center text-black transition-colors duration-300">
+                class="panel light right-sidebar-card relative flex flex-col items-center justify-between gap-y-4 px-8 py-4 text-center text-black">
                 <div class="flex flex-col items-center">
                     <x-application-mini-logo class="h-[85px] w-[85px]" />
 

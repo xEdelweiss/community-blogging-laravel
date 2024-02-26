@@ -1,8 +1,7 @@
 <x-main-layout title="✏️ {{ __('New post') }}" x-data="postForm">
     <form x-ref="form" @post-form-submit.window="submitForm()"
         action="{{ route('post.store') }}" method="post">
-        <div
-            class="space-y-4 bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
+        <div class="main-card space-y-4 p-6 shadow-sm dark:bg-gray-800">
             @csrf
 
             <div class="flex flex-col">
@@ -86,7 +85,7 @@
     {{-- sidebar --}}
     <x-slot name="rightSidebar">
         <div x-data
-            class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
+            class="right-sidebar-card flex flex-col items-center justify-between gap-y-4 px-5 py-4 text-center text-black transition-colors duration-300">
 
             <div class="w-full text-left">
                 <p class="mb-2 text-left font-semibold">
@@ -125,7 +124,7 @@
         </div>
 
         <div x-data
-            class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
+            class="right-sidebar-card flex flex-col items-center justify-between gap-y-4 px-5 py-4 text-center text-black transition-colors duration-300">
 
             <div class="w-full text-left">
                 <p class="mb-2 text-left font-semibold">
@@ -146,7 +145,7 @@
         </div>
 
         <div
-            class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
+            class="right-sidebar-card flex flex-col items-center justify-between gap-y-4 px-5 py-4 text-center text-black transition-colors duration-300">
 
             <div class="w-full text-left">
                 <p class="mb-2 text-left font-semibold">
