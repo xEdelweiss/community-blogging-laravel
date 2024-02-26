@@ -80,17 +80,17 @@ export const GROUPS: Group[] = [
                     editor.chain().focus().setImageUpload().run();
                 },
             },
-            {
-                name: "toc",
-                label: "Table of Contents",
-                iconName: "Book",
-                aliases: ["outline"],
-                description: "Insert a table of contents",
-                shouldBeHidden: (editor) => editor.isActive("columns"),
-                action: (editor) => {
-                    editor.chain().focus().insertTableOfContents().run();
-                },
-            },
+            // {
+            //     name: "toc",
+            //     label: "Table of Contents",
+            //     iconName: "Book",
+            //     aliases: ["outline"],
+            //     description: "Insert a table of contents",
+            //     shouldBeHidden: (editor) => editor.isActive("columns"),
+            //     action: (editor) => {
+            //         editor.chain().focus().insertTableOfContents().run();
+            //     },
+            // },
         ],
     },
 ];
