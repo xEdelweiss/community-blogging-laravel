@@ -52,7 +52,7 @@
                             <x-dropdown-link class="flex gap-x-2"
                                 href="#">
                                 <x-icons.flag class="h-5 w-5" />
-                                <span>{{ __('Mark as Spam') }}</span>
+                                <span>{{ __('Mark as spam') }}</span>
                             </x-dropdown-link>
 
                             @if (auth()->user() && auth()->user()->id === $comment->author->id)

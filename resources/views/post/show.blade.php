@@ -14,7 +14,8 @@
                     @if (!$post->published_at)
                         <div class="text-xs">{{ __('Not published yet') }}</div>
                     @else
-                        <div class="text-xs">{{ __('Posted on') }} <time
+                        <div class="text-xs">{{ __('Posted on') }}
+                            <time
                                 datetime="{{ $post->published_at->toDateTimeString() }}"
                                 class="date-no-year"
                                 title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
@@ -102,14 +103,13 @@
                 <x-comment-button :post="$post" disabled />
 
                 <span
-                    class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">Editorial</span>
+                    class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">{{ __('Editorial') }}</span>
             </div>
 
             <div class="z-20 flex items-center gap-4">
-                <span
-                    class="pt-[0.125rem] text-right text-xs">{{ random_int(2, 20) }}
-                    min
-                    read</span>
+                <span class="pt-[0.125rem] text-right text-xs">
+                    {{ __(':count min read', ['count' => random_int(2, 20)]) }}
+                </span>
                 <x-views-count-indicator :post="$post" />
                 <x-bookmark-button :post="$post" />
             </div>
