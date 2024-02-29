@@ -112,15 +112,17 @@ new class extends Component {
 
             <!--    Input element    -->
             <div>
-                <input aria-label="{{ __('Add up to 5 tags…') }}"
+                <input
+                    aria-label="{{ __('Add up to :count tags…', ['count' => 5]) }}"
                     :disabled="tags.length >= 5"
                     class="border-none px-0 pt-2 text-sm text-gray-900 caret-black shadow-none focus:border-none focus:outline-none focus:ring-0 dark:text-gray-300 dark:caret-white"
                     x-ref="input" @focus="open=(tags.length < 5)"
                     type="text" x-model.debounce="query"
                     @keydown.enter.prevent="addQueryAsTag()"
                     @keydown.backspace="removeLastTag()"
-                    :placeholder="tags.length < 5 ? '{{ __('Add up to 5 tags…') }}' :
-                        '{{ __('Max 5 tags used') }}'" />
+                    :placeholder="tags.length < 5 ?
+                        '{{ __('Add up to :count tags…', ['count' => 5]) }}' :
+                        '{{ __('Max :count tags used', ['count' => 5]) }}'" />
 
                 <!--    Suggestions list    -->
                 <div x-show="open"

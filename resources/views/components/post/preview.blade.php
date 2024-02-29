@@ -67,14 +67,12 @@
             <x-comment-button :post="$post" />
 
             <span
-                class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">Editorial</span>
+                class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">{{ __('Editorial') }}</span>
         </div>
 
         <div class="z-20 flex items-center gap-4">
-            <span
-                class="pt-[0.125rem] text-right text-xs">{{ random_int(2, 20) }}
-                min
-                read</span>
+            <span class="pt-[0.125rem] text-right text-xs">
+                {{ __(':count min read', ['count' => random_int(2, 20)]) }}</span>
             <x-views-count-indicator :post="$post" />
             <x-bookmark-button :post="$post" />
         </div>

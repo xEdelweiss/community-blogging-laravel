@@ -15,7 +15,7 @@
                     class="line-clamp-2 leading-snug group-hover:text-primary">{{ $post->title }}</span>
 
                 <div class="text-sm font-semibold text-gray-400">
-                    + {{ $post->last_comments_count }} comments
+                    {{ __(':count comments', ['count' => $post->last_comments_count]) }}
                 </div>
             </a>
         @endforeach

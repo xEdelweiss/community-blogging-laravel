@@ -12,7 +12,7 @@
             <x-dropdown-link
                 class="{{ request('period', \App\Enums\Period::All->value) === $value ? 'bg-gray-100 dark:bg-gray-800' : '' }} flex gap-x-2"
                 href="{{ routeWith(['period' => $value]) }}">
-                {{ __($label) }}
+                {{ $label }}
             </x-dropdown-link>
         @endforeach
     </x-slot>

@@ -51,7 +51,8 @@
 
             <div x-show="editorOpen"
                 class="border border-transparent border-l-gray-200 px-2 ps-3 text-gray-900 focus-within:border-l-primary dark:text-gray-100">
-                <div x-post-editor="postContent" x-ref="editor">Loading…</div>
+                <div x-post-editor="postContent" x-ref="editor">
+                    {{ __('Loading…') }}</div>
                 <input :value="JSON.stringify(postContent)" type="hidden"
                     name="content" />
             </div>

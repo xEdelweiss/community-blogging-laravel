@@ -25,8 +25,8 @@ class MinScoreSelect extends Component
         return view('components.listing.min-score-select', [
             'selected' => request('score', MinLikesScore::None->value),
             'scores' => [
-                MinLikesScore::NonNegative->value => 'Hide downvoted',
-                MinLikesScore::None->value => 'Show all',
+                MinLikesScore::NonNegative->value => trans('Hide downvoted'),
+                MinLikesScore::None->value => trans('Show all'),
             ],
         ]);
     }

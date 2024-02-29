@@ -12,7 +12,7 @@
             <x-dropdown-link
                 class="{{ request('score', \App\Enums\MinLikesScore::None->value) === $value ? 'bg-gray-100 dark:bg-gray-800' : '' }} flex gap-x-2"
                 href="{{ routeWith(['score' => $value]) }}">
-                {{ __($label) }}
+                {{ $label }}
             </x-dropdown-link>
         @endforeach
     </x-slot>
