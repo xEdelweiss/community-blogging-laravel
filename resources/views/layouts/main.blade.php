@@ -1,7 +1,8 @@
 @props([
     'title' => null,
+    'meta' => null,
 ])
-<x-app-layout :title="$title">
+<x-app-layout :title="$title" :meta="$meta">
     <div
         {{ $attributes->merge(['class' => 'mx-auto grid grid-cols-4 gap-4 lg:gap-6 xl:gap-10 md:grid-cols-12 xl:grid-cols-14 2xl:grid-cols-18 max-w-[1400px]']) }}>
 

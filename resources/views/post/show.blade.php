@@ -1,7 +1,26 @@
 <x-main-layout :title="$post->title" x-data>
+    <x-slot name="meta">
+        <meta name="description" content="{{ $post->intro }}" />
+        <meta property="og:title" content="{{ $post->title }}" />
+        <meta property="og:description" content="{{ $post->intro }}" />
+        @if ($post->cover)
+            <meta property="og:image" content="{{ $post->cover }}" />
+        @endif
+        <meta property="og:url"
+            content="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}" />
+        <meta property="og:type" content="article" />
+        <meta property="article:published_time"
+            content="{{ $post->published_at->toIso8601String() }}" />
+        <meta property="article:author" content="{{ $post->author->name }}" />
+        <meta property="article:section" content="{{ $post->topic->name }}" />
+        <meta property="article:tag"
+            content="{{ $post->tags->pluck('name')->join(', ') }}" />
+    </x-slot>
+
     <div class="main-card flex flex-col gap-3 overflow-hidden p-6">
         <div class="mb-2 flex items-center justify-between">
-            <div class="flex items-center space-x-2 font-semibold text-gray-400">
+            <div
+                class="flex items-center space-x-2 font-semibold text-gray-400">
                 <x-avatar :user="$post->author" with-link />
 
                 <div>
@@ -12,7 +31,8 @@
                     </div>
 
                     @if (!$post->published_at)
-                        <div class="text-xs">{{ __('Not published yet') }}</div>
+                        <div class="text-xs">{{ __('Not published yet') }}
+                        </div>
                     @else
                         <div class="text-xs">{{ __('Posted on') }}
                             <time

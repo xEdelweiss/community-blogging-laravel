@@ -1,4 +1,7 @@
-@props(['title' => null])
+@props([
+    'title' => null,
+    'meta' => null,
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -13,6 +16,8 @@
         @endisset
         {{ config('app.name', '__NAME_NOT_SET__') }}
     </title>
+
+    {!! $meta ?? '' !!}
 
     <!-- Fonts -->
     @include('layouts._fonts')
