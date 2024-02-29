@@ -1,9 +1,9 @@
-<div x-data="{ sidebarOpen: false }" @left-sidebar-open.window="sidebarOpen = true"
+<div {{ $attributes->merge(['class' => 'bg-backdrop xl:inset-none fixed inset-0 z-30 hidden xl:sticky xl:top-[40px] xl:block xl:self-start xl:bg-transparent']) }}
+    x-data="{ sidebarOpen: false }" @left-sidebar-open.window="sidebarOpen = true"
     :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
-    @click="sidebarOpen = false"
-    class="xl:inset-none fixed inset-0 z-30 hidden bg-backdrop xl:sticky xl:top-[40px] xl:col-span-3 xl:block xl:self-start xl:bg-transparent">
+    @click="sidebarOpen = false">
     <div @click.stop
-        class="h-screen w-2/3 bg-white shadow-dialog sm:w-2/3 md:w-[350px] lg:ps-6 xl:h-auto xl:w-full xl:bg-transparent xl:ps-0 xl:shadow-none">
+        class="h-screen w-full bg-white shadow-dialog sm:w-2/3 md:w-[350px] lg:ps-6 xl:h-auto xl:w-full xl:bg-transparent xl:ps-0 xl:shadow-none">
 
         {{-- navigation-like panel --}}
         <div class="flex h-20 items-center justify-start px-2 xl:hidden">
