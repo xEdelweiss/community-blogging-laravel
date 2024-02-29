@@ -9,6 +9,8 @@
         <meta property="og:url"
             content="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}" />
         <meta property="og:type" content="article" />
+        <meta property="og:site_name"
+            content="{{ config('app.name', '__NAME_NOT_SET__') }}">
         <meta property="article:published_time"
             content="{{ $post->published_at->toIso8601String() }}" />
         <meta property="article:author" content="{{ $post->author->name }}" />
