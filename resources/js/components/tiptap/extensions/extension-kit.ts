@@ -140,9 +140,9 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
         placeholder: ({ node }) => {
             switch (node.type.name) {
                 case "paragraph":
-                    return "— paragraph";
+                    return __("— paragraph");
                 case "heading":
-                    return "— heading";
+                    return __("— heading");
                 default:
                     return "";
             }

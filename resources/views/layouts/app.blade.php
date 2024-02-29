@@ -18,6 +18,7 @@
     @include('layouts._fonts')
 
     <!-- Scripts -->
+    @l10n
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/css/editor.css', 'resources/js/app.js'])
 </head>

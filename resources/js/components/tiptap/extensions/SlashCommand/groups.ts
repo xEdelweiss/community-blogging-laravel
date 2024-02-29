@@ -3,13 +3,13 @@ import { Group } from "./types";
 export const GROUPS: Group[] = [
     {
         name: "format",
-        title: "Format",
+        title: __("Format"),
         commands: [
             {
                 name: "heading2",
-                label: "Heading 2",
+                label: __("Heading 2"),
                 iconName: "Heading2",
-                description: "Medium priority section title",
+                description: __("Medium priority section title"),
                 aliases: ["h2"],
                 action: (editor) => {
                     editor.chain().focus().setHeading({ level: 2 }).run();
@@ -17,9 +17,9 @@ export const GROUPS: Group[] = [
             },
             {
                 name: "heading3",
-                label: "Heading 3",
+                label: __("Heading 3"),
                 iconName: "Heading3",
-                description: "Low priority section title",
+                description: __("Low priority section title"),
                 aliases: ["h3"],
                 action: (editor) => {
                     editor.chain().focus().setHeading({ level: 3 }).run();
@@ -27,9 +27,9 @@ export const GROUPS: Group[] = [
             },
             {
                 name: "bulletList",
-                label: "Bullet List",
+                label: __("Bullet list"),
                 iconName: "List",
-                description: "Unordered list of items",
+                description: __("Unordered list of items"),
                 aliases: ["ul"],
                 action: (editor) => {
                     editor.chain().focus().toggleBulletList().run();
@@ -37,9 +37,9 @@ export const GROUPS: Group[] = [
             },
             {
                 name: "numberedList",
-                label: "Numbered List",
+                label: __("Numbered list"),
                 iconName: "ListOrdered",
-                description: "Ordered list of items",
+                description: __("Ordered list of items"),
                 aliases: ["ol"],
                 action: (editor) => {
                     editor.chain().focus().toggleOrderedList().run();
@@ -47,18 +47,18 @@ export const GROUPS: Group[] = [
             },
             {
                 name: "blockquote",
-                label: "Blockquote",
+                label: __("Blockquote"),
                 iconName: "Quote",
-                description: "Element for quoting",
+                description: __("Element for quoting"),
                 action: (editor) => {
                     editor.chain().focus().setBlockquote().run();
                 },
             },
             {
                 name: "codeBlock",
-                label: "Code Block",
+                label: __("Code Block"),
                 iconName: "SquareCode",
-                description: "Code block with syntax highlighting",
+                description: __("Code block with syntax highlighting"),
                 shouldBeHidden: (editor) => editor.isActive("columns"),
                 action: (editor) => {
                     editor.chain().focus().setCodeBlock().run();
@@ -68,13 +68,13 @@ export const GROUPS: Group[] = [
     },
     {
         name: "insert",
-        title: "Insert",
+        title: __("Insert"),
         commands: [
             {
                 name: "image",
-                label: "Image",
+                label: __("Image"),
                 iconName: "Image",
-                description: "Insert an image",
+                description: __("Insert an image"),
                 aliases: ["img"],
                 action: (editor) => {
                     editor.chain().focus().setImageUpload().run();
@@ -82,10 +82,10 @@ export const GROUPS: Group[] = [
             },
             // {
             //     name: "toc",
-            //     label: "Table of Contents",
+            //     label: __("Table of Contents"),
             //     iconName: "Book",
             //     aliases: ["outline"],
-            //     description: "Insert a table of contents",
+            //     description: __("Insert a table of contents"),
             //     shouldBeHidden: (editor) => editor.isActive("columns"),
             //     action: (editor) => {
             //         editor.chain().focus().insertTableOfContents().run();

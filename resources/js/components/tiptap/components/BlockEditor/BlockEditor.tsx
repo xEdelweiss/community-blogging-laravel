@@ -32,6 +32,36 @@ const Debug = ({ editor, type }: { editor: Editor; type: null | "html" | "json" 
     </>
 );
 
+function getStyleWithL10n() {
+    return `.ProseMirror {
+        &.ProseMirror-focused {
+            /* Slashmenu Placeholder */
+
+            > p.has-focus.is-empty::before {
+                content: "${__("Type \\\\ to browse options")}" !important;
+            }
+
+            > [data-type='columns'] > [data-type='column'] > p.is-empty.has-focus::before {
+                content: "${__("Type \\\\ to browse options")}" !important;
+            }
+        }
+
+        & > .is-editor-empty::before {
+            content: "${__("Click here to start writing…")}" !important;
+        }
+
+        /* Blockquote Placeholder */
+
+        blockquote .is-empty:not(.is-editor-empty):first-child:last-child::before {
+            content: "${__("Enter a quote")}" !important;
+        }
+
+        blockquote + figcaption.is-empty:not(.is-editor-empty)::before {
+            content: "${__("Author")}" !important;
+        }
+    }`;
+}
+
 export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange }, ref) => {
     const menuContainerRef = useRef(null);
     const editorRef = useRef<HTMLDivElement | null>(null);
@@ -48,8 +78,11 @@ export const BlockEditor = forwardRef<Editor, TiptapProps>(({ value, onChange },
         return null;
     }
 
+    const style = getStyleWithL10n();
+
     return (
         <>
+            <style>{style}</style>
             <div className="h-full" ref={menuContainerRef}>
                 <div className="relative flex flex-col flex-1 h-full">
                     <EditorContent editor={editor} ref={editorRef} className="flex-1 overflow-y-auto whitespace-pre-wrap break-words" />

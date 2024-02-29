@@ -10,28 +10,19 @@ export type LinkPreviewPanelProps = {
     onClear: () => void;
 };
 
-export const LinkPreviewPanel = ({
-    onClear,
-    onEdit,
-    url,
-}: LinkPreviewPanelProps) => {
+export const LinkPreviewPanel = ({ onClear, onEdit, url }: LinkPreviewPanelProps) => {
     return (
         <Surface className="flex items-center gap-2 p-2">
-            <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm underline break-all"
-            >
+            <a href={url} target="_blank" rel="noopener noreferrer" className="text-sm underline break-all">
                 {url}
             </a>
             <Toolbar.Divider />
-            <Tooltip title="Edit link">
+            <Tooltip title={__("Edit link")}>
                 <Toolbar.Button onClick={onEdit}>
                     <Icon name="Pen" />
                 </Toolbar.Button>
             </Tooltip>
-            <Tooltip title="Remove link">
+            <Tooltip title={__("Remove link")}>
                 <Toolbar.Button onClick={onClear}>
                     <Icon name="Trash2" />
                 </Toolbar.Button>
