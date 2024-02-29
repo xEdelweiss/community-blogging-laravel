@@ -78,7 +78,7 @@
     "Posted on": "Опубліковано",
     "Write a comment...": "Напишіть коментар...",
     "Comment": "Коментар",
-    "About": "Про",
+    "About": "Про себе",
     "Posts": "Пости",
     "Comments": "Коментарі",
     "Message": "Повідомлення",
@@ -89,9 +89,9 @@
     "Name": "Ім'я",
     "Confirm Password": "Підтвердити пароль",
     "New Password": "Новий пароль",
-    "Spilka is about sharing": "Spilka - це про кожного",
+    ":app-name is about sharing": ":app-name - це про кожного",
     "We are a community of people who values open and respectful conversations. We believe that everyone has something to contribute.": "Ми - спільнота людей, які цінують відкриті та поважні розмови. Ми вважаємо, що у кожного є що додати.",
-    "Join the conversation":  "Приєднуйтесь до розмови",
+    "Join the conversation":  "Приєднуйся до розмови",
     "Editorial": "Редакційний",
     "Heading 2": "Заголовок 2",
     "Heading 3": "Заголовок 3",
@@ -158,5 +158,11 @@
     ":characters characters": "символів: :characters",
     "Click here to start writing…": "Натисніть тут, щоб почати писати…",
     "Enter a quote": "Введіть цитату",
-    "Author": "Автор"
+    "Author": "Автор",
+    "Subscribe": "Підписатися",
+    "Unsubscribe": "Відписатися",
+    "Author of :tag-open:count:tag-close posts": "Автор :tag-open:count:tag-close постів",
+    "No posts yet": "Ще немає постів",
+    "Bookmarks": "Закладки",
+    "Drafts": "Чернетки"
 }

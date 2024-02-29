@@ -11,7 +11,7 @@
         @isset($title)
             {{ $title }} |
         @endisset
-        {{ config('app.name', 'Laravel') }}
+        {{ config('app.name', '__NAME_NOT_SET__') }}
     </title>
 
     <!-- Fonts -->

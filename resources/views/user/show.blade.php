@@ -8,6 +8,12 @@
             class="overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary dark:bg-gray-800">{{ __('Posts') }}</a>
         <a href="#"
             class="px-3 py-1 hover:text-primary">{{ __('Comments') }}</a>
+        @auth()
+            @if (auth()->user()->is($user))
+                <a href="#"
+                    class="px-3 py-1 hover:text-primary">{{ __('Bookmarks') }}</a>
+            @endif
+        @endauth
     </header>
 
     <div class="flex flex-col gap-6">
@@ -37,11 +43,13 @@
 
                 <div class="text-sm leading-snug text-gray-400">
                     @if ($user->posts->count() > 0)
-                        Author of <span
-                            class="font-semibold">{{ $user->posts->count() }}</span>
-                        posts
+                        {!! __('Author of :tag-open:count:tag-close posts', [
+                            'tag-open' => '<span class="font-semibold">',
+                            'count' => $user->posts->count(),
+                            'tag-close' => '</span>',
+                        ]) !!}
                     @else
-                        No posts yet
+                        {{ __('No posts yet') }}
                     @endif
                 </div>
 

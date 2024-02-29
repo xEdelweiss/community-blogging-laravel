@@ -85,6 +85,17 @@ new class extends Component {
                 {{ __('Profile') }}
             </x-dropdown-link>
 
+            <x-dropdown-link href="#" wire:navigate>
+                {{ __('Drafts') }}
+            </x-dropdown-link>
+
+            <x-dropdown-link href="#" wire:navigate>
+                {{ __('Bookmarks') }}
+            </x-dropdown-link>
+
+            {{-- divider --}}
+            <x-dropdown-divider />
+
             <button wire:click="logout" class="w-full text-start">
                 <x-dropdown-link>
                     {{ __('Log out') }}

@@ -12,7 +12,7 @@
                     <div class="mt-3 flex-1">
                         <h5
                             class="clamp one-line font-poppins text-sm font-semibold tracking-normal dark:text-white xl:text-sm">
-                            {{ __('Spilka is about sharing') }}
+                            {{ __(':app-name is about sharing', ['app-name' => config('app.name', '__NAME_NOT_SET__')]) }}
                         </h5>
                         <p class="dark:text-grey-100 mt-1 text-[11px]">
                             {{ __('We are a community of people who values open and respectful conversations. We believe that everyone has something to contribute.') }}
