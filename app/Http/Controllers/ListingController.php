@@ -69,6 +69,20 @@ class ListingController extends Controller
         ]);
     }
 
+    public function bookmarks(User $user)
+    {
+        $posts = Post::published()
+            ->latestPublications()
+            ->bookmarkedBy($user);
+
+        return view('user.show', [
+            'user' => $user,
+            'posts' => $this->paginate($posts),
+            'likesByPost' => $this->getUserLikes($posts),
+            'likesScoresByPost' => $this->getLikesScore($posts),
+        ]);
+    }
+
     private function paginate(Builder $builder): LengthAwarePaginator
     {
         return $builder->paginate($this->perPage)->withQueryString();

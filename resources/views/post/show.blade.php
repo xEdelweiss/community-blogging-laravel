@@ -133,7 +133,7 @@
                     {{ __(':count min read', ['count' => random_int(2, 20)]) }}
                 </span>
                 <x-views-count-indicator :post="$post" />
-                <x-bookmark-button :post="$post" />
+                <livewire:common.bookmark-button :bookmarkable="$post" />
             </div>
         </div>
     </div>

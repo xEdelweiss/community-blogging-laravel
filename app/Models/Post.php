@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\MinLikesScore;
+use App\Models\Interfaces\Bookmarkable;
+use App\Models\Traits\HasBookmarks;
 use App\Models\Traits\HasLikes;
 use App\Models\Traits\HasTags;
 use App\Models\Traits\HasViews;
@@ -20,15 +22,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 #[ObservedBy(PostObserver::class)]
-class Post extends Model implements Viewable
+class Post extends Model implements Viewable, Bookmarkable
 {
     use HasFactory;
     use HasTags;
     use HasLikes;
     use HasViews;
+    use HasBookmarks;
 
-    protected $with = ['author', 'topic'];
-    protected $withCount = ['comments'];
+    protected $with = ['author', 'topic', 'userBookmark'];
+    protected $withCount = ['comments', 'bookmarks'];
 
     protected $casts = [
         'published_at' => 'datetime',

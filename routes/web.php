@@ -21,6 +21,7 @@ Route::controller(\App\Http\Controllers\ListingController::class)->group(static 
     Route::get('top/{topic?}', 'posts')->name('home.top');
 
     Route::get('user/{user:id}', 'author')->name('user.show');
+    Route::get('user/{user:id}/bookmarks', 'bookmarks')->name('user.bookmarks');
 });
 
 Route::controller(\App\Http\Controllers\PostController::class)->group(static function () {

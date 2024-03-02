@@ -4,14 +4,14 @@
     <header class="mb-4 flex flex-wrap justify-start gap-x-4 px-3 sm:px-0">
         <a href="#"
             class="px-3 py-1 hover:text-primary">{{ __('About') }}</a>
-        <a href="#"
-            class="overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary dark:bg-gray-800">{{ __('Posts') }}</a>
+        <a href="{{ route('user.show', ['user' => $user->id]) }}"
+            class="@if (request()->routeIs('user.show')) bg-white shadow-sm overflow-hidden rounded-lg dark:bg-gray-800 @endif px-3 py-1 hover:text-primary">{{ __('Posts') }}</a>
         <a href="#"
             class="px-3 py-1 hover:text-primary">{{ __('Comments') }}</a>
         @auth()
             @if (auth()->user()->is($user))
-                <a href="#"
-                    class="px-3 py-1 hover:text-primary">{{ __('Bookmarks') }}</a>
+                <a href="{{ route('user.bookmarks', ['user' => $user->id]) }}"
+                    class="@if (request()->routeIs('user.bookmarks')) bg-white shadow-sm overflow-hidden rounded-lg dark:bg-gray-800 @endif px-3 py-1 hover:text-primary">{{ __('Bookmarks') }}</a>
             @endif
         @endauth
     </header>
@@ -21,6 +21,19 @@
             <x-post.preview :post="$post" :user-like="$likesByPost->get($post->id)"
                 :like-count="$likesScoresByPost->get($post->id, 0)" noAuthor />
         @endforeach
+
+        @empty($posts->count())
+            <div class="mt-4 flex flex-col items-center justify-center gap-4">
+                <span class="text-4xl">🫢</span>
+                <div class="text-lg font-semibold text-gray-400">
+                    @if (request()->routeIs('user.bookmarks'))
+                        {{ __('No bookmarks yet') }}
+                    @else
+                        {{ __('No posts yet') }}
+                    @endif
+                </div>
+            </div>
+        @endempty
 
         @if ($posts->hasPages())
             <div class="pagination flex justify-center gap-4">

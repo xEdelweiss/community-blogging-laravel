@@ -89,7 +89,10 @@ new class extends Component {
                 {{ __('Drafts') }}
             </x-dropdown-link>
 
-            <x-dropdown-link href="#" wire:navigate>
+            <x-dropdown-link
+                href="{{ route('user.bookmarks', ['user' => auth()->id()]) }}"
+                class="{{ request()->routeIs('user.bookmarks') ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : '' }}"
+                wire:navigate>
                 {{ __('Bookmarks') }}
             </x-dropdown-link>
 

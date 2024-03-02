@@ -1,7 +1,8 @@
 @props(['post', 'userLike', 'likeScore', 'noAuthor' => false])
 
-<div x-data onclick="window.location='{{ $link }}';"
+<div x-data x-ref="container" onclick="window.location='{{ $link }}';"
     x-view-track.listing.post.400ms="{{ $post->id }}"
+    @if (request()->routeIs('user.bookmarks')) x-on:bookmark-removed="$refs.container.remove()" @endif
     class="main-card group relative flex cursor-pointer flex-col gap-3 overflow-hidden p-6 pb-4 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800">
 
     <a title="{{ $post->title }}" href="{{ $link }}"
@@ -75,7 +76,7 @@
             <span class="pt-[0.125rem] text-right text-xs">
                 {{ __(':count min read', ['count' => random_int(2, 20)]) }}</span>
             <x-views-count-indicator :post="$post" />
-            <x-bookmark-button :post="$post" />
+            <livewire:common.bookmark-button :bookmarkable="$post" />
         </div>
     </div>
 </div>
