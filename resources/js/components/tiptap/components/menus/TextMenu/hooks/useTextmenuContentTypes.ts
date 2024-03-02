@@ -7,7 +7,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
         return [
             {
                 type: "category",
-                label: "Hierarchy",
+                label: __("Hierarchy"),
                 id: "hierarchy",
             },
             {
@@ -20,7 +20,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                     !editor.isActive("orderedList") &&
                     !editor.isActive("bulletList") &&
                     !editor.isActive("taskList"),
-                label: "Paragraph",
+                label: __("Paragraph"),
                 type: "option",
             },
             {
@@ -29,7 +29,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: "heading2",
                 disabled: () => !editor.can().setHeading({ level: 2 }),
                 isActive: () => editor.isActive("heading", { level: 2 }),
-                label: "Heading 2",
+                label: __("Heading 2"),
                 type: "option",
             },
             {
@@ -38,12 +38,12 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: "heading3",
                 disabled: () => !editor.can().setHeading({ level: 3 }),
                 isActive: () => editor.isActive("heading", { level: 3 }),
-                label: "Heading 3",
+                label: __("Heading 3"),
                 type: "option",
             },
             {
                 type: "category",
-                label: "Lists",
+                label: __("Lists"),
                 id: "lists",
             },
             {
@@ -52,7 +52,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: "bulletList",
                 disabled: () => !editor.can().toggleBulletList(),
                 isActive: () => editor.isActive("bulletList"),
-                label: "Bullet list",
+                label: __("Bullet list"),
                 type: "option",
             },
             {
@@ -61,7 +61,7 @@ export const useTextmenuContentTypes = (editor: Editor) => {
                 id: "orderedList",
                 disabled: () => !editor.can().toggleOrderedList(),
                 isActive: () => editor.isActive("orderedList"),
-                label: "Numbered list",
+                label: __("Numbered list"),
                 type: "option",
             },
         ];

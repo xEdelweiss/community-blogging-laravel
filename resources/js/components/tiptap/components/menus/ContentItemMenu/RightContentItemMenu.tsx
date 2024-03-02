@@ -41,7 +41,7 @@ export const RightContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuP
             }}
             className="right-[-2rem] flex items-start"
         >
-            <div className="flex items-center gap-0.5 h-full">
+            <div className="flex items-center gap-0.5 h-full z-20">
                 <Popover.Root open={menuOpen} onOpenChange={setMenuOpen}>
                     <Popover.Trigger asChild>
                         <Toolbar.Button className={"min-w-[1rem] px-1"}>
@@ -53,31 +53,31 @@ export const RightContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuP
                             <Popover.Close>
                                 <DropdownButton onClick={() => onToggleDebug("json")}>
                                     <Icon name="Eye" />
-                                    Toggle JSON debug
+                                    {__("Toggle JSON debug")}
                                 </DropdownButton>
                             </Popover.Close>
                             <Popover.Close>
                                 <DropdownButton onClick={() => onToggleDebug("html")}>
                                     <Icon name="Eye" />
-                                    Toggle HTML debug
+                                    {__("Toggle HTML debug")}
                                 </DropdownButton>
                             </Popover.Close>
                             <Popover.Close>
                                 <DropdownButton onClick={actions.resetTextFormatting}>
                                     <Icon name="RemoveFormatting" />
-                                    Clear formatting
+                                    {__("Clear formatting")}
                                 </DropdownButton>
                             </Popover.Close>
                             <Popover.Close>
                                 <DropdownButton onClick={actions.copyNodeToClipboard}>
                                     <Icon name="Clipboard" />
-                                    Copy to clipboard
+                                    {__("Copy to clipboard")}
                                 </DropdownButton>
                             </Popover.Close>
                             <Popover.Close>
                                 <DropdownButton onClick={actions.duplicateNode}>
                                     <Icon name="Copy" />
-                                    Duplicate
+                                    {__("Duplicate")}
                                 </DropdownButton>
                             </Popover.Close>
                             <Toolbar.Divider horizontal />
@@ -87,7 +87,7 @@ export const RightContentItemMenu = ({ editor, onToggleDebug }: ContentItemMenuP
                                     className="text-red-500 bg-red-500 dark:text-red-500 hover:bg-red-500 dark:hover:text-red-500 dark:hover:bg-red-500 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-20"
                                 >
                                     <Icon name="Trash2" />
-                                    Delete
+                                    {__("Delete")}
                                 </DropdownButton>
                             </Popover.Close>
                         </Surface>

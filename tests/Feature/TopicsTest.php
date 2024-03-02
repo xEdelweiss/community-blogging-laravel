@@ -2,7 +2,7 @@
 
 test('topics are visible on main page', function () {
     /** @var Illuminate\Testing\TestResponse $response */
-    $response = $this->get('/');
+    $response = $this->get('/latest');
 
     $response
         ->assertOk()
@@ -15,12 +15,12 @@ test('topics are visible on main page', function () {
             'Literature',
         ])
         ->assertSee([
-            '/topics/military',
-            '/topics/games',
-            '/topics/politics',
-            '/topics/sports',
-            '/topics/technology',
-            '/topics/literature',
+            '/latest/military',
+            '/latest/games',
+            '/latest/politics',
+            '/latest/sports',
+            '/latest/technology',
+            '/latest/literature',
         ]);
 
     $response->assertStatus(200);

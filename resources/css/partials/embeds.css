@@ -1,0 +1,77 @@
+.embed-container {
+    @apply my-6;
+}
+
+.youtube-container,
+.vimeo-container,
+.reddit-container,
+.telegram-container,
+.twitter-container,
+.instagram-container {
+    @apply w-full relative;
+
+    .screen {
+        display: none;
+    }
+
+    .embed > * {
+        @apply w-full min-w-0 my-0 !important;
+    }
+}
+
+.youtube-container,
+.vimeo-container,
+.reddit-container {
+    .embed {
+        @apply w-full relative;
+    }
+}
+
+.telegram-container,
+.twitter-container,
+.instagram-container {
+    .embed {
+        @apply max-w-[500px] relative mx-auto;
+    }
+}
+
+.youtube-container,
+.vimeo-container {
+    .embed {
+        iframe {
+            @apply aspect-video h-full w-full overflow-hidden rounded-xl;
+        }
+    }
+}
+
+.instagram-container {
+    .embed {
+        iframe {
+            @apply rounded-xl !important;
+        }
+    }
+}
+
+.twitter-container {
+    blockquote {
+        @apply prose;
+
+        p:first-child {
+            @apply mt-0;
+        }
+
+        p {
+            @apply mb-2
+        }
+
+        font-weight: 500;
+        font-style: italic;
+        color: var(--tw-prose-quotes);
+        border-left-width: 0.25rem;
+        border-left-color: var(--tw-prose-quote-borders);
+        quotes: "\201C" "\201D" "\2018" "\2019";
+        margin-top: 1.6em;
+        margin-bottom: 1.6em;
+        padding-left: 1em;
+    }
+}

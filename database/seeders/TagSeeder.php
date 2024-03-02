@@ -21,6 +21,13 @@ class TagSeeder extends Seeder
             ]);
         }
 
-        return;
+        // sync tags with posts
+        \App\Models\Post::all()->each(function ($post) use ($tags) {
+            $post->syncTags(
+                collect($tags)->random(random_int(1, 5))
+                    ->pluck('name')
+                    ->toArray()
+            );
+        });
     }
 }

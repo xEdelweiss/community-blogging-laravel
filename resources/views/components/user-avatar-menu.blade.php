@@ -18,7 +18,7 @@ new class extends Component {
             class="flex items-center text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300">
 
             @auth
-                <img src="{{ auth()->user()->avatar }}" alt="avatar"
+                <x-avatar :user="auth()->user()"
                     class="h-10 w-10 cursor-pointer rounded-xl" />
             @else
                 <svg class="h-10 w-10 cursor-pointer rounded-xl"
@@ -85,9 +85,23 @@ new class extends Component {
                 {{ __('Profile') }}
             </x-dropdown-link>
 
+            <x-dropdown-link href="#" wire:navigate>
+                {{ __('Drafts') }}
+            </x-dropdown-link>
+
+            <x-dropdown-link
+                href="{{ route('user.bookmarks', ['user' => auth()->id()]) }}"
+                class="{{ request()->routeIs('user.bookmarks') ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : '' }}"
+                wire:navigate>
+                {{ __('Bookmarks') }}
+            </x-dropdown-link>
+
+            {{-- divider --}}
+            <x-dropdown-divider />
+
             <button wire:click="logout" class="w-full text-start">
                 <x-dropdown-link>
-                    {{ __('Log Out') }}
+                    {{ __('Log out') }}
                 </x-dropdown-link>
             </button>
         @else

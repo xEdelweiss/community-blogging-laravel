@@ -53,7 +53,7 @@ class User extends Authenticatable
     public function uploadAvatar(UploadedFile $file): self
     {
         $path = $file->storePublicly('avatars', 'public');
-        $this->avatar = asset('storage/' . $path);
+        $this->avatar = '/storage/' . $path;
 
         return $this;
     }

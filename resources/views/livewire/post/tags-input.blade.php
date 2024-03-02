@@ -103,7 +103,8 @@ new class extends Component {
                         <x-icons.cross class="inline-block h-3 w-3" />
                     </span>
                     <span class="inline-block group-hover:hidden">
-                        <x-icons.hash class="inline-block h-3 w-3 text-primary-dark" />
+                        <x-icons.hash
+                            class="inline-block h-3 w-3 text-primary-dark" />
                     </span>
                     <span x-text="tag.toLowerCase()"></span>
                 </a>
@@ -111,15 +112,17 @@ new class extends Component {
 
             <!--    Input element    -->
             <div>
-                <input aria-label="{{ __('Add up to 5 tags…') }}"
+                <input
+                    aria-label="{{ __('Add up to :count tags…', ['count' => 5]) }}"
                     :disabled="tags.length >= 5"
                     class="border-none px-0 pt-2 text-sm text-gray-900 caret-black shadow-none focus:border-none focus:outline-none focus:ring-0 dark:text-gray-300 dark:caret-white"
                     x-ref="input" @focus="open=(tags.length < 5)"
                     type="text" x-model.debounce="query"
                     @keydown.enter.prevent="addQueryAsTag()"
                     @keydown.backspace="removeLastTag()"
-                    :placeholder="tags.length < 5 ? '{{ __('Add up to 5 tags…') }}' :
-                        '{{ __('Max 5 tags used') }}'" />
+                    :placeholder="tags.length < 5 ?
+                        '{{ __('Add up to :count tags…', ['count' => 5]) }}' :
+                        '{{ __('Max :count tags used', ['count' => 5]) }}'" />
 
                 <!--    Suggestions list    -->
                 <div x-show="open"
@@ -134,7 +137,8 @@ new class extends Component {
                     <div
                         class="rounded-md bg-white py-1 ring-1 ring-black ring-opacity-5 dark:bg-gray-700">
                         <template x-for="suggestion in suggestions">
-                            <a class='block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:bg-gray-800'
+                            <a href="#"
+                                class='block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:bg-gray-800'
                                 x-text="suggestion.toLowerCase()"
                                 @click.prevent="addSuggestedTag(suggestion)"></a>
                         </template>

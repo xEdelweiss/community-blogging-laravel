@@ -1,0 +1,52 @@
+Spilka is a new platform for community blogging
+Welcome! We are excited to announce the launch of our new platform at 
+Spilka
+, 
+where you can create and share your own blog posts. 
+Join our community and start writing today!
+Features
+Embeddable links
+Complex formatting
+ThisIsAVeryLongStringThatSaysThat
+ThisIsAVeryLongStringThatSaysThat
+ThisIsAVeryLongStringThatSaysThat
+ThisIsAVeryLongStringThatSaysThat
+ThisIsAVeryLongStringThatSaysThat
+import { useEditor, EditorContent } from &#039;@tiptap/react&#039;
+
+function App() {
+  const editor = useEditor()
+
+  return &lt;EditorContent editor={editor} /&gt;
+}
+Our post editor includes features like:
+A DragHandle including a DragHandle menu
+A Slash menu that can be triggered via typing a 
+/
+ into an empty paragraph or by using the 
++ Button
+ next to the drag handle
+A TextFormatting menu that allows you to change the 
+font size
+, 
+font weight
+, 
+font family
+, 
+color
+, 
+highlight
+ and more
+A Table of Contents that can be viewed via clicking on the button on the top left corner
+Bullet example
+First bullet entry
+Second bullet entry
+Numbered example
+First numbered entry
+Second numbered entry
+Famous words that tell you to become motivated
+Smart Person
+Get started
+To access our post editor, simply head over to 
+New Post Page
+. If you are not already a member, sign up for an account and we will send you an invite to activate your account.

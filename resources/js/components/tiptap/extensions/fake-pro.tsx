@@ -40,9 +40,10 @@ export const DragHandle = forwardRef<
     useEffect(() => {
         const handleNodeChange = () => {
             const node = editor.state.doc.nodeAt(editor.state.selection.$anchor.pos);
-            const pos = editor.state.selection.anchor;
+            const domAtPos = editor.view.domAtPos(editor.state.selection.$anchor.pos);
+            const domNode = domAtPos.node.nodeName === "#text" ? domAtPos.node.parentElement : domAtPos.node;
 
-            const domNode = editor.view.domAtPos(editor.state.selection.$anchor.pos).node;
+            const pos = editor.state.selection.anchor;
             const domNodeHeight = domNode.getBoundingClientRect().height;
 
             setPosition({

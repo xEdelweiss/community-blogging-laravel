@@ -79,7 +79,7 @@ export const TableOfContents = memo(({ editor, onItemClick }: TableOfContentsPro
                     ))}
                 </div>
             ) : (
-                <div className="text-sm text-neutral-500">Start adding headlines to your document …</div>
+                <div className="text-sm text-neutral-500">{__("Start adding headlines to your document…")}</div>
             )}
         </>
     );

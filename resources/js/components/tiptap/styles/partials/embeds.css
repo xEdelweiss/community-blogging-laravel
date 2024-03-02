@@ -1,0 +1,57 @@
+.embed-screen {
+    @apply absolute top-0 left-0 right-0 bottom-0 bg-transparent z-10;
+}
+
+.highlighted-embed {
+    @apply rounded-xl overflow-hidden;
+
+    &:before {
+        content: "";
+        @apply absolute top-0 left-0 right-0 bottom-0 bg-primary/80 rounded-xl;
+
+        pointer-events: none;
+    }
+}
+
+.ProseMirror {
+    [data-type="youtube"],
+    [data-type="vimeo"],
+    [data-type="reddit"],
+    [data-type="telegram"],
+    [data-type="twitter"],
+    [data-type="instagram"] {
+        .screen {
+            display: block;
+            @apply embed-screen;
+        }
+
+        &.ProseMirror-selectednode .embed,
+        &.node-selection .embed {
+            @apply highlighted-embed;
+        }
+    }
+
+    .node-imageBlock {
+        & > div {
+            @apply relative;
+
+            &:before {
+                content: "";
+                @apply embed-screen
+            }
+        }
+
+        &.ProseMirror-selectednode > div > div,
+        &.node-selection > div > div {
+            @apply relative;
+
+            & > div {
+                @apply highlighted-embed;
+            }
+
+            img {
+                @apply my-0 !important;
+            }
+        }
+    }
+}

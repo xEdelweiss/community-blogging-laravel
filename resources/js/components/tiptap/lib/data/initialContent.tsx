@@ -1,9 +1,9 @@
 export const initialContent = {
     type: "doc",
     content: [
-        {
-            type: "tableOfContentsNode",
-        },
+        // {
+        //     type: "tableOfContentsNode",
+        // },
         {
             type: "heading",
             attrs: {
@@ -19,7 +19,7 @@ export const initialContent = {
                 // },
                 {
                     type: "text",
-                    text: "Next.js + Tiptap Block Editor Template 12",
+                    text: "Spilka is a new platform for community blogging",
                 },
             ],
         },
@@ -32,7 +32,7 @@ export const initialContent = {
             content: [
                 {
                     type: "text",
-                    text: "Welcome to our React Block Editor Template built on top of ",
+                    text: "Welcome! We are excited to announce the launch of our new platform at ",
                 },
                 {
                     type: "text",
@@ -40,13 +40,13 @@ export const initialContent = {
                         {
                             type: "link",
                             attrs: {
-                                href: "https://tiptap.dev/",
+                                href: "https://spilka.dev/",
                                 target: "_blank",
                                 class: null,
                             },
                         },
                     ],
-                    text: "Tiptap",
+                    text: "Spilka",
                 },
                 {
                     type: "text",
@@ -54,39 +54,37 @@ export const initialContent = {
                 },
                 {
                     type: "text",
-                    marks: [
-                        {
-                            type: "link",
-                            attrs: {
-                                href: "https://nextjs.org/",
-                                target: "_blank",
-                                class: null,
-                            },
-                        },
-                    ],
-                    text: "Next.js",
+                    text: "where you can create and share your own blog posts. ",
                 },
                 {
                     type: "text",
-                    text: " and ",
+                    text: "Join our community and start writing today!",
                 },
+            ],
+        },
+        {
+            type: "heading",
+            attrs: {
+                textAlign: "left",
+                level: 2,
+            },
+            content: [
                 {
                     type: "text",
-                    marks: [
-                        {
-                            type: "link",
-                            attrs: {
-                                href: "https://tailwindcss.com/",
-                                target: "_blank",
-                                class: null,
-                            },
-                        },
-                    ],
-                    text: "Tailwind",
+                    text: "Features",
                 },
+            ],
+        },
+        {
+            type: "heading",
+            attrs: {
+                textAlign: "center",
+                level: 3,
+            },
+            content: [
                 {
                     type: "text",
-                    text: ". This project can be a good starting point for your own implementation of a block editor.",
+                    text: "Embeddable links",
                 },
             ],
         },
@@ -112,6 +110,12 @@ export const initialContent = {
             },
         },
         {
+            type: "vimeo",
+            attrs: {
+                src: "https://vimeo.com/53812885",
+            },
+        },
+        {
             type: "instagram",
             attrs: {
                 src: "https://www.instagram.com/p/C269qZcN2r4/",
@@ -124,23 +128,15 @@ export const initialContent = {
             },
         },
         {
-            type: "paragraph",
+            type: "heading",
             attrs: {
-                class: null,
-                textAlign: "left",
+                textAlign: "center",
+                level: 3,
             },
             content: [
                 {
                     type: "text",
-                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                },
-                {
-                    type: "text",
-                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                },
-                {
-                    type: "text",
-                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    text: "Complex formatting",
                 },
             ],
         },
@@ -148,46 +144,28 @@ export const initialContent = {
             type: "paragraph",
             attrs: {
                 class: null,
-                textAlign: "left",
-            },
-            content: [],
-        },
-        {
-            type: "paragraph",
-            attrs: {
-                class: null,
-                textAlign: "left",
+                textAlign: "right",
             },
             content: [
                 {
                     type: "text",
-                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    text: "ThisIsAVeryLongStringThatSaysThat",
                 },
-            ],
-        },
-        {
-            type: "paragraph",
-            attrs: {
-                class: null,
-                textAlign: "left",
-            },
-            content: [
                 {
                     type: "text",
-                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    text: "ThisIsAVeryLongStringThatSaysThat",
                 },
-            ],
-        },
-        {
-            type: "paragraph",
-            attrs: {
-                class: null,
-                textAlign: "left",
-            },
-            content: [
                 {
                     type: "text",
-                    text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    text: "ThisIsAVeryLongStringThatSaysThat",
+                },
+                {
+                    type: "text",
+                    text: "ThisIsAVeryLongStringThatSaysThat",
+                },
+                {
+                    type: "text",
+                    text: "ThisIsAVeryLongStringThatSaysThat",
                 },
             ],
         },
@@ -212,7 +190,7 @@ export const initialContent = {
             content: [
                 {
                     type: "text",
-                    text: "This editor includes features like:",
+                    text: "Our post editor includes features like:",
                 },
             ],
         },
@@ -400,55 +378,6 @@ export const initialContent = {
                         },
                     ],
                 },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "Live collaboration including content synchronization and collaborative cursors",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "AI implementation with text and image generation and auto completion via the ",
-                                },
-                                {
-                                    type: "text",
-                                    marks: [
-                                        {
-                                            type: "code",
-                                        },
-                                    ],
-                                    text: "TAB",
-                                },
-                                {
-                                    type: "text",
-                                    text: " key.",
-                                },
-                            ],
-                        },
-                    ],
-                },
             ],
         },
         {
@@ -466,6 +395,147 @@ export const initialContent = {
                 width: "100%",
                 align: "center",
             },
+        },
+        {
+            type: "heading",
+            attrs: {
+                textAlign: "left",
+                level: 3,
+            },
+            content: [
+                {
+                    type: "text",
+                    text: "Bullet example",
+                },
+            ],
+        },
+        {
+            type: "bulletList",
+            content: [
+                {
+                    type: "listItem",
+                    content: [
+                        {
+                            type: "paragraph",
+                            attrs: {
+                                class: null,
+                                textAlign: "left",
+                            },
+                            content: [
+                                {
+                                    type: "text",
+                                    text: "First bullet entry",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "listItem",
+                    content: [
+                        {
+                            type: "paragraph",
+                            attrs: {
+                                class: null,
+                                textAlign: "left",
+                            },
+                            content: [
+                                {
+                                    type: "text",
+                                    text: "Second bullet entry",
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
+            type: "heading",
+            attrs: {
+                textAlign: "left",
+                level: 3,
+            },
+            content: [
+                {
+                    type: "text",
+                    text: "Numbered example",
+                },
+            ],
+        },
+        {
+            type: "bulletList",
+            content: [
+                {
+                    type: "listItem",
+                    content: [
+                        {
+                            type: "paragraph",
+                            attrs: {
+                                class: null,
+                                textAlign: "left",
+                            },
+                            content: [
+                                {
+                                    type: "text",
+                                    text: "First numbered entry",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "listItem",
+                    content: [
+                        {
+                            type: "paragraph",
+                            attrs: {
+                                class: null,
+                                textAlign: "left",
+                            },
+                            content: [
+                                {
+                                    type: "text",
+                                    text: "Second numbered entry",
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            type: "blockquoteFigure",
+            content: [
+                {
+                    type: "quote",
+                    content: [
+                        {
+                            type: "paragraph",
+                            attrs: {
+                                class: null,
+                                textAlign: "left",
+                            },
+                            content: [
+                                {
+                                    type: "text",
+                                    text: "Famous words that tell you to become motivated",
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    type: "quoteCaption",
+                    content: [
+                        {
+                            type: "text",
+                            text: "Smart Person",
+                        },
+                    ],
+                },
+            ],
         },
         {
             type: "heading",
@@ -489,7 +559,7 @@ export const initialContent = {
             content: [
                 {
                     type: "text",
-                    text: "To access our block editor template, simply head over to your ",
+                    text: "To access our post editor, simply head over to ",
                 },
                 {
                     type: "text",
@@ -497,737 +567,17 @@ export const initialContent = {
                         {
                             type: "link",
                             attrs: {
-                                href: "https://cloud.tiptap.dev/react-templates",
+                                href: "https://spilka.dev/post",
                                 target: "_blank",
                                 class: null,
                             },
                         },
                     ],
-                    text: "Tiptap Account",
+                    text: "New Post Page",
                 },
                 {
                     type: "text",
-                    text: " If you are not already a member, sign up for an account and complete the 2-minute React Template survey. Once finished, we will send you an invite to the private GitHub repository.",
-                },
-            ],
-        },
-        {
-            type: "heading",
-            attrs: {
-                textAlign: "left",
-                level: 2,
-            },
-            content: [
-                {
-                    type: "text",
-                    text: "Installed extensions",
-                },
-            ],
-        },
-        {
-            type: "bulletList",
-            content: [
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-ai",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-drag-handle",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-drag-handle-react",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-emoji",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-file-handler",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-mathematics",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-node-range",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-table-of-contents",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap-pro/extension-unique-id",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-bullet-list",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-character-count",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-code-block",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-code-block-lowlight",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-collaboration",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-collaboration-cursor",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-color",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-document",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-dropcursor",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-focus",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-font-family",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-heading",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-highlight",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-horizontal-rule",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-image",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-link",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-ordered-list",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-paragraph",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-placeholder",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-subscript",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-superscript",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-table",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-table-header",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-table-row",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-task-item",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-task-list",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-text-align",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-text-style",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-typography",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    type: "listItem",
-                    content: [
-                        {
-                            type: "paragraph",
-                            attrs: {
-                                class: null,
-                                textAlign: "left",
-                            },
-                            content: [
-                                {
-                                    type: "text",
-                                    text: "@tiptap/extension-underline",
-                                },
-                            ],
-                        },
-                    ],
+                    text: ". If you are not already a member, sign up for an account and we will send you an invite to activate your account.",
                 },
             ],
         },

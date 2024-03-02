@@ -36,11 +36,11 @@ import {
     Twitter,
     Typography,
     Underline,
+    Vimeo,
     Youtube,
 } from ".";
 import { CodeBlockLowlight } from "@tiptap/extension-code-block-lowlight";
 import { ImageUpload } from "./ImageUpload";
-import { TableOfContentsNode } from "./TableOfContentsNode";
 import { lowlight } from "lowlight";
 
 interface ExtensionKitProps {}
@@ -86,11 +86,11 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
     Highlight.configure({ multicolor: true }),
     Underline,
     CharacterCount.configure({ limit: 50000 }),
-    // TableOfContents,
-    TableOfContentsNode,
+    // TableOfContentsNode,
     ImageUpload.configure(),
     ImageBlock,
     Youtube,
+    Vimeo,
     Telegram,
     Twitter,
     Instagram,
@@ -140,9 +140,9 @@ export const ExtensionKit = (props: ExtensionKitProps = {}) => [
         placeholder: ({ node }) => {
             switch (node.type.name) {
                 case "paragraph":
-                    return "— paragraph";
+                    return __("— paragraph");
                 case "heading":
-                    return "— heading";
+                    return __("— heading");
                 default:
                     return "";
             }

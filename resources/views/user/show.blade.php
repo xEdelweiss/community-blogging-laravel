@@ -4,20 +4,40 @@
     <header class="mb-4 flex flex-wrap justify-start gap-x-4 px-3 sm:px-0">
         <a href="#"
             class="px-3 py-1 hover:text-primary">{{ __('About') }}</a>
-        <a href="#"
-            class="overflow-hidden rounded-lg bg-white px-3 py-1 shadow-sm hover:text-primary dark:bg-gray-800">{{ __('Posts') }}</a>
+        <a href="{{ route('user.show', ['user' => $user->id]) }}"
+            class="@if (request()->routeIs('user.show')) bg-white shadow-sm overflow-hidden rounded-lg dark:bg-gray-800 @endif px-3 py-1 hover:text-primary">{{ __('Posts') }}</a>
         <a href="#"
             class="px-3 py-1 hover:text-primary">{{ __('Comments') }}</a>
+        @auth()
+            @if (auth()->user()->is($user))
+                <a href="{{ route('user.bookmarks', ['user' => $user->id]) }}"
+                    class="@if (request()->routeIs('user.bookmarks')) bg-white shadow-sm overflow-hidden rounded-lg dark:bg-gray-800 @endif px-3 py-1 hover:text-primary">{{ __('Bookmarks') }}</a>
+            @endif
+        @endauth
     </header>
 
     <div class="flex flex-col gap-6">
         @foreach ($posts as $post)
-            <x-post-preview :post="$post" noAuthor />
+            <x-post.preview :post="$post" :user-like="$likesByPost->get($post->id)"
+                :like-count="$likesScoresByPost->get($post->id, 0)" noAuthor />
         @endforeach
+
+        @empty($posts->count())
+            <div class="mt-4 flex flex-col items-center justify-center gap-4">
+                <span class="text-4xl">🫢</span>
+                <div class="text-lg font-semibold text-gray-400">
+                    @if (request()->routeIs('user.bookmarks'))
+                        {{ __('No bookmarks yet') }}
+                    @else
+                        {{ __('No posts yet') }}
+                    @endif
+                </div>
+            </div>
+        @endempty
 
         @if ($posts->hasPages())
             <div class="pagination flex justify-center gap-4">
-                {{ $posts->links() }}
+                {{ $posts->links('pagination::simple-tailwind') }}
             </div>
         @endif
     </div>
@@ -27,8 +47,7 @@
         <div x-data
             class="flex flex-col items-center justify-between gap-y-4 rounded-xl bg-white px-5 py-4 text-center text-black transition-colors duration-300">
 
-            <img src="{{ $user->avatar }}" alt="avatar"
-                class="mb-1 w-full rounded-xl" />
+            <x-avatar :user="$user" class="mb-1 h-full w-full rounded-xl" />
 
             <div class="flex flex-col items-center gap-2">
                 <div class="text-lg font-semibold leading-none">
@@ -37,11 +56,13 @@
 
                 <div class="text-sm leading-snug text-gray-400">
                     @if ($user->posts->count() > 0)
-                        Author of <span
-                            class="font-semibold">{{ $user->posts->count() }}</span>
-                        posts
+                        {!! __('Author of :tag-open:count:tag-close posts', [
+                            'tag-open' => '<span class="font-semibold">',
+                            'count' => $user->posts->count(),
+                            'tag-close' => '</span>',
+                        ]) !!}
                     @else
-                        No posts yet
+                        {{ __('No posts yet') }}
                     @endif
                 </div>
 

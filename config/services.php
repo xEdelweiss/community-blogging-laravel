@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'view_tracker' => [
+        'cache' => [
+            'store' => env('VIEW_TRACKER_CACHE_STORE', 'redis'),
+            'ttl' => env('VIEW_TRACKER_CACHE_TTL', 60 * 60 * 24),
+        ],
+    ],
 ];

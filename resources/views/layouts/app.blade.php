@@ -1,4 +1,7 @@
-@props(['title' => null])
+@props([
+    'title' => null,
+    'meta' => null,
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -11,23 +14,26 @@
         @isset($title)
             {{ $title }} |
         @endisset
-        {{ config('app.name', 'Laravel') }}
+        {{ config('app.name', '__NAME_NOT_SET__') }}
     </title>
+
+    {!! $meta ?? '' !!}
 
     <!-- Fonts -->
     @include('layouts._fonts')
 
     <!-- Scripts -->
+    @l10n
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/css/editor.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="dark:bg-gray-900 min-h-screen bg-gray-100">
+<body class="bg-gray-100 font-sans antialiased dark:bg-gray-900">
+    <div class="min-h-screen">
         <livewire:layout.navigation />
 
         <!-- Page Content -->
-        <div class="sm:px-8 sm:pt-4" {{ $attributes }}>
+        <div class="sm:pt-4 lg:px-8" {{ $attributes }}>
             {{ $slot }}
         </div>
     </div>

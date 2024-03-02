@@ -3,29 +3,56 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
-use Embed\Embed;
+use App\Services\EmbedService\EmbedMetaDto;
+use App\Services\EmbedService\EmbedService;
 use Illuminate\Http\Request;
-use function Pest\Laravel\json;
 
 class EmbedController extends Controller
 {
+    public function __construct(
+        readonly private EmbedService $embedService,
+    ) {}
+
     // @fixme auth + rate limit
-    public function show(Request $request, Embed $embed)
+    public function show(Request $request)
     {
         $url = $request->validate(['url' => 'required|url'])['url'];
-        $info = $embed->get($url);
+        $meta = $this->fetch($url);
 
-        return response()->json([
-            'title' => $info->title ?? '',
-            'html' => view('embed.link', [
-                'title' => $info->title ?? '',
-                'description' => $info->description ?? '',
-                'image_url' => $info->image ?? '',
-                'provider' => $info->providerName ?? '',
-                'icon_url' => $info->favicon ?? '',
-                'published_at' => $info->publishedTime ? Carbon::createFromTimestamp($info->publishedTime->getTimestamp())->diffForHumans() : null,
-            ])->render(),
-        ]);
+        $result = [
+            'title' => $meta->title ?? '',
+            'html' => $this->renderHtml($meta),
+        ];
+
+        return response()->json($result);
+    }
+
+    private function fetch(string $url): EmbedMetaDto
+    {
+        $cacheStore = config('embed.cache.store');
+        $ttl = config('embed.cache.ttl');
+        $version = $this->embedService->getVersion();
+        $key = "embed-{$version}-{$url}";
+
+        return cache()->store($cacheStore)->remember($key, $ttl,
+            fn() => $this->embedService->get($url)
+        );
+    }
+
+    private function renderHtml(EmbedMetaDto $meta): string
+    {
+        $provider = \Str::lower($meta->providerName);
+
+        $view = match ($provider) {
+            'instagram' => view('embed.instagram', ['meta' => $meta]),
+            'reddit' => view('embed.reddit', ['meta' => $meta]),
+            'telegram' => view('embed.telegram', ['meta' => $meta]),
+            'twitter' => view('embed.twitter', ['meta' => $meta]),
+            'youtube' => view('embed.youtube', ['meta' => $meta]),
+            'vimeo' => view('embed.vimeo', ['meta' => $meta]),
+            default => view('embed.link', ['meta' => $meta]),
+        };
+
+        return $view->render();
     }
 }

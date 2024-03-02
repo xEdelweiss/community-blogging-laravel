@@ -14,6 +14,8 @@ class Avatar extends Component
      */
     public function __construct(
         public User $user,
+        public bool $withLink = false,
+        public string $linkClass = '',
     ) {}
 
     /**
@@ -33,6 +35,6 @@ class Avatar extends Component
 
     public function avatarUrl(): string
     {
-        return $this->user->avatar;
+        return asset($this->user->avatar);
     }
 }

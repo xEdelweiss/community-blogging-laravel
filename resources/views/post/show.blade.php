@@ -1,10 +1,29 @@
-<x-main-layout :title="$post->title">
+<x-main-layout :title="$post->title" x-data>
+    <x-slot name="meta">
+        <meta name="description" content="{{ $post->intro }}" />
+        <meta property="og:title" content="{{ $post->title }}" />
+        <meta property="og:description" content="{{ $post->intro }}" />
+        @if ($post->cover)
+            <meta property="og:image" content="{{ $post->cover }}" />
+        @endif
+        <meta property="og:url"
+            content="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name"
+            content="{{ config('app.name', '__NAME_NOT_SET__') }}">
+        <meta property="article:published_time"
+            content="{{ $post->published_at->toIso8601String() }}" />
+        <meta property="article:author" content="{{ $post->author->name }}" />
+        <meta property="article:section" content="{{ $post->topic->name }}" />
+        <meta property="article:tag"
+            content="{{ $post->tags->pluck('name')->join(', ') }}" />
+    </x-slot>
 
-    <div
-        class="flex flex-col gap-3 overflow-hidden bg-white p-6 shadow-sm dark:bg-gray-800 sm:rounded-lg">
+    <div class="main-card flex flex-col gap-3 overflow-hidden p-6">
         <div class="mb-2 flex items-center justify-between">
-            <div class="flex items-center space-x-2 font-semibold text-gray-400">
-                <x-avatar :user="$post->author" />
+            <div
+                class="flex items-center space-x-2 font-semibold text-gray-400">
+                <x-avatar :user="$post->author" with-link />
 
                 <div>
                     <div
@@ -13,11 +32,17 @@
                             href="{{ route('user.show', ['user' => $post->author]) }}">{{ $post->author->name }}</a>
                     </div>
 
-                    <div class="text-xs">{{ __('Posted on') }} <time
-                            datetime="{{ $post->published_at->toDateTimeString() }}"
-                            class="date-no-year"
-                            title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
-                    </div>
+                    @if (!$post->published_at)
+                        <div class="text-xs">{{ __('Not published yet') }}
+                        </div>
+                    @else
+                        <div class="text-xs">{{ __('Posted on') }}
+                            <time
+                                datetime="{{ $post->published_at->toDateTimeString() }}"
+                                class="date-no-year"
+                                title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -28,16 +53,17 @@
             @endif
         </div>
 
-        <div>
+        <div x-view-track.view.post.250ms="{{ $post->id }}">
             <div
-                class="@if ($post->title) items-start @else items-start @endif gap-x-1 flex justify-between">
+                class="@if ($post->title) items-start @else items-start @endif flex justify-between gap-x-1">
                 <div>
-                    <div class="flex flex-wrap gap-x-2 mb-1 sm:mb-0 text-sm">
+                    <div class="mb-1 flex flex-wrap gap-x-2 text-sm sm:mb-0">
                         @foreach ($post->tags as $tag)
-                            <a href="{{ route('home', ['tag' => $tag->slug]) }}"
+                            <a href="{{ route('home', ['tag' => $tag]) }}"
                                 class="flex whitespace-nowrap align-baseline opacity-50 transition duration-150 ease-in hover:text-primary hover:opacity-100">
                                 <span class="inline-block">
-                                    <x-icons.hash class="inline-block h-3 w-3 text-primary-dark" />
+                                    <x-icons.hash
+                                        class="inline-block h-3 w-3 text-primary-dark" />
                                 </span>
 
                                 <span>{{ str($tag->name)->lower() }}</span>
@@ -46,8 +72,9 @@
                     </div>
 
                     @if ($post->title)
-                        <h1 class="text-3xl font-semibold">
-                            {{ $post->title }}
+                        <h1 class="text-4xl font-semibold">
+                            <a
+                                href="{{ route('post.show', ['post' => $post, 'slug' => $post->slug ?? 'none']) }}">{{ $post->title }}</a>
                         </h1>
                     @endif
                 </div>
@@ -56,66 +83,96 @@
             </div>
         </div>
 
-        @if ($post->intro)
-            <div class="text-gray-900 dark:text-gray-100">
-                {{ $post->intro }}
-            </div>
-        @endif
-
         @if ($post->cover)
             <div class="flex justify-center">
                 <img loading="lazy"
-                    class="max-h-[400px] rounded-xl object-cover"
+                    class="max-h-[400px] rounded-xl object-cover" alt=""
                     src="{{ $post->cover }}" />
             </div>
         @endif
 
-        <div
-            class="ProseMirror prose max-w-none text-gray-900 dark:text-gray-100">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At ab
-                voluptas enim aperiam vitae
-                sed recusandae quod? <strong>Enim deserunt quas</strong>,
-                beatae, amet aliquam perspiciatis modi sapiente asperiores
-                eveniet corrupti tenetur consequuntur nobis repellendus
-                accusantium laboriosam repudiandae quod rerum ut
-                debitis reiciendis reprehenderit odio at. Magni quisquam quae ab
-                modi voluptatem.</p>
+        @if ($post->intro || $post->url)
+            <div class="space-y-4" x-data="embedIntro({{ json_encode(nl2p($post->intro)) }})">
+                @if ($post->intro)
+                    <div x-bind="intro"
+                        class="prose max-w-none text-gray-900 dark:text-gray-100">
+                        {!! nl2p($post->intro) !!}</div>
+                @endif
 
-            <p>В однобітовому монохроматичному дисплеї розміром 32 на 48
-                використовуються бактерії, наповнені флуоресцентним
-                білком. <strong>При цьому кожна з них діє як окремий
-                    піксель.</strong> Саме завдяки цьому дисплею з дуже низькою
-                роздільною
-                здатністю ви
-                можете відтворити ігровий процес Doom за допомогою клітин.</p>
+                @if ($post->url)
+                    <div x-bind="embed" x-embed="{{ $post->url }}"
+                        class="w-full"></div>
+                @endif
+            </div>
+        @endif
 
-            <p><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    <strong>Omnis, voluptatum.</strong></em></p>
-
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Consequuntur explicabo nemo non
-                quos possimus asperiores, nesciunt iste voluptatibus! Assumenda
-                eius ullam commodi, nisi magnam odit
-                ipsam, recusandae officiis corporis quos, adipisci accusamus
-                exercitationem est cupiditate nulla placeat
-                inventore error dolor ipsum quis deleniti corrupti sint?</p>
-        </div>
-
-        <div class="mt-1 flex items-center justify-between pe-1">
+        @if ($post->html)
             <div
-                class="flex items-center gap-4 space-x-2 text-xs font-semibold text-gray-400">
-                <x-like-button :post="$post" />
-                <x-comment-button :post="$post" />
+                class="ProseMirror prose max-w-none break-words text-gray-900 dark:text-gray-100">
+                {!! $post->html !!}
             </div>
 
-            <div class="flex items-center gap-4 text-gray-400">
+            @if (app()->environment('local'))
+                <pre class="whitespace-pre-wrap text-xs text-gray-400">{{ json_encode(json_decode($post->content), JSON_PRETTY_PRINT) }}</pre>
+            @endif
+        @endif
+
+        <div x-view-track.read.post.250ms="{{ $post->id }}"
+            class="mt-1 flex items-center justify-between pe-1 text-sm text-gray-400">
+            <div class="z-20 flex items-center gap-4 space-x-2">
+                <livewire:common.rating :post="$post" :user-like="$userLike"
+                    :like-score="$likesScore" />
+                <x-comment-button :post="$post" disabled />
+
+                <span
+                    class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">{{ __('Editorial') }}</span>
+            </div>
+
+            <div class="z-20 flex items-center gap-4">
+                <span class="pt-[0.125rem] text-right text-xs">
+                    {{ __(':count min read', ['count' => random_int(2, 20)]) }}
+                </span>
                 <x-views-count-indicator :post="$post" />
-                <x-bookmark-button :post="$post" />
+                <livewire:common.bookmark-button :bookmarkable="$post" />
             </div>
         </div>
     </div>
 
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <x-post-comments :post="$post" />
+    <div id="comments" class="mx-auto max-w-7xl">
+        <x-post.comments :post="$post" />
+
+        @auth()
+            <div
+                class="comment-container-parent relative flex rounded-l-md bg-white sm:rounded-xl">
+                <div class="flex w-full flex-col gap-y-3 px-5 pb-4 pt-6">
+                    <form action="{{ route('comment.store') }}" method="post"
+                        class="flex w-full flex-col">
+                        @csrf
+                        <input type="hidden" name="post_id"
+                            value="{{ $post->id }}" />
+
+                        <div class="flex flex-1 gap-x-4">
+                            <div class="flex w-full flex-col justify-between">
+                                <div class="flex-1 text-gray-600">
+                                    <x-minimal-textarea no-border x-ref="reply"
+                                        name="comment" class="w-full resize-none"
+                                        rows="2"
+                                        placeholder="{{ __('Write a comment...') }}" />
+                                </div>
+                            </div>
+
+                            <div class="flex-none">
+                                <x-avatar :user="auth()->user()" class="h-14 w-14"
+                                    with-link />
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <x-primary-button>{{ __('Comment') }}</x-primary-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endauth
     </div>
 </x-main-layout>

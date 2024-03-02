@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/latest');
 
-Route::controller(\App\Http\Controllers\HomeController::class)->group(static function () {
-    Route::get('latest/{topic:slug?}', 'latest')->name('home');
-    Route::get('relevant/{topic:slug?}', 'relevant')->name('home.relevant');
-    Route::get('top/{topic:slug?}', 'top')->name('home.top');
+Route::controller(\App\Http\Controllers\ListingController::class)->group(static function () {
+    Route::get('latest/{topic?}', 'posts')->name('home');
+    Route::get('relevant/{topic?}', 'posts')->name('home.relevant');
+    Route::get('top/{topic?}', 'posts')->name('home.top');
+
+    Route::get('user/{user:id}', 'author')->name('user.show');
+    Route::get('user/{user:id}/bookmarks', 'bookmarks')->name('user.bookmarks');
 });
 
 Route::controller(\App\Http\Controllers\PostController::class)->group(static function () {
@@ -33,8 +36,12 @@ Route::controller(\App\Http\Controllers\PostController::class)->group(static fun
     });
 });
 
-Route::controller(\App\Http\Controllers\UserController::class)->group(static function () {
-    Route::get('user/{user:id}', 'show')->name('user.show');
+Route::controller(\App\Http\Controllers\CommentController::class)->group(static function () {
+    Route::group(['middleware' => 'auth'], static function () {
+        Route::post('comment', 'store')->name('comment.store');
+        Route::put('comment/{comment}', 'update')->name('comment.update');
+        Route::delete('comment/{comment}', 'destroy')->name('comment.delete');
+    });
 });
 
 Route::controller(\App\Http\Controllers\TopicController::class)->group(static function () {
@@ -43,7 +50,10 @@ Route::controller(\App\Http\Controllers\TopicController::class)->group(static fu
     });
 });
 
-Route::get('api/fetch-meta', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.fetch-meta');
+Route::get('api/embed', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.show');
+
+
+Route::post('api/view-track', [App\Http\Controllers\Api\ViewController::class, 'track']);
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

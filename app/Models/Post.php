@@ -2,20 +2,49 @@
 
 namespace App\Models;
 
+use App\Enums\MinLikesScore;
+use App\Models\Interfaces\Bookmarkable;
+use App\Models\Traits\HasBookmarks;
+use App\Models\Traits\HasLikes;
+use App\Models\Traits\HasTags;
+use App\Models\Traits\HasViews;
+use App\Observers\PostObserver;
+use App\Services\PostService\PostCriteria;
+use App\Services\ViewService\Viewable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
-class Post extends Model
+#[ObservedBy(PostObserver::class)]
+class Post extends Model implements Viewable, Bookmarkable
 {
     use HasFactory;
+    use HasTags;
+    use HasLikes;
+    use HasViews;
+    use HasBookmarks;
+
+    protected $with = ['author', 'topic', 'userBookmark'];
+    protected $withCount = ['comments', 'bookmarks'];
 
     protected $casts = [
         'published_at' => 'datetime',
+    ];
+
+    protected $fillable = [
+        'title',
+        'url',
+        'intro',
+        'content',
+        'author_id',
+        'topic_id',
+        'published_at',
     ];
 
     public function topic(): BelongsTo
@@ -28,9 +57,10 @@ class Post extends Model
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function tags(): BelongsToMany
+    public function comments(): HasMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->hasMany(Comment::class)
+            ->orderBy('created_at');
     }
 
     public function slug(): Attribute
@@ -42,43 +72,38 @@ class Post extends Model
         );
     }
 
+    public function scopeByCriteria(Builder $builder, PostCriteria $criteria): void
+    {
+        $builder
+            ->when($criteria->tag, fn(Builder $query) => $query->whereHas('tags', fn(Builder $query) => $query->where('slug', $criteria->tag->slug)))
+            ->when($criteria->topic, fn(Builder $query) => $query->whereBelongsTo($criteria->topic));
+    }
+
     public function scopePublished(Builder $builder): void
     {
         $builder->whereNotNull('published_at');
     }
 
-    public function scopeLatest(Builder $builder): void
+    public function scopeLatestPublications(Builder $builder, MinLikesScore $filter = MinLikesScore::None): void
     {
-        $builder->orderByDesc('published_at');
+        $builder
+            ->minLikesScore($filter)
+            ->latest('published_at');
     }
 
-    public function scopeWithTopic(Builder $builder, string|null $topic = null): void
+    public function scopeMostCommented(Builder $builder, string $period = '3 days'): void
     {
-        if (empty($topic)) {
-            return;
-        }
+        $dateFrom = now()->sub($period);
 
-        $builder->whereHas('topic', fn($query) => $query->where('slug', $topic));
-    }
-
-    public function scopeMostLiked(Builder $builder, string $period = '3 days'): void
-    {
-        $this->inRandomOrder(); // @todo replace with real logic
+        $builder
+            ->withCount([
+                'comments as last_comments_count' => fn(Builder $query) => $query->where('created_at', '>=', $dateFrom),
+            ])
+            ->orderByDesc('last_comments_count');
     }
 
     public function scopeRelevant(Builder $builder, User $user): void
     {
-        $this->inRandomOrder(); // @todo replace with real logic
-    }
-
-    public function scopeWithTags(Builder $builder, array|string|null $tags): void
-    {
-        if (empty($tags)) {
-            return;
-        }
-
-        $tags = is_array($tags) ? $tags : [$tags];
-
-        $builder->whereHas('tags', fn($query) => $query->whereIn('slug', $tags));
+        $builder->inRandomOrder(); // @todo replace with real logic
     }
 }

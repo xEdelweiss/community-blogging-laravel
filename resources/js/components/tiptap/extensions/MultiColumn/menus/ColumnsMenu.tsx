@@ -13,9 +13,7 @@ import { Icon } from "../../../components/ui/Icon";
 export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
     const getReferenceClientRect = useCallback(() => {
         const renderContainer = getRenderContainer(editor, "columns");
-        const rect =
-            renderContainer?.getBoundingClientRect() ||
-            new DOMRect(-1000, -1000, 0, 0);
+        const rect = renderContainer?.getBoundingClientRect() || new DOMRect(-1000, -1000, 0, 0);
 
         return rect;
     }, [editor]);
@@ -56,7 +54,7 @@ export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
         >
             <Toolbar.Wrapper>
                 <Toolbar.Button
-                    tooltip="Sidebar left"
+                    tooltip={__("Sidebar left")}
                     active={editor.isActive("columns", {
                         layout: ColumnLayout.SidebarLeft,
                     })}
@@ -65,7 +63,7 @@ export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
                     <Icon name="PanelLeft" />
                 </Toolbar.Button>
                 <Toolbar.Button
-                    tooltip="Two columns"
+                    tooltip={__("Two columns")}
                     active={editor.isActive("columns", {
                         layout: ColumnLayout.TwoColumn,
                     })}
@@ -74,7 +72,7 @@ export const ColumnsMenu = ({ editor, appendTo }: MenuProps) => {
                     <Icon name="Columns" />
                 </Toolbar.Button>
                 <Toolbar.Button
-                    tooltip="Sidebar right"
+                    tooltip={__("Sidebar right")}
                     active={editor.isActive("columns", {
                         layout: ColumnLayout.SidebarRight,
                     })}

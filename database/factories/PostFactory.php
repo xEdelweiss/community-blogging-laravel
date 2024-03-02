@@ -20,7 +20,7 @@ class PostFactory extends Factory
     {
         $title = $this->faker->sentence;
         $topic = Topic::inRandomOrder()->first();
-        $intro = $this->faker->paragraph(2);
+        $intro = $this->faker->realText(300);
         $createdAt = $this->faker->dateTimeBetween('-2 months');
         $imgVersion = $this->faker->randomNumber(2);
 
@@ -34,14 +34,14 @@ class PostFactory extends Factory
         // $cover = "https://source.unsplash.com/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
         $cover = "https://placehold.co/{$dimensions}?{$topic->slug}&crop&v={$imgVersion}";
 
-        $url = $this->optional(80, $this->faker->url);
+        $url = '';
         $actualCover = $this->optional(80, $cover);
         $actualIntro = $this->optional(50, $intro);
         $publishedAt = $this->optional(80, $createdAt);
 
         if ($url && $actualCover && $actualIntro) {
             if ($this->faker->boolean(50)) {
-                $actualIntro = $this->faker->paragraphs(2, true);
+                $actualIntro = $intro;
             } else {
                 $actualCover = $cover;
             }

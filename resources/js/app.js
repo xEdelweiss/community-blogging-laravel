@@ -1,17 +1,17 @@
 import "./bootstrap";
 import { Livewire } from "../../vendor/livewire/livewire/dist/livewire.esm";
-import usePostEditor from "./usePostEditor.tsx";
-import useTelegramEmbed from "./embeds/useTelegramEmbed.js";
-import useRedditEmbed from "./embeds/useRedditEmbed.js";
-import useTwitterEmbed from "./embeds/useTwitterEmbed.js";
-import useInstagramEmbed from "./embeds/useInstagramEmbed.js";
-import useYoutubeEmbed from "./embeds/useYoutubeEmbed.js";
-import useUnifiedEmbed from "./embeds/useUnifiedEmbed.js";
-import useUrlEmbed from "./embeds/useUrlEmbed.js";
+import usePostEditor from "./usePostEditor.jsx";
+import useEmbed from "./useEmbed.js";
 import useAutosize from "./useAutosize.js";
+import useLimitIndicator from "./useLimitIndicator.js";
+import useHiddenFailedImage from "./useHiddenFailedImage.js";
+import useViewTrack from "./useViewTrack.js";
 
 usePostEditor();
 useAutosize();
-useUnifiedEmbed([useTelegramEmbed(), useRedditEmbed(), useTwitterEmbed(), useInstagramEmbed(), useYoutubeEmbed(), useUrlEmbed()]);
+useLimitIndicator();
+useEmbed();
+useHiddenFailedImage();
+useViewTrack();
 
 Livewire.start();
