@@ -1,9 +1,12 @@
 <?php
 
+use App\Services\PostService\Editor\PostEditor;
 use App\Services\PostService\PostService;
 
 beforeEach(function () {
-    $this->service = new PostService();
+    $this->service = new PostService(
+        new PostEditor()
+    );
 });
 
 test('simple content can be converted to text', function () {
