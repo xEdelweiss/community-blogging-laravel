@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Enums\MinLikesScore;
 use App\Models\Traits\HasLikes;
+use App\Models\Traits\HasViews;
 use App\Observers\PostObserver;
 use App\Services\PostService\PostCriteria;
+use App\Services\ViewService\Viewable;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -17,10 +19,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 #[ObservedBy(PostObserver::class)]
-class Post extends Model
+class Post extends Model implements Viewable
 {
     use HasFactory;
     use HasLikes;
+    use HasViews;
 
     protected $with = ['author', 'topic'];
     protected $withCount = ['comments'];

@@ -51,6 +51,9 @@ Route::controller(\App\Http\Controllers\TopicController::class)->group(static fu
 
 Route::get('api/embed', [\App\Http\Controllers\Api\EmbedController::class, 'show'])->name('embed.show');
 
+
+Route::post('api/view-track', [App\Http\Controllers\Api\ViewController::class, 'track']);
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');

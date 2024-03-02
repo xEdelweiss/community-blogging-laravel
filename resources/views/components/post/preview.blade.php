@@ -1,6 +1,7 @@
 @props(['post', 'userLike', 'likeScore', 'noAuthor' => false])
 
 <div x-data onclick="window.location='{{ $link }}';"
+    x-view-track.listing.post.400ms="{{ $post->id }}"
     class="main-card group relative flex cursor-pointer flex-col gap-3 overflow-hidden p-6 pb-4 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800">
 
     <a title="{{ $post->title }}" href="{{ $link }}"

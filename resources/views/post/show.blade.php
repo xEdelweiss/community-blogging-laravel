@@ -53,7 +53,7 @@
             @endif
         </div>
 
-        <div>
+        <div x-view-track.view.post.250ms="{{ $post->id }}">
             <div
                 class="@if ($post->title) items-start @else items-start @endif flex justify-between gap-x-1">
                 <div>
@@ -117,7 +117,7 @@
             @endif
         @endif
 
-        <div
+        <div x-view-track.read.post.250ms="{{ $post->id }}"
             class="mt-1 flex items-center justify-between pe-1 text-sm text-gray-400">
             <div class="z-20 flex items-center gap-4 space-x-2">
                 <livewire:common.rating :post="$post" :user-like="$userLike"
