@@ -6,7 +6,7 @@
     class="main-card group relative flex cursor-pointer flex-col gap-3 overflow-hidden p-6 pb-4 shadow-sm transition duration-150 ease-in hover:shadow-post dark:bg-gray-800">
 
     <a title="{{ $post->title }}" href="{{ $link }}"
-        class="pointer-events-none absolute inset-0 z-10"></a>
+        class="absolute inset-0 z-10"></a>
 
     <div class="flex flex-col gap-1 pe-1">
         <div class="flex flex-nowrap items-start justify-between gap-4">
