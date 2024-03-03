@@ -7,7 +7,10 @@
     }
 @endphp
 <figure provider-name="{{ $meta->providerName }}"
-    class="flex flex-col items-stretch justify-start gap-4 rounded-xl border p-4 sm:flex-row">
+    class="relative flex flex-col items-stretch justify-start gap-4 rounded-xl border p-4 sm:flex-row">
+    <a href="{{ $meta->url }}" target="__blank"
+        class="absolute inset-0 z-10"></a>
+
     @if ($meta->imageUrl)
         <img x-hide-if-failed
             class="h-24 w-full rounded object-cover sm:w-auto sm:max-w-[30%] sm:object-contain"
