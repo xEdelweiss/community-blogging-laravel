@@ -33,6 +33,10 @@ new class extends Component {
 
     public function isBookmarked(): bool
     {
+        if (!$this->user) {
+            return false;
+        }
+
         return $this->bookmarkable->isBookmarkedBy($this->user);
     }
 }; ?>

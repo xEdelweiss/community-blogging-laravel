@@ -42,6 +42,10 @@ trait HasBookmarks
 
     public function userBookmark(): MorphOne
     {
+        if (!auth()->user()) {
+            return $this->morphOne(Bookmark::class, 'bookmarkable');
+        }
+        
         return $this->morphOne(Bookmark::class, 'bookmarkable')
             ->where('user_id', auth()->user()->id);
     }
