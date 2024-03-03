@@ -41,16 +41,30 @@
                                 datetime="{{ $post->published_at->toDateTimeString() }}"
                                 class="date-no-year"
                                 title="{{ $post->published_at->isoFormat('LLLL') }}">{{ $post->published_at->isoFormat('ll') }}</time>
+
+                            @if (!$post->published_at->equalTo($post->updated_at))
+                                <span class="text-xs opacity-50"
+                                    title="{{ $post->updated_at->isoFormat('lll') }}">{{ __('(Edited)') }}</span>
+                            @endif
                         </div>
+
                     @endif
                 </div>
             </div>
 
-            @if (auth()->user() && auth()->user()->id !== $post->author->id)
-                <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3">
+                @if (auth()->user()?->id !== $post->author->id)
                     <x-subscribe-button :user="$post->author" />
-                </div>
-            @endif
+                @else
+                    <a href="{{ route('post.edit', ['post' => $post]) }}">
+                        <x-secondary-button class="gap-x-2">
+                            <x-icons.pen class="h-4 w-4" />
+                            <span>{{ __('Edit') }}</span>
+                        </x-secondary-button>
+                    </a>
+                @endif
+            </div>
+
         </div>
 
         <div x-view-track.view.post.250ms="{{ $post->id }}">

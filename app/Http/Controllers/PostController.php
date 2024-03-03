@@ -13,7 +13,7 @@ class PostController extends Controller
         private readonly LikeService $likeService,
     )
     {
-        // $this->authorizeResource(Post::class, 'post');
+        $this->authorizeResource(Post::class, 'post');
     }
 
     /**
@@ -21,7 +21,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view('post.create', [
+            'post' => new Post(),
+        ]);
     }
 
     /**
@@ -30,16 +32,16 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $post = Post::create([
-            'title' => $request->get('title'),
-            'url' => $request->get('url'),
-            'intro' => $request->get('intro'),
-            'content' => $request->get('content'),
+            'title' => $request->validated('title'),
+            'url' => $request->validated('url'),
+            'intro' => $request->validated('intro'),
+            'content' => $request->validated('content'),
             'author_id' => $request->user()->id,
-            'topic_id' => $request->topic_id,
+            'topic_id' => $request->validated('topic_id'),
             'published_at' => now(),
         ]);
 
-        $post->syncTags($request->tags);
+        $post->syncTags($request->validated('tags', []));
 
         return redirect()->route('post.show', [
             'post' => $post,
@@ -52,8 +54,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $this->authorize('view', $post);
-
         $userLike = $this->likeService
             ->getUserLikes(auth()->user(), Post::class, $post->id)
             ->first();
@@ -74,15 +74,30 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('post.create', [
+            'post' => $post,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        //
+        $post->update([
+            'title' => $request->validated('title'),
+            'url' => $request->validated('url'),
+            'intro' => $request->validated('intro'),
+            'content' => $request->validated('content'),
+            'topic_id' => $request->validated('topic_id'),
+        ]);
+
+        $post->syncTags($request->validated('tags', []));
+
+        return redirect()->route('post.show', [
+            'post' => $post,
+            'slug' => $post->slug ?? 'none',
+        ]);
     }
 
     /**

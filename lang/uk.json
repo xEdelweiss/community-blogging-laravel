@@ -58,6 +58,7 @@
     "Click here to re-send the verification email.": "Натисніть тут, щоб відправити лист з підтвердженням ще раз.",
     "A new verification link has been sent to your email address.": "Нове посилання для підтвердження було відправлено на вашу адресу електронної пошти.",
     "New post": "Новий пост",
+    "Edit post": "Редагувати пост",
     "Your catchy title": "Ваша приваблива назва",
     "URL to embed (optional)": "URL для вбудовування (необов'язково)",
     "Add intro text to make your post more attractive and get better preview": "Додайте вступний текст, щоб зробити свій пост більш привабливим та отримати кращий попередній перегляд",
@@ -76,6 +77,7 @@
     "Has intro or link": "Є вступ або посилання",
     "Not published yet": "Ще не опубліковано",
     "Posted on": "Опубліковано",
+    "(Edited)": "(Редаговано)",
     "Write a comment...": "Напишіть коментар...",
     "Comment": "Коментар",
     "About": "Про себе",
@@ -165,5 +167,6 @@
     "No posts yet": "Ще немає постів",
     "Bookmarks": "Закладки",
     "Drafts": "Чернетки",
-    "No bookmarks yet": "Ще немає закладок"
+    "No bookmarks yet": "Ще немає закладок",
+    "Edit": "Редагувати"
 }

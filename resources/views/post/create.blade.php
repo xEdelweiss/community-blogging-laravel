@@ -1,6 +1,12 @@
-<x-main-layout title="✏️ {{ __('New post') }}" x-data="postForm">
-    <form x-ref="form" @post-form-submit.window="submitForm()"
-        action="{{ route('post.store') }}" method="post">
+<x-main-layout title="✏️ {{ $post->exists ? __('Edit post') : __('New post') }}"
+    x-data="postForm({
+        title: {{ json_encode($post->title ?? '') }},
+        intro: {{ json_encode($post->intro ?? '') }},
+        postContent: {{ json_encode($post->content) }},
+        url: {{ json_encode($post->url ?? '') }},
+    })">
+
+    <form x-ref="form" @post-form-submit.window="submitForm()" method="post">
         <div class="main-card space-y-4 p-6 shadow-sm dark:bg-gray-800">
             @csrf
 
@@ -18,10 +24,10 @@
                 </div>
 
                 {{-- tags --}}
-                <livewire:post.tags-input :tags="['Переклад', 'Хмарні Технології', 'Скандали']" />
+                <livewire:post.tags-input :tags="$post->tags->pluck('name')->toArray()" />
             </div>
 
-            <x-topic-select />
+            <x-topic-select selected="{{ $post->topic->id ?? '' }}" />
 
             {{-- url --}}
             <div class="mb-4 flex flex-col gap-3">
@@ -31,7 +37,7 @@
                         name="url" x-model.debounce.500ms="url" />
                 </div>
 
-                <div x-embed="url"
+                <div x-embed="url" x-show="url"
                     @embed-loaded="updateTitle($event.detail.embed.title)"
                     class="w-full"></div>
             </div>

@@ -2,14 +2,14 @@ import { Alpine } from "../../vendor/livewire/livewire/dist/livewire.esm";
 import { Editor } from "@tiptap/react";
 
 export default function usePostEditor() {
-    Alpine.data("postForm", () => ({
+    Alpine.data("postForm", (initialValue = {}) => ({
         editorOpen: false,
-        url: "",
-        title: "",
+        url: initialValue?.url ?? "",
+        title: initialValue?.title ?? "",
         maxTitleLength: 150,
-        intro: "",
+        intro: initialValue?.intro ?? "",
         maxIntroLength: 300,
-        postContent: { type: "doc", content: [] },
+        postContent: initialValue?.postContent ?? { type: "doc", content: [] },
 
         get valid() {
             return true; // @fixme remove

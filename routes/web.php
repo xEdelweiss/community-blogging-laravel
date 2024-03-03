@@ -31,7 +31,7 @@ Route::controller(\App\Http\Controllers\PostController::class)->group(static fun
         Route::get('post', 'create')->name('post.create');
         Route::post('post', 'store')->name('post.store');
         Route::get('post/{post}/edit', 'edit')->name('post.edit');
-        Route::put('post/{post}', 'update')->name('post.update');
+        Route::post('post/{post}/edit', 'update')->name('post.update');
         Route::delete('post/{post}', 'destroy')->name('post.delete');
     });
 });
