@@ -9,7 +9,7 @@ export default function usePostEditor() {
         maxTitleLength: 150,
         intro: initialValue?.intro ?? "",
         maxIntroLength: 300,
-        postContent: initialValue?.postContent ?? { type: "doc", content: [] },
+        postContent: initialValue?.postContent ? JSON.parse(initialValue?.postContent) : { type: "doc", content: [] },
 
         get valid() {
             return true; // @fixme remove
