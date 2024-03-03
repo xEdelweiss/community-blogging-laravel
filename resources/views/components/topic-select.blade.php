@@ -18,7 +18,7 @@
 @endphp
 
 <div x-data="{
-    selectedTopicId: {{ $selected ?? 'null' }},
+    selectedTopicId: {{ json_encode(((int) $selected) ?? null) }},
     filter: '',
     topics: {{ json_encode($topics) }},
     select(topic) {
