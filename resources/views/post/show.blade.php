@@ -138,8 +138,8 @@
                     :like-score="$likesScore" />
                 <x-comment-button :post="$post" disabled />
 
-                <span
-                    class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">{{ __('Editorial') }}</span>
+                {{-- <span
+                    class="rounded-full bg-gray-100 px-3 pb-1 pt-[0.375rem] text-xs text-gray-700">{{ __('Editorial') }}</span> --}}
             </div>
 
             <div class="z-20 flex items-center gap-4">
