@@ -1,4 +1,5 @@
 import "./bootstrap";
+import * as Sentry from "@sentry/browser";
 import { Livewire } from "../../vendor/livewire/livewire/dist/livewire.esm";
 import usePostEditor from "./usePostEditor.jsx";
 import useEmbed from "./useEmbed.js";
