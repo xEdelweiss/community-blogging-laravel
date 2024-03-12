@@ -20,6 +20,7 @@ export default defineConfig({
         extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
     build: {
+        sourcemap: true,
         rollupOptions: {
             output: {
                 manualChunks: {
