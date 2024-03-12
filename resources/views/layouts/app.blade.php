@@ -24,6 +24,12 @@
 
     <!-- Scripts -->
     @l10n
+    <script type="module">
+        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
+        BugsnagPerformance.start({
+            apiKey: '3fe3cba947b14c7c606e988ecdc3f882'
+        })
+    </script>
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/css/editor.css', 'resources/js/app.js'])
 </head>

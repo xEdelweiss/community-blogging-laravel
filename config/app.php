@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\VoltServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class
     ])->toArray(),
 
     /*
