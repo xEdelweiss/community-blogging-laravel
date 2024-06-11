@@ -1,3 +1,7 @@
+# Community blogging platform
+
+![UI Example](https://sverdlykivskyi.net.ua/misc/spilka/ui.png?v2)
+
 # Run in development mode
 
 ```shell
@@ -13,7 +17,7 @@ php artisan storage:link
 
 # FAQ
 
-#### Blade component constructor receives empty entity
+#### Blade component constructor receives an empty entity
 ```shell
 php artisan optimize:clear
 ```
@@ -21,15 +25,15 @@ php artisan optimize:clear
 # Known issues
 
 - ImageBlockView is redrawing on click due to decorators, this leads to image refetching
-- TextArea height is not recalculated after page was resized
+- TextArea height is not recalculated after the page was resized
 
 # TODO
 
-- [ ] Ensure frontend Post editor works as expected
-  - [x] Highlight embeds selection in editor (see `.ProseMirror-selectednode`)
+- [ ] Ensure the frontend Post editor works as expected
+  - [x] Highlight embeds selection in the editor (see `.ProseMirror-selectednode`)
   - [ ] Sometimes multiple embeds are selected
-- [ ] Ensure Post content rendering is consistent with editor
+- [ ] Ensure Post content rendering is consistent with the editor
   - [ ] Implement Table of Contents rendering by PHP
   - [ ] Implement Image rendering by PHP
-- [ ] Should cover image be displayed if embed is added?
+- [ ] Should the cover image be displayed if embed is added?
 - [ ] Refactor Likes/Dislikes to get rid of liked/rate/score mix
